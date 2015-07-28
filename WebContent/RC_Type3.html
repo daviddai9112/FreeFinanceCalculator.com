@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Retirement Calculator | Financial Calculate</title>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" type="text/css"
+	href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<!-- Custom Fonts -->
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"
+	type="text/css">
+
+<!-- Plugin CSS -->
+<link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/creative.css" type="text/css">
+
+<!-- JQuery -->
+<script type="text/javascript" src="jQuery/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="jQuery/jquery-ui.js"></script>
+</head>
+
+<body id="page-top">
+
+	<nav id="mainNav" class="navbar navbar-subpage navbar-fixed-top">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">Financial
+					Calculate</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="page-scroll" href="#about">About</a></li>
+					<li><a class="page-scroll" href="#services">Services</a></li>
+					<li><a class="page-scroll" href="#calculator">Calculator</a></li>
+					<li><a class="page-scroll" href="#contact">Contact</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+	<!-- the header picture is unique, naroow-->
+	<header class="subpage"
+		style="background-image: url(img/Retirement_long.jpg); background-position: top;">
+		<div class="header-content">
+			<div class="header-content-inner">&nbsp;</div>
+		</div>
+	</header>
+
+	<!--here is the main part -->
+	<section id="services">
+		<div class="container">
+			<div class="row">
+
+				<!-- start main_part -->
+				<div class="col-lg-12  text-center" id="main_part">
+					<h2>Retirement Calculator</h2>
+					<p>Better plan your retirement here!</p>
+					<hr>
+
+					<!-- here is the left_chart -->
+					<div class="col-lg-8" id="left_chart">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<div id="chart_div" style="height: 450px;"></div>
+								<!-- this is the google chart-->
+							</div>
+						</div>
+					</div>
+					<!-- left_chart end -->
+
+
+					<!-- right_div start -->
+					<div class="col-lg-4" id="right_div">
+						<div class="col-lg-8">&nbsp;</div>
+						<div class="dropdown col-lg-4">
+							<a class="dropdown-toggle" aria-haspopup="true" role="button"
+								data-toggle="dropdown" href="#" aria-expanded="false">GO TO<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Basic info</a></li>
+							</ul>
+						</div>
+
+
+
+
+						<div id="editor"></div>
+						<!-- editor -->
+
+						<button class="btn btn-primary" id="Pre">Prev</button>
+						&nbsp;&nbsp;
+						<button class="btn btn-primary" id="Next">Next</button>
+
+					</div>
+					<!--right_div end-->
+
+
+					<!-- here is the bottom_part -->
+					<div class="col-lg-12" id="bottom_part"></div>
+					<!--end bottom_part -->
+				</div>
+				<!-- end main_part -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- container -->
+	</section>
+
+
+
+	<!-- footer-->
+	<script>
+		$(function() {
+			$("#footer_content").load("footer.html");
+		});
+	</script>
+	<div id="footer_content"></div>
+
+
+
+
+	<div id="hidden_field">
+		<!-- ed0 start -->
+		<div id="ed0" style="display: none">
+			<!-- this should be the same with the first apear -->
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<span class="help-block" style="text-align: left;"><b>Current
+							income:</b> $ <span id="income">55000</span> /yr</span> <input type="range"
+						min="10000" max="300000" step="500" id="cur_income" />
+					<div class="col-lg-1" style="padding: 0">
+						<span class="help-block" style="text-align: left;">$10,000</span>
+					</div>
+					<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
+						<span class="help-block" style="text-align: left;">$300,000</span>
+					</div>
+				</div>
+
+				<div class="panel-body">
+					<span class="help-block" style="text-align: left;"><b>Saving
+							rates:</b> <span id="rates">15</span>% of income</span> <input type="range"
+						min="0.01" max="0.25" step="0.01" id="save_rates" value="0.15" />
+					<div class="col-lg-1" style="padding: 0">
+						<span class="help-block" style="text-align: left;">1%</span>
+					</div>
+					<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
+						<span class="help-block" style="text-align: right;">&nbsp;&nbsp;&nbsp;25%</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<br>
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-6" style="text-align: left;">Current
+						Age:</span>
+					<div class="col-lg-6">
+						<input type="text" class="form-control" value="35" id="cur_age">
+					</div>
+				</div>
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-6" style="text-align: left;">Retirement
+						Age:</span>
+					<div class="col-lg-6">
+						<input type="text" class="form-control" value="65" id="retire_age">
+					</div>
+				</div>
+
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-6" style="text-align: left;">Amount
+						Saved$:</span>
+					<div class="col-lg-6">
+						<input type="text" class="form-control" value="10000"
+							id="amount_saved" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- ed0 end-->
+
+
+		<!--ed1 -->
+		<div id="ed1" style="display: none">
+			<div class="panel panel-default">
+				<br>
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-12" style="text-align: left;">How
+						much do you expect your income to increase/decrease annually?</span>
+					<div class="col-lg-12">
+						<input type="text" class="form-control" value="4%" id="increase">
+					</div>
+				</div>
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-12" style="text-align: left;">Do
+						you have a pension</span>
+					<div class="col-lg-12">
+						<select name="pension"  class="form-control">
+							<option value="yes">Yes</option>
+							<option value="no">No</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="panel-body" style="padding: 5px;">
+					<span class="help-block col-lg-6" style="text-align: left;">Age Start:</span>
+					<div class="col-lg-6">
+						<input type="text" class="form-control" value="45"
+							id="amount_saved" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--ed1 end-->
+	</div>
+	<!--hidden_filed end-->
+
+
+
+
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Plugin JavaScript -->
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/jquery.fittext.js"></script>
+	<script src="js/wow.min.js"></script>
+
+	<!-- Custom Theme JavaScript -->
+	<script src="js/creative.js"></script>
+
+	<!-- the following is for google chart -->
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script type="text/javascript" src="js_will/line_chart.js"></script>
+
+	<!-- import the event js -->
+	<script src="js_will/retire_event.js"></script>
+	<script>
+		//variables
+		var contents = [ 'ed0', 'ed1' ];
+		var cur = 0;
+		var cur_income_value = 11000;
+		var save_rates_value = 0.02;
+
+		//elements
+		var nextBtn = document.getElementById("Next");
+		var preBtn = document.getElementById("Pre");
+		var editor = document.getElementById("editor");
+
+		addEvent();
+	</script>
+
+</body>
+
+</html>

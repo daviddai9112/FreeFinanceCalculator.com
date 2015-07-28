@@ -1,0 +1,4 @@
+-build UI
+-finish the js event 
+-finish the algorithm
+-SEO 

@@ -1,0 +1,98 @@
+page0
+
+
+	-How much money do you have saved?
+		slider 
+		money_saved
+	-Household income
+		slider
+		income / income_span
+page1					
+		
+		
+	-Current Age:
+		text
+		cur_age
+	-Retire Age:
+		text
+		retire_age
+
+	-Saving rate
+		slider
+		saving_rate / saving_rate_span
+	-How much do you expect your income to increase annually?
+		slider
+		income_increase_rate
+
+page2 about pension
+	-Do you have a pension
+		select value 0 /1
+		pension
+	-Age payment start
+		slider
+		pension_age
+	-Amount monthly
+		slider
+		pension_amount
+	
+page3 about SSN
+	-Are you eligible for Social Security?
+		select
+		eligible_SSN
+	-age to start payment
+		slider
+		SSN_age
+	-Amount Monthly
+		slider
+		SSN_amount
+
+------key note page 8 escape	
+page 4
+	-Do you have a partner eligible for retirement benefits? 
+		select 
+		partner_eligible
+	
+page 5
+	-Does your partner have a pension
+		select value 0 /1
+		pension
+	-Age payment start
+		slider
+		pension_age
+	-Amount monthly
+		slider
+		pension_amount
+
+page 6
+	-Is your partner eligible for Social Security?
+		select
+		eligibe_SSN
+	-age to start payment
+		slider
+		SSN_age
+	-Amount Monthly
+		slider
+		SSN_amount
+
+
+	
+page 7 about dependent
+	-Minor Dependents?
+		text
+		dependent
+	
+	-what is the age of your dependents?
+		
+	-pay for college
+		select
+		pay_college
+	
+	-pay for wedding
+		select
+		pay_wedding
+		
+	
+	
+	
+	
+	
