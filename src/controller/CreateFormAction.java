@@ -1,9 +1,3 @@
-/*
-Team 5
-Task 7
-Date: Jan. 28, 2015
-Only for educational use
- */
 package controller;
 
 import java.util.ArrayList;
@@ -11,21 +5,23 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import model.CalculatorDAO;
 import model.Model;
 
 import org.genericdao.RollbackException;
 import org.mybeans.form.FormBeanException;
 import org.mybeans.form.FormBeanFactory;
 
+import databeans.CalculatorBean;
 import formbeans.CalculatorForm;
 
 public class CreateFormAction extends Action {
 	private FormBeanFactory<CalculatorForm> formBeanFactory = FormBeanFactory
 			.getInstance(CalculatorForm.class);
-	//private UserDAO userDAO;
+	private CalculatorDAO calDAO;
 
 	public CreateFormAction(Model model) {
-		//userDAO = model.getUserDAO();
+		calDAO = model.getCalculatorDAO();
 	}
 
 	public String getName() {
@@ -77,6 +73,31 @@ public class CreateFormAction extends Action {
 			System.out.println(form.getDependent());
 			System.out.println(form.getPartnerpensionage());
 			
+			CalculatorBean calbean = new CalculatorBean();
+			calbean.setUserId(5);
+			calbean.setMoney_Saved(Long.parseLong(form.getMoneysaved()));
+			calbean.setIncome(Long.parseLong(form.getIncome()));
+			calbean.setCur_Age(Integer.parseInt(form.getCurage()));
+			calbean.setRetire_Age(Integer.parseInt(form.getRetireage()));
+			
+			double savingrate = Double.parseDouble(form.getSavingrate());
+			calbean.setSaving_Rate((int)(savingrate * 100));	
+			
+			double incomeincreaserate = Double.parseDouble(form.getIncomeincreaserate());
+			calbean.setIncome_Increase_Rate((int)(incomeincreaserate * 100));
+
+			calbean.setPension_Age(Integer.parseInt(form.getPensionage()));
+			calbean.setPension_Amount(Long.parseLong(form.getPensionamount()));
+			calbean.setSSN_Age(Integer.parseInt(form.getSsnage()));
+			calbean.setSSN_Amount(Long.parseLong(form.getSsnamount()));
+			calbean.setPartner_Pension_Amount(Long.parseLong(form.getPartnerpensionamount()));
+			calbean.setPartner_SSN_Age(Integer.parseInt(form.getPartnerSSNage()));
+			calbean.setPartner_SSN_Amount(Long.parseLong(form.getPartnerSSNamount()));
+			calbean.setDependent(Integer.parseInt(form.getDependent()));
+			calbean.setPartner_Pension_Age(Integer.parseInt(form.getPartnerpensionage()));
+			
+			calDAO.create(calbean);
+			
 //			UserBean user = new UserBean();
 //			user.setAge(Integer.parseInt(form.getAge()));
 //			user.setRetirementAge(Integer.parseInt(form.getRetirementAge()));
@@ -124,6 +145,9 @@ public class CreateFormAction extends Action {
 			// e.printStackTrace();
 			// }
 		} catch (FormBeanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RollbackException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

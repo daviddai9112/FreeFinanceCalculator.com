@@ -22,6 +22,7 @@ public class Model {
 	// private PriceDAO priceDAO;
 	// private TransactionDAO transactionDAO;
 	private UserDAO userDAO;
+	private CalculatorDAO calDAO;
 
 	public Model(ServletConfig config) throws ServletException {
 		try {
@@ -30,6 +31,7 @@ public class Model {
 
 			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
 			userDAO = new UserDAO("user", pool);
+			calDAO = new CalculatorDAO("calculator", pool);
 		} catch (DAOException e) {
 			throw new ServletException(e);
 		}
@@ -56,5 +58,8 @@ public class Model {
 	// public TransactionDAO getTransactionDAO() { return transactionDAO; }
 	public UserDAO getUserDAO() {
 		return userDAO;
+	}
+	public CalculatorDAO getCalculatorDAO() {
+		return calDAO;
 	}
 }
