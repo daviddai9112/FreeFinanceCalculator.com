@@ -2,3 +2,15 @@
 -finish the js event 
 -finish the algorithm
 -SEO 
+
+
+
+
+－－
+
+all onchange event -> store data to store html
+
+-> trigger calculate  -> use the data stored in html
+
+
+!! need to set the default value, the store should be the same with the showing

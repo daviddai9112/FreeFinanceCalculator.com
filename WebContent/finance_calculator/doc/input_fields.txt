@@ -55,24 +55,24 @@ page 4
 page 5
 	-Does your partner have a pension
 		select value 0 /1
-		pension
+		partner_pension
 	-Age payment start
 		slider
-		pension_age
+		partner_pension_age
 	-Amount monthly
 		slider
-		pension_amount
+		partner_pension_amount
 
 page 6
 	-Is your partner eligible for Social Security?
 		select
-		eligibe_SSN
+		partner_eligible_SSN
 	-age to start payment
 		slider
-		SSN_age
+		partner_SSN_age
 	-Amount Monthly
 		slider
-		SSN_amount
+		partner_SSN_amount
 
 
 	

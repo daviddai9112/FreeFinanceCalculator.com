@@ -1,3 +1,5 @@
+
+
 google.load('visualization', '1.1', {
 	packages : [ 'line' ]
 });
@@ -9,12 +11,10 @@ function drawChart() {
 	data.addColumn('number', 'Age');
 	data.addColumn('number', 'Savings');
 	data.addColumn('number', 'Spending');
+	data.addColumn('number', 'Total');
 	//data.addColumn('number', 'Transformers: Age of Extinction');
 
-	data.addRows([ [ 35, 100,100 ],
-	               [40,150,120],
-	               [45,180,130],
-	               ]);
+	data.addRows(finalResult());
 
 	var options = {
 		chart : {
