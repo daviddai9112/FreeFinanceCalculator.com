@@ -17,7 +17,7 @@
     </init-param>
     <init-param>
       <param-name>jdbcURL</param-name>
-      <param-value>   jdbc:mysql://test1.ccwt9wutytnz.us-west-2.rds.amazonaws.com:3306/test?user=root&amp;password=12345678 </param-value>
+      <param-value>   jdbc:mysql:///test </param-value>
     </init-param>
   </servlet>
   <servlet-mapping>

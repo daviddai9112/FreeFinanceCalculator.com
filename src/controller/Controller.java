@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
 	public void init() throws ServletException {
 		Model model = new Model(getServletConfig());
 
-//		Action.add(new LoginAction(model));
+		Action.add(new CreateFormAction(model));
 //		Action.add(new LogoutAction(model));
 //		Action.add(new ManageAction(model));
 //		Action.add(new CreateEmployeeAction(model));
@@ -70,7 +70,7 @@ public class Controller extends HttpServlet {
 
 		if (action.equals("manage.do")) {
 			// If the user hasn't logged in, so login is the only option
-			return Action.perform("create_user.do", request);
+			return Action.perform("create_form.do", request);
 		}
 
 //		if (action.equals("welcome")) {
@@ -107,7 +107,14 @@ public class Controller extends HttpServlet {
 			d.forward(request, response);
 			return;
 		}
-
+		
+		if (nextPage.endsWith(".html")) {
+			RequestDispatcher d = request.getRequestDispatcher("WEB-INF/"
+					+ nextPage);
+			d.forward(request, response);
+			return;
+		}
+		
 		if (!nextPage.isEmpty()) {
 			if (nextPage.startsWith("http://")) {
 				response.sendRedirect(nextPage);
