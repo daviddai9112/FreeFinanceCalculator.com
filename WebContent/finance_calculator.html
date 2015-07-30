@@ -158,8 +158,12 @@
 		});
 	</script>
 	<div id="footer_content"></div>
-
-
+	
+	<script>
+    function format2(n) {
+        return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
+    }
+    </script>
 
 
 	<div id="hidden_field">
@@ -175,7 +179,7 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_money_saved_span(myValue) {
-								document.getElementById("money_saved_span").innerHTML = myValue;
+								document.getElementById("money_saved_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>How
@@ -195,7 +199,7 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_income_span(myValue) {
-								document.getElementById("income_span").innerHTML = myValue;
+								document.getElementById("income_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>House
@@ -323,7 +327,7 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_pension_amount(myValue) {
-								document.getElementById("pension_amount_span").innerHTML = myValue;
+								document.getElementById("pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
@@ -371,7 +375,7 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_SSN_amount(myValue) {
-								document.getElementById("SSN_amount_span").innerHTML = myValue;
+								document.getElementById("SSN_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
@@ -443,7 +447,7 @@
 						<script>
 							function myFunction_partner_pension_amount(myValue) {
 								document
-										.getElementById("partner_pension_amount_span").innerHTML = myValue;
+										.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
@@ -492,7 +496,7 @@
 						<script>
 							function myFunction_partner_SSN_amount(myValue) {
 								document
-										.getElementById("partner_SSN_amount_span").innerHTML = myValue;
+										.getElementById("partner_SSN_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
