@@ -125,12 +125,16 @@
 
 					<!-- right_div start -->
 					<div class="col-lg-4" id="right_div">
-
+						<script>
+							function myFunction_money_saved_span(myValue) {
+								document.getElementById("alert_comment_span").innerHTML = myValue);
+							}
+						</script>
 						<!-- alert -->
 						<div class="bs-component">
 							<div class="alert alert-dismissable alert-danger">
 								<button type="button" class="close" data-dismiss="alert">×</button>
-								5% is below the recommended 7% savings rate
+								<span id = "alert_comment_span">5% is below the recommended 7% savings rate</span>
 							</div>
 						</div>
 
