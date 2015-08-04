@@ -82,8 +82,39 @@
 
 				<!-- start main_part -->
 				<div class="col-lg-12  text-center" id="main_part">
-					<h2>Financial Calculator</h2>
+					<h2>Retirement Planner</h2>
 					<hr>
+					
+					<!-- here is the top_content -->
+					<div class="col-lg-12" id="top_content">
+						<div class="panel panel-default">
+							<div class="panel-body">
+								
+								
+								<div id="forecast_img" class="col-lg-2">
+                                     <img id="img" src="sun.png" style = "float: center;">
+                                </div>
+                                
+                                <div id="text" style="font-size:25px; color: #D1D0CE; float: left; font-family: Arial" class="col-lg-10">
+                                   You will run out of money at 85 years old. 
+                                   
+                                   <div id="text" style="font-size:20px; color: #D1D0CE; font-family: Arial; text-align: left;">
+								
+								      You're in <font color = "#6698FF">excellent shape</font>. Your average income in retirement is expected to exceed spending goals,
+                                      so you probably won't need to draw meaningfully on your portfolio.
+								  </div>
+                                     
+                           
+                                </div>
+								
+								
+								
+								
+							</div>
+						</div>
+					</div>
+					
+					<!-- top_content end -->
 
 					<!-- here is the left_chart -->
 					<div class="col-lg-8" id="left_chart">
@@ -158,12 +189,8 @@
 		});
 	</script>
 	<div id="footer_content"></div>
-	
-	<script>
-    function format2(n) {
-        return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
-    }
-    </script>
+
+
 
 
 	<div id="hidden_field">
@@ -179,19 +206,19 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_money_saved_span(myValue) {
-								document.getElementById("money_saved_span").innerHTML = format2(parseInt(myValue));
+								document.getElementById("money_saved_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>How
-								much money do you have saved:</b> $ <span id="money_saved_span">55,000.00</span>
-							</span> <input type="range" min="10000" name = "moneysaved" max="300000" step="500"
+								much money do you have saved:</b> $ <span id="money_saved_span">55000</span>
+							/yr</span> <input type="range" min="10000" name = "moneysaved" max="300000" step="500"
 							value="55000" id="money_saved" onchange="valueChange(this);"
 							oninput="myFunction_money_saved_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">$10,000.00</span>
+							<span class="help-block" style="text-align: left;">$10,000</span>
 						</div>
 						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">$300,000.00</span>
+							<span class="help-block" style="text-align: left;">$300,000</span>
 						</div>
 					</div>
 
@@ -199,19 +226,19 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_income_span(myValue) {
-								document.getElementById("income_span").innerHTML = format2(parseInt(myValue));
+								document.getElementById("income_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>House
-								Hold income:</b> $ <span id="income_span">55,000.00</span></span> <input
+								Hold income:</b> $ <span id="income_span">55000</span> /yr</span> <input
 							type="range" min="10000" max="300000" step="500" value="55000"
 							name = "income" id="income" onchange="valueChange(this);"
 							oninput="myFunction_income_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">$10,000.00</span>
+							<span class="help-block" style="text-align: left;">$10,000</span>
 						</div>
 						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">$300,000.00</span>
+							<span class="help-block" style="text-align: left;">$300,000</span>
 						</div>
 					</div>
 
@@ -277,10 +304,10 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>
 								Income increase rate:</b><span id="income_increase_rate_span">5</span>%</span>
-						<input type="range" min="0.01" max="1" step="0.01" value = "0.05"
+						<input type="range" min="0.01" max="1" step="0.01"
 							onchange="valueChange(this);" id="income_increase_rate" name = "incomeincreaserate"
 							oninput="myFunction_income_increase_rate(this.value)" />
-	
+
 						<div class="col-lg-1" style="padding: 0">
 							<span class="help-block" style="text-align: left;">1%</span>
 						</div>
@@ -318,7 +345,7 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
 								payment start:</b> <span id="pension_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value = "50" id="pension_age" name = "pensionage"
+							type="range" min="20" max="70" step="1" id="pension_age" name = "pensionage"
 							onchange="valueChange(this);"
 							oninput="myFunction_pension_age(this.value)" />
 					</div>
@@ -327,12 +354,12 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_pension_amount(myValue) {
-								document.getElementById("pension_amount_span").innerHTML = format2(parseInt(myValue));
+								document.getElementById("pension_amount_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="pension_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" value = "500" step="1" id="pension_amount" name = "pensionamount"
+								monthly:</b> $<span id="pension_amount_span">500</span> </span> <input
+							type="range" min="100" max="1000" step="1" id="pension_amount" name = "pensionamount"
 							onchange="valueChange(this);"
 							oninput="myFunction_pension_amount(this.value)" />
 					</div>
@@ -366,7 +393,7 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
 								payment start:</b> <span id="SSN_age_span">50</span> </span> <input
-							type="range" min="20" max="70" value = "50" step="1" id="SSN_age" name = "ssnage"
+							type="range" min="20" max="70" step="1" id="SSN_age" name = "ssnage"
 							onchange="valueChange(this);"
 							oninput="myFunction_SSN_age(this.value)" />
 					</div>
@@ -375,12 +402,12 @@
 					<div class="panel-body">
 						<script>
 							function myFunction_SSN_amount(myValue) {
-								document.getElementById("SSN_amount_span").innerHTML = format2(parseInt(myValue));
+								document.getElementById("SSN_amount_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="SSN_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" value = "500" step="1" id="SSN_amount" name = "ssnamount"
+								monthly:</b> $<span id="SSN_amount_span">500</span> </span> <input
+							type="range" min="100" max="1000" step="1" id="SSN_amount" name = "ssnamount"
 							onchange="valueChange(this);"
 							oninput="myFunction_SSN_amount(this.value)" />
 					</div>
@@ -437,7 +464,7 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
 								payment start:</b> <span id="partner_pension_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value = "50" id="partner_pension_age" name ="partnerpensionage"
+							type="range" min="20" max="70" step="1" id="partner_pension_age" name ="partnerpensionage"
 							onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_age(this.value)" />
 					</div>
@@ -447,12 +474,12 @@
 						<script>
 							function myFunction_partner_pension_amount(myValue) {
 								document
-										.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
+										.getElementById("partner_pension_amount_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="partner_pension_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" step="1" value = "500"
+								monthly:</b> $<span id="partner_pension_amount_span">500</span> </span> <input
+							type="range" min="100" max="1000" step="1"
 							id="partner_pension_amount" name = "partnerpensionamount" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_amount(this.value)" />
 					</div>
@@ -486,7 +513,7 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
 								payment start:</b> <span id="partner_SSN_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value = "50" id="partner_SSN_age" name = "partnerSSNage"
+							type="range" min="20" max="70" step="1" id="partner_SSN_age" name = "partnerSSNage"
 							onchange="valueChange(this);"
 							oninput="myFunction_partner_SSN_age(this.value)" />
 					</div>
@@ -496,12 +523,12 @@
 						<script>
 							function myFunction_partner_SSN_amount(myValue) {
 								document
-										.getElementById("partner_SSN_amount_span").innerHTML = format2(parseInt(myValue));
+										.getElementById("partner_SSN_amount_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="partner_SSN_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" step="1" value = "500"
+								monthly:</b> $<span id="partner_SSN_amount_span">500</span> </span> <input
+							type="range" min="100" max="1000" step="1"
 							id="partner_SSN_amount" name = "partnerSSNamount" onchange="valueChange(this);"
 							oninput="myFunction_partner_SSN_amount(this.value)" />
 					</div>
@@ -521,7 +548,7 @@
 						</script>
 						<span class="help-block" style="text-align: left;"> <b>How
 								many dependents?</b> <span id="dependent_span">3</span>
-						</span> <input type="range" min="0" max="10" step="1" value = "3" id="dependent" name = "dependent"
+						</span> <input type="range" min="0" max="10" step="1" id="dependent" name = "dependent"
 							value="3" onchange="valueChange(this);"
 							oninput="myFunction_dependent(this.value)" />
 					</div>
@@ -587,7 +614,7 @@
 			type="hidden" value="1" id="store_partner_SSN_amount"> <input
 			type="hidden" value="1" id="store_dependent"> <input
 			type="hidden" value="1" id="store_pay_college"> <input
-			type="hidden" value="1" id="store_pay_wedding">
+			type="hidden" value="1" id="store_pay_wedding">s
 	</div>
 
 
