@@ -114,7 +114,7 @@
 
 
 					<!-- here is the left_chart -->
-					<div class="col-lg-4" id="left_chart">
+					<div class="col-lg-8" id="left_chart">
 						<div class="panel panel-default">
 							<div class="panel-body">
 								<div id="chart_div" style="height: 450px;"></div>
@@ -127,26 +127,17 @@
 
 					<!-- right_div start -->
 					<div class="col-lg-4" id="right_div">
-
-						<!-- the way to directly go to some page -->
-						<!--  
-						<div class="col-lg-8">&nbsp;</div>
-						<div class="dropdown col-lg-4">
-							<a class="dropdown-toggle" aria-haspopup="true" role="button"
-								data-toggle="dropdown" href="#" aria-expanded="false">GO TO<span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic info</a></li>
-							</ul>
+						<div class="panel panel-default">
+							<div class="panel-head">
+								<b>Suggestions for you</b>
+							</div>
+							<div class="panel-body">
+								<span>To help meet your goal, you may wish to do the
+									following:</span> </br>
+								<span>Increase your rate of return before retirement from
+									${rate_before}% to ${recommand_rate}%.</span>
+							</div>
 						</div>
-						-->
-						<!-- the way to directly go to some page end-->
-
-
-
-
-						<div id="editor"></div>
-
 					</div>
 					<!--right_div end-->
 					<!--form-->

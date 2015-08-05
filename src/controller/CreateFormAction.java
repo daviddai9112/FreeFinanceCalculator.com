@@ -142,6 +142,21 @@ public class CreateFormAction extends Action {
 			request.setAttribute("run_out", new Integer(runout));
 			request.setAttribute("lastyr_income", new Long(lastyr_income));
 			request.setAttribute("total_retired", new Long(total_retired));
+			request.setAttribute("rate_before", new Integer(test.getInvestment_Rate_Before()));
+			if(runout < 100){
+				int newrate = test.getInvestment_Rate_Before();
+				newrate ++;
+				CalculatorBean tmp = test;
+				tmp.setInvestment_Rate_Before(newrate);
+				FormBean[] tempbeans = calculation(tmp);
+				while(tempbeans[100 - tmp.getCur_Age()].getTotal() == 0){
+					newrate++;
+					tmp.setInvestment_Rate_Before(newrate);
+					tempbeans = calculation(tmp);
+				}
+				System.out.println("newrate" + newrate);
+				request.setAttribute("recommand_rate", new Integer(newrate));
+			}
 			total_retired = -1;
 			runout = -1;
 			lastyr_income = -1;
