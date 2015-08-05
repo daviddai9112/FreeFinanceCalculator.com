@@ -22,6 +22,10 @@ public class CalculatorBean {
 	private int    partner_SSN_age;
 	private long    partner_SSN_amount;
 	private int    dependent;
+	private int    retirement_level;
+	private int investment_rate_before;
+	private int investment_rate_after;
+	private int inflate_rate;
 	
 	public int    getCalId()               { return calId;            }
 	public void setCalId(int i) 		    {	calId      = i;        }
@@ -74,4 +78,15 @@ public class CalculatorBean {
 	public int    getPartner_Pension_Age()               { return partner_pension_age;            }
 	public void setPartner_Pension_Age(int i) 		    {	partner_pension_age      = i;        }
 	
+	public int    getRetirement_Level()               { return retirement_level;            }
+	public void setRetirement_Level(int i) 		    {	retirement_level      = i;        }
+	
+	public int    getInvestment_Rate_Before()               { return investment_rate_before;            }
+	public void setInvestment_Rate_Before(int i) 		    {	investment_rate_before      = i;        }
+	
+	public int    getInvestment_Rate_After()               { return investment_rate_after;            }
+	public void setInvestment_Rate_After(int i) 		    {	investment_rate_after      = i;        }
+	
+	public int    getInflate_Rate()               { return inflate_rate;            }
+	public void setInflate_Rate(int i) 		    {	inflate_rate      = i;        }
 }
