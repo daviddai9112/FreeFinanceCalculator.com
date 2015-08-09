@@ -67,6 +67,7 @@ function drawColColors() {
 /*
 	show the chart
 */
+
 google.load('visualization', '1', {
 	packages : [ 'corechart', 'bar' ]
 });

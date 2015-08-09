@@ -21,7 +21,7 @@ function drawChart() {
 			title : 'Retirement Plan',
 			subtitle : 'in dollars (USD)'
 		},
-		width : 650,
+		width : 600,
 		height : 400
 	};
 
