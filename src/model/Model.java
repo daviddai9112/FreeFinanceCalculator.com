@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 
 import org.genericdao.ConnectionPool;
 import org.genericdao.DAOException;
-import org.genericdao.RollbackException;
 
 
 public class Model {
@@ -20,7 +19,7 @@ public class Model {
 	// private FundDAO fundDAO;
 	// private PositionDAO positionDAO;
 	// private PriceDAO priceDAO;
-	// private TransactionDAO transactionDAO;
+	private SurveyDAO surveyDAO;
 	private UserDAO userDAO;
 	private CalculatorDAO calDAO;
 
@@ -32,6 +31,7 @@ public class Model {
 			ConnectionPool pool = new ConnectionPool(jdbcDriver, jdbcURL);
 			userDAO = new UserDAO("user", pool);
 			calDAO = new CalculatorDAO("calculator", pool);
+			surveyDAO = new SurveyDAO("survey", pool);
 		} catch (DAOException e) {
 			throw new ServletException(e);
 		}
@@ -61,5 +61,8 @@ public class Model {
 	}
 	public CalculatorDAO getCalculatorDAO() {
 		return calDAO;
+	}
+	public SurveyDAO getSurveyDAO() {
+		return surveyDAO;
 	}
 }

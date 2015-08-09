@@ -23,6 +23,9 @@ public class CreateFormAction extends Action {
 	private int runout = -1;
 	private long lastyr_income = -1;
 	private long total_retired = -1;
+	private long retirement_spending = -1;
+	private long retirement_total_spending = -1;
+
 	public CreateFormAction(Model model) {
 		calDAO = model.getCalculatorDAO();
 	}
@@ -106,7 +109,7 @@ public class CreateFormAction extends Action {
 
 			calDAO.create(calbean);
 
-			//test
+			// test
 			CalculatorBean test = new CalculatorBean();
 			test.setMoney_Saved(1000);
 			test.setIncome(110000);
@@ -118,9 +121,9 @@ public class CreateFormAction extends Action {
 			test.setInvestment_Rate_Before(7);
 			test.setInvestment_Rate_After(4);
 			test.setInflate_Rate(3);
-			
+
 			FormBean[] formBean = calculation(test);
-			for(int i = 0; i < formBean.length; i++){
+			for (int i = 0; i < formBean.length; i++) {
 				System.out.print(formBean[i].getAge());
 				System.out.print("    ");
 				System.out.print(formBean[i].getBeginretirementbalance());
@@ -142,14 +145,16 @@ public class CreateFormAction extends Action {
 			request.setAttribute("run_out", new Integer(runout));
 			request.setAttribute("lastyr_income", new Long(lastyr_income));
 			request.setAttribute("total_retired", new Long(total_retired));
-			request.setAttribute("rate_before", new Integer(test.getInvestment_Rate_Before()));
-			if(runout < 100){
+			request.setAttribute("retirement_spending", retirement_spending);
+			request.setAttribute("rate_before",
+					new Integer(test.getInvestment_Rate_Before()));
+			if (runout < 100) {
 				int newrate = test.getInvestment_Rate_Before();
-				newrate ++;
+				newrate++;
 				CalculatorBean tmp = test;
 				tmp.setInvestment_Rate_Before(newrate);
 				FormBean[] tempbeans = calculation(tmp);
-				while(tempbeans[100 - tmp.getCur_Age()].getTotal() == 0){
+				while (tempbeans[100 - tmp.getCur_Age()].getTotal() == 0) {
 					newrate++;
 					tmp.setInvestment_Rate_Before(newrate);
 					tempbeans = calculation(tmp);
@@ -157,9 +162,39 @@ public class CreateFormAction extends Action {
 				System.out.println("newrate" + newrate);
 				request.setAttribute("recommand_rate", new Integer(newrate));
 			}
+			if (runout >= 100) {
+				request.setAttribute("pic", "img/sun.png");
+			} else if (runout >= 90 && runout < 100) {
+				request.setAttribute("pic", "img/windy.png");
+			} else {
+				request.setAttribute("pic", "img/rainy.png");
+			}
+
+			// recommend_retirement_level;
+			long rec_retirement = retirement_level(total_retired,
+					test.getRetire_Age(), test.getInflate_Rate(),
+					test.getInvestment_Rate_After());
+			int rec_retirement_level = (int) ((rec_retirement * 100) / lastyr_income);
+			System.out
+					.println("rec_retirement_level   " + rec_retirement_level);
+			request.setAttribute("recommand_retirement_level", new Integer(
+					rec_retirement_level));
+
+			// recommend_saving_rate
+			int rec_saving_rate = saving_rate(retirement_total_spending,
+					test.getRetire_Age(), test.getCur_Age(),
+					test.getInvestment_Rate_Before(), test.getMoney_Saved(),
+					test.getIncome(), test.getIncome_Increase_Rate());
+			System.out
+					.println("rec_saving_rate   " + rec_saving_rate);
+			request.setAttribute("rec_saving_rate", new Integer(
+					rec_saving_rate));
+
+			retirement_total_spending = -1;
 			total_retired = -1;
 			runout = -1;
 			lastyr_income = -1;
+			retirement_spending = -1;
 			return "Report.jsp";
 			// UserBean user = new UserBean();
 			// user.setAge(Integer.parseInt(form.getAge()));
@@ -219,6 +254,7 @@ public class CreateFormAction extends Action {
 
 	}
 
+	//calculate table
 	private FormBean[] calculation(CalculatorBean cb) {
 		int age = cb.getCur_Age();
 		FormBean[] fb = new FormBean[101 - age];
@@ -231,7 +267,8 @@ public class CreateFormAction extends Action {
 		int investment_rate_before = cb.getInvestment_Rate_Before();
 		int investment_rate_after = cb.getInvestment_Rate_After();
 		int inflate_rate = cb.getInflate_Rate();
-
+		retirement_total_spending = 0;
+		
 		// fb[0]
 		FormBean fb0 = new FormBean();
 		fb0.setAge(age + 1);
@@ -269,9 +306,10 @@ public class CreateFormAction extends Action {
 		income = (100 + income_increase_rate) * income / 100;
 		lastyr_income = income;
 		long spending = income * retirement_level / 100;
+		retirement_spending = spending;
 		for (int i = retire_age - 1; i < 101; i++) {
 			FormBean temp = fb[i - age - 1];
-			if(total_retired == -1) {
+			if (total_retired == -1) {
 				total_retired = temp.getTotal();
 			}
 			FormBean newbean = new FormBean();
@@ -282,6 +320,7 @@ public class CreateFormAction extends Action {
 					/ (double) 100));
 			newbean.setSaving(0);
 			newbean.setRetirementspend(spending);
+			retirement_total_spending += spending;
 			spending = Math.round((double) ((100 + inflate_rate) * spending)
 					/ (double) 100);
 			newbean.setAccountspending((newbean.getBeginretirementbalance() + newbean
@@ -293,12 +332,51 @@ public class CreateFormAction extends Action {
 					+ newbean.getInvestmentgrowth()
 					- newbean.getAccountspending());
 			fb[i - age] = newbean;
-			if(newbean.getBeginretirementbalance()
+			if (newbean.getBeginretirementbalance()
 					+ newbean.getInvestmentgrowth()
-					- newbean.getAccountspending() == 0 && runout == -1){
+					- newbean.getAccountspending() == 0
+					&& runout == -1) {
 				runout = i + 1;
 			}
 		}
 		return fb;
+	}
+
+	//calculate recommend retirement level
+	private long retirement_level(long total, int retirement_age,
+			int flate_rate, int return_rate) {
+		long rs = 0;
+		double left = Math.pow(((double) (100 + return_rate)) / 100.00,
+				(double) (100 - retirement_age)) * total;
+		double flate_n = Math.pow(((double) (100 + flate_rate)) / 100.00,
+				(double) (100 - retirement_age));
+		double right = 0.00;
+		for (int i = 0; i < 100 - retirement_age; i++) {
+			right += flate_n;
+			flate_n *= ((double) (100 + return_rate) / 100.00);
+			flate_n /= ((double) (100 + flate_rate) / 100.00);
+		}
+		rs = (long) (left / right);
+		return rs - 1;
+	}
+
+	private int saving_rate(long total_retirement_spending, int retirement_age,
+			int cur_age, int return_rate, long deposit, long income,
+			int income_increase_rate) {
+		int rs = 0;
+		double left = Math.pow(((double) (100 + return_rate)) / 100.00,
+				(double) (retirement_age - cur_age)) * deposit;
+		left = total_retirement_spending - left;
+		double income_increase_n = Math.pow(
+				((double) (100 + income_increase_rate)) / 100.00,
+				(double) (retirement_age - cur_age));
+		double right = 0.00;
+		for (int i = 0; i < retirement_age - cur_age; i++) {
+			right += income_increase_n;
+			income_increase_n *= ((double) (100 + return_rate) / 100.00);
+			income_increase_n /= ((double) (100 + income_increase_rate) / 100.00);
+		}
+		rs = (int) (left * 100 / (right * income));
+		return rs;
 	}
 }
