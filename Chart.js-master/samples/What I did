@@ -1,0 +1,23 @@
+What I did
+1. The top-left block is used to inform the users of when they will run out of money, it will also make some comments based on the age. I put some weather forecast icon to indicate whether she/he is in a good condition or not.
+
+2. Right below the forecast block is a chart that displays the trend of total spending, total saving and total balance of the user. Users can see the number when moving the mouses on the line. We assume that life span is 100 years old
+
+
+3. The top-right block is an active advice block that would offer users some advice based on the input. For example, if the saving-rate of the user is below 7%, it will display '2% is below the recommended 7% savings rate.' If the retirement-level is above 90% it will display "91% is above the recommended 90% retirement level"
+
+4.right below the advice block is the information we want users to input: We categorized the information into personal information input, investment returns and inflation rate,pensions,social security benefits, spouse retirement benefits, education,weddings.
+
+The retirement level and saving rate have much more impact on the results than other factors. 
+Q (Could you give us a list of professional advice for each category?)
+
+
+
+What we need to do in the following two days:
+
+1. do the input validation.
+2. do the dependents age format.
+3. search engine optimization for this page. （We want to add some related articles on the bottom of our page）
+4. The layout for the report and tips page.
+5. Do the result match between the report and chart.
+
