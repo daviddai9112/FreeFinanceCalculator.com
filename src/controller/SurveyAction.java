@@ -51,6 +51,12 @@ public class SurveyAction extends Action {
 			}
 			
 			SurveyBean surveybean = new SurveyBean();
+			
+			//email
+			String email = form.getEmail();
+			System.out.println("email    " + email);
+			surveybean.setEmail(email);
+			System.out.println("email------------------------------");
 			//Q1
 			StringBuilder sb = new StringBuilder();
 			String[] q1 = form.getSurveyq1();
@@ -75,91 +81,22 @@ public class SurveyAction extends Action {
 			System.out.println("2------------------------------");
 			
 			//Q3
-			String[] q3 = form.getSurveyq3();
-			for(int j = 0; j < q3.length; j++){
-				sb.append(q3[j]);
-				if(j != q3.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ3(sb.toString());
-			sb = new StringBuilder();
+			String q3 = form.getSurveyq3();
+			System.out.println(q3);
+			surveybean.setQ3(q3);
 			System.out.println("3------------------------------");
 			
 			//Q4
-			String[] q4 = form.getSurveyq4();
-			for(int j = 0; j < q4.length; j++){
-				sb.append(q4[j]);
-				if(j != q4.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ4(sb.toString());
-			sb = new StringBuilder();
+			String q4 = form.getSurveyq4();
+			System.out.println(q4);
+			surveybean.setQ4(q4);
 			System.out.println("4------------------------------");
-			
-			//Q5
-			String[] q5 = form.getSurveyq5();
-			for(int j = 0; j < q5.length; j++){
-				sb.append(q5[j]);
-				if(j != q5.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ5(sb.toString());
-			sb = new StringBuilder();
-			System.out.println("5------------------------------");
-			
-			//Q6
-			String[] q6 = form.getSurveyq6();
-			for(int j = 0; j < q6.length; j++){
-				sb.append(q6[j]);
-				if(j != q6.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ6(sb.toString());
-			sb = new StringBuilder();
-			System.out.println("6------------------------------");
-			
-			//Q7
-			String[] q7 = form.getSurveyq7();
-			for(int j = 0; j < q7.length; j++){
-				sb.append(q7[j]);
-				if(j != q7.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ7(sb.toString());
-			sb = new StringBuilder();
-			System.out.println("7------------------------------");
-			
-			//Q8
-			String[] q8 = form.getSurveyq8();
-			for(int j = 0; j < q8.length; j++){
-				sb.append(q8[j]);
-				if(j != q8.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ8(sb.toString());
-			sb = new StringBuilder();
-			System.out.println("8------------------------------");
-			
-			//Q9
-			String[] q9 = form.getSurveyq9();
-			for(int j = 0; j < q9.length; j++){
-				sb.append(q9[j]);
-				if(j != q9.length - 1) sb.append(",");
-			}
-			System.out.println(sb.toString());
-			surveybean.setQ9(sb.toString());
-			sb = new StringBuilder();
-			System.out.println("9------------------------------");
-			
-			//Q10
-			String q10 = form.getSurveyq10();
-			System.out.println(q10);
-			surveybean.setQ10(q10);
-			
+
 			surveyDAO.create(surveybean);
 			
 			
-			return "Report.jsp";
+			request.setAttribute("message","Thanks for your support, we would contact you if you win the lottery!");
+	        return "success.jsp";
 		} catch (FormBeanException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page import="databeans.FormBean"%>
+<%@ page import="databeans.CalculatorBean"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +16,10 @@
 
 <title>Retirement Calculator | Report</title>
 
+<script src="js/Chart.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" type="text/css"
@@ -33,10 +39,12 @@
 
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/creative.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="css/sequences.css" />
 
 <!-- JQuery -->
 <script type="text/javascript" src="jQuery/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="jQuery/jquery-ui.js"></script>
+
 </head>
 <script>
 	function format(n) {
@@ -55,8 +63,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand page-scroll" href="#page-top">Financial
-					Calculator</a>
+				<a class="navbar-brand page-scroll" href="#page-top">Retirement Planner</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -88,240 +95,255 @@
 
 				<!-- start main_part -->
 				<div class="col-lg-12  text-center" id="main_part">
-					<h2>Financial Calculator</h2>
+					<h2>Retirement Planner</h2>
 					<hr>
 					<!-- here is the top_content -->
-					<div class="col-lg-12" id="top_content"></div>
+					<div class="col-lg-6" id="top_content"></div>
 					<!-- top_content end -->
 
-
-
 					<!-- here is the left_chart -->
-					<div class="col-lg-6" id="left_chart">
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<div id="forecast_img" class="col-lg-2">
-									<img id="img" src="${pic}" style="float: left;">
+					<div class="col-lg-9" id="left_div">
+						<div id="wrapper">
+							<div id="tabContainer" class="panel panel-default">
+								<div id="tabs" class="col-lg-9">
+									<ul class="nav navbar-nav navbar-left" id="tabs">
+										<li id="tabHeader_1"><a class="page-scroll">Summary</a></li>
+										<li id="tabHeader_2"><a class="page-scroll">Graphic</a></li>
+										<li id="tabHeader_3"><a class="page-scroll">Yearly
+												Report</a></li>
+										<li id="tabHeader_4"><a class="page-scroll">Survey</a></li>
+									</ul>
 								</div>
-								<div id="text"
-									style="font-size: 20px; color: #D1D0CE; float: left; font-family: Arial"
-									class="col-lg-10">
-									You will run out of money at ${run_out} years old.
-									<div id="text"
-										style="font-size: 15px; color: #D1D0CE; font-family: Arial; text-align: left;">
+								<div class="panel-body" style = "padding: 8px;" id="tabscontent">
+									<!--  <div class="panel-body" style = "padding: 8px;" id="tabpage_1" style="text-align: left;">-->
+									<div class="panel-body" style = "padding: 8px;" id="tabpage_1">
+										<br/><br /> <img id="img" src="${pic}" style="float: left;">
 
-										You're in <font color="#6698FF">excellent shape</font>.This
-										assumes annual retirement expenses of ${retirement_spending}
-										which is ${retirement_level}% of your last year's income of
-										${lastyr_income}.
+										<p align="left">
+											You will run out of money at ${run_out} years old. This
+											assumes annual retirement expenses of $<span
+												id="retirement_spending"></span> which is
+											${retirement_level}% of your last year's income of $<span
+												id="lastyr_income"></span> .
+										</p>
+										<script>
+											var retirement_spending = ${retirement_spending};
+											var lastyr_income = ${lastyr_income};
+
+											document
+													.getElementById("retirement_spending").innerHTML = format(retirement_spending);
+											document
+													.getElementById("lastyr_income").innerHTML = format(lastyr_income);
+										</script>
+
 									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="panel panel-default">
-							<div class="panel-body">
-								<div id="chart_div" style="height: 250px;"></div>
-								<!-- this is the google chart-->
-							</div>
-						</div>
-					</div>
-					<!-- left_chart end -->
-
-
-					<!-- right_div start -->
-					<div class="col-lg-6" id="right_div">
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<b>Suggestions for you</b>
-							</div>
-							<div class="panel-body" style="text-align: left;">
-								<span>To help meet your goal, you may wish to do the
-									following:</span> <br /> <span style="text-align: left;">1.
-									Increase your rate of return before retirement from <font
-									color="#6698FF">${rate_before}% </font> to <font
-									color="#6698FF">${recommand_rate}% </font>.
-								</span> <br /> <span style="text-align: left;">2. Reduce your
-									retirement level to <font color="#6698FF">${recommand_retirement_level}%</font>
-									of your final year's income.
-								</span> <br /> <span style="text-align: left;">3.Increase
-									contributions to <font color="#6698FF">${rec_saving_rate}%</font>
-									of your income
-								</span>
-							</div>
-						</div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<b>Tips</b>
-							</div>
-							<div class="panel-body" style="text-align: left;">
-								<span style="text-align: left;">The best way and most
-									convenient way to achieve your retirement goal is to find a
-									financial advisor. They will help you to manage your money and
-									account, to make reasonable investment. Personal financial
-									advisor are professional for goal planning.</span>
-							</div>
-						</div>
-
-						<!--form-->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion"
-										href="#collapseOne"> show table </a>
-								</h4>
-							</div>
-							<div id="collapseOne" class="panel-collapse collapse">
-								<div class="panel-body" id="fund_list">
-									<table class="table table-hover ">
-										<tr>
-											<td>Age</td>
-											<td>Beginning Retirement Balance</td>
-											<td>Investment Growth</td>
-											<td>Contributions at ${income_rate}% of Income</td>
-											<td>Retire with ${retirement_level}& of Income</td>
-											<td>Retirement Account Withdrawals</td>
-											<td>Ending Retirement Balance</td>
-										</tr>
-										<c:forEach var="formBean" items="${formBeans}">
+									<!-- </div> -->
+									<!-- pie chart -->
+									<div class="panel-body" style = "padding: 8px;" id="tabpage_2">
+									<br/>
+									<br/>
+						                <div class="panel panel-default" style = "text-align: left;">
+						                    <p> <font color="#6698FF"><span>Inner Element:</span></font> Inner element is parent category of outer element, such as relationship between spending and education spending.</p>
+						                    <p> <font color="#6698FF"><span>Percentage:</span></font> It indicates the percentage of current element in its source parent element.</p>
+						                    <p> <font color="#6698FF"><span>Amount:</span></font> It indicates total amount of current element.</p>
+						                </div>									
+									
+										<div class="panel-body" style = "padding: 8px;">
+											<div id="main">
+												<div id="sequence"></div>
+												<div id="chart">
+													<div id="explanation" style="visibility: hidden;">
+														<span id="amount"></span><br /> <span id="percentage"></span><br />
+														of visits begin with this sequence of pages
+													</div>
+												</div>
+											</div>
+											<div id="sidebar">
+												<input type="checkbox" id="togglelegend"> Legend<br />
+												<div id="legend" style="visibility: hidden;"></div>
+											</div>
+											<script type="text/javascript" src="js/sequences.js"></script>
+											<script type="text/javascript">
+												// Hack to make this example display correctly in an iframe on bl.ocks.org
+												d3.select(self.frameElement).style("height","700px");
+											</script>
+										</div>
+									</div>
+									<!-- table start -->
+									<div class="panel-body" style = "padding: 8px;" id="tabpage_3">
+										<table class="table table-hover ">
 											<tr>
-												<td>${formBean.age}</td>
-												<td>${formBean.beginretirementbalance}</td>
-												<td>${formBean.investmentgrowth}</td>
-												<td>${formBean.saving}</td>
-												<td>${formBean.retirementspend}</td>
-												<td>${formBean.accountspending}</td>
-												<td>${formBean.total}</td>
+												<td>Age</td>
+												<td>Beginning Retirement Balance</td>
+												<td>Investment Growth</td>
+												<td>SSN &amp Pension</td>
+												<td>Contributions at ${income_rate}% of Income</td>
+												<td>Retire with ${retirement_level}& of Income</td>
+												<td>Retirement Account Withdrawals</td>
+												<td>Ending Retirement Balance</td>
 											</tr>
-										</c:forEach>
-									</table>
-								</div>
-							</div>
-						</div>
-						<!--form end-->
+											<c:forEach var="formBean" items="${formBeans}">
+												<tr>
+													<td>${formBean.age}</td>
+													<td><fmt:formatNumber value="${formBean.beginretirementbalance}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.investmentgrowth}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.ssn}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.saving}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.retirementspend}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.accountspending}" type="currency" /></td>
+													<td><fmt:formatNumber value="${formBean.total}" type="currency" /></td>
+												</tr>
 
-						<div class="panel panel-default">
-							<div class="panel-heading">
+											</c:forEach>
+										</table>
+									</div>
+									<!-- survey -->
+									<div class="panel-body" style = "padding: 8px;" id="tabpage_4">
+										<!-- <div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#collapseTwo"> survey </a>
 								</h4>
-							</div>
-							<div id="collapseTwo" class="panel-collapse collapse">
-								<div class="panel-body" id="fund_list">
-								<jsp:include page="error.jsp" />
-									<form method="POST" action="survey.do">
-										<div id="question1" class="panel-body">
-											<span class="help-block" style="text-align: left;">1.Do
-												you find our app useful ?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq1" value="Very Useful">A.
-												Very Useful <input type="radio" name="surveyq1"
-													value="Useful">B. Useful <input type="radio"
-													name="surveyq1" value="Okay">C. Okay <input
-													type="radio" name="surveyq1" value="Not Useful">D.
-												Not Useful
-											</div>
+							</div><div id="collapseTwo" class="panel-collapse collapse">-->
+										<br/><br />
+										<div class="panel-heading" style="text-align: left;">
+											<p>Please help us do a quick survey with no more than 5
+												minutes. You would have chance to win $10 Amazon gift card.
+												Lucky draw will be on August 28, 2015. We would contact you
+												with email address you have entered</p>
 										</div>
-										<div id="question2" class="panel-body">
-											<span class="help-block" style="text-align: left;">2.Do
-												you find it contains enough information you are interested
-												in? If not, what else it should be included.</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq2"
-													value="Enough Information">A. Enough Information <input
-													type="radio" name="surveyq2" value="Not Enough Information">B.
-												Not Enough Information <input type="text" name="surveyq2"
-													placeholder="it should have">
-											</div>
+										<div class="panel-body" style = "padding: 8px;" id="fund_list">
+											<jsp:include page="error.jsp" />
+											<form method="POST" action="survey.do">
+												<div id="email" class="panel-body" style = "padding: 8px;">
+													<span class="help-block" style="text-align: left;">Please
+														provide us your email:</span>
+													<div class="col-lg-6" style="text-align: left;">
+														<input type="email" name="email"
+															placeholder="example@abc.com">
+													</div>
+												</div>
+
+												<div id="question1" class="panel-body" style = "padding: 8px;">
+													<span class="help-block" style="text-align: left;">1.Currently,
+														Do you have financial plan?</span>
+													<div class="col-lg-6" style="text-align: left;">
+														<label class="radio"> <input type="radio"
+															name="surveyq1" value="Yes">A. Yes
+														</label> <label class="radio"><input type="radio"
+															name="surveyq1" value="No">B. No </label><label
+															class="radio"><input type="radio" name="surveyq1"
+															value="not really">B. Not really </label>
+													</div>
+												</div>
+												<div id="question2" class="panel-body" style = "padding: 8px;">
+													<span class="help-block" style="text-align: left;">2.Would
+														you mind connecting your account to financial plan website
+														to get financial services in return?</span>
+													<div class="col-lg-6" style="text-align: left;">
+														<label class="radio"><input type="radio"
+															name="surveyq2" value="Yes, I am willing to">A.
+															Yes, I am willing to </label> <label class="radio"><input
+															type="radio" name="surveyq2"
+															value="only well-known website or bank website">B.
+															Well-known website or bank website</label> <label class="radio"><input
+															type="radio" name="surveyq2"
+															value="Only the website I trust">C. Only the
+															website I trust</label> <label class="radio"><input
+															type="radio" name="surveyq2" value="I won't">D.
+															No, I won't</label>
+													</div>
+												</div>
+												<div id="question3" class="panel-body" style = "padding: 8px;">
+													<span class="help-block" style="text-align: left;">3.What
+														kind of financial service are you looking for?</span>
+													<div class="col-lg-6" style="text-align: left;">
+														<textarea cols="70" rows="5" name="surveyq3"></textarea>
+													</div>
+												</div>
+												<div id="question4" class="panel-body" style = "padding: 8px;">
+													<span class="help-block" style="text-align: left;">4.
+														What suggestions do you have for us?</span>
+													<div class="col-lg-6" style="text-align: left;">
+														<textarea cols="70" rows="5" name="surveyq4"></textarea>
+													</div>
+												</div>
+
+												<input type="submit" class="btn btn-primary btn-block flat"
+													name="action" value="submit" />
+											</form>
 										</div>
-										<div id="question3" class="panel-body">
-											<span class="help-block" style="text-align: left;">3.Do
-												you find our app easy to use?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq3" value="Very Easy to use">A.
-												Very Easy to use <input type="radio" name="surveyq3"
-													value="Not Easy to use">B. Not Easy to use
-											</div>
-										</div>
-										<div id="question4" class="panel-body">
-											<span class="help-block" style="text-align: left;">4.Will
-												you introduce our app to your friends and relatives?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq4" value="Yes, I would">A.
-												Yes, I would <input type="radio" name="surveyq4"
-													value="Not probably">B. Not probably
-											</div>
-										</div>
-										<div id="question5" class="panel-body">
-											<span class="help-block" style="text-align: left;">5.Do
-												you want more personalized financial suggestions?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq5" value="Yes, I think so">A.
-												Yes, I think so <input type="radio" name="surveyq5"
-													value="No, that's enough">B. No, that's enough
-											</div>
-										</div>
-										<div id="question6" class="panel-body">
-											<span class="help-block" style="text-align: left;">6.If
-												yes in Q5, Are you willing to register account and link your
-												bank account?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="radio" name="surveyq6" value="Yes, I'd love to">A.
-												Yes, I'd love to <input type="radio" name="surveyq6"
-													value="Not probably">B. Not probably <input
-													type="radio" name="surveyq6" value="No">C. No <input
-													type="radio" name="surveyq6" value="Not safe">D.
-												Not safe
-											</div>
-										</div>
-										<div id="question7" class="panel-body">
-											<span class="help-block" style="text-align: left;">7.What
-												is the most precious function you think in our website?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="checkbox" name="surveyq7"
-													value="Financial calculator">A. Financial
-												calculator <input type="checkbox" name="surveyq7"
-													value="Financial Tips">B. Financial Tips <input
-													type="checkbox" name="surveyq7" value="Track spending">C.
-												Track spending
-											</div>
-										</div>
-										<div id="question8" class="panel-body">
-											<span class="help-block" style="text-align: left;">8.What
-												do you like the least in our website?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="checkbox" name="surveyq8"
-													value="Financial Calculator">A. Financial
-												Calculator <input type="checkbox" name="surveyq8"
-													value="Financial Tips">B. Financial Tips <input
-													type="checkbox" name="surveyq8" value="Track spending">C.
-												Track spending <input type="checkbox" name="surveyq8"
-													value="User interface">D. User interface
-											</div>
-										</div>
-										<div id="question9" class="panel-body">
-											<span class="help-block" style="text-align: left;">9.What
-												functions do you expect in a financial planning website?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<input type="checkbox" name="surveyq9" value="That's enough">A.
-												That's enough <input type="checkbox" name="surveyq9"
-													value="Investment Suggestions">B. Investment
-												Suggestions <input type="checkbox" name="surveyq9"
-													value="Tax help">C. Tax help
-											</div>
-										</div>
-										<div id="question10" class="panel-body">
-											<span class="help-block" style="text-align: left;">10.
-												What suggestions do you have for our app?</span>
-											<div class="col-lg-6" style="text-align: left;">
-												<textarea cols="40" rows="5" name="surveyq10"></textarea>
-											</div>
-										</div>
-										<input type="submit" class="btn btn-primary btn-block flat"
-											name="action" value="survey" />
-									</form>
+									</div>
+									<!-- </div> -->
+
+
+
 								</div>
+                            </div>
+						</div>
+						<script src="js/tabs_old.js"></script>
+						<script type="text/javascript">
+							var _gaq = _gaq || [];
+							_gaq.push([ '_setAccount', 'UA-1332079-8' ]);
+							_gaq.push([ '_trackPageview' ]);
+
+							(function() {
+								var ga = document.createElement('script');
+								ga.type = 'text/javascript';
+								ga.async = true;
+								ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+								var s = document.getElementsByTagName('script')[0];
+								s.parentNode.insertBefore(ga, s);
+							})();
+						</script>
+
+						<!-- this is the google chart-->
+						<!--  <div class="panel panel-default">
+							<div class="panel-body" style = "padding: 8px;">
+								<div id="chart_div" style="height: 450px;"></div>
+
+							</div>
+						</div>-->
+
+
+					</div>
+                    <!-- left_chart end -->
+
+
+					<!-- right_div start -->
+					<div class="col-lg-3" id="right_div">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<b>Suggestions for you</b>
+							</div>
+							<div class="panel-body" style = "padding: 8px;" style="text-align: left;">
+								<p>
+								<span style="text-align: left;">To help meet your goal, you may wish to do the
+										following:</span>
+								</p>
+								<p>
+									<span style="text-align: left;">1. Increase your rate of
+										return before retirement from <font color="#6698FF">${rate_before}%
+									</font> to <font color="#6698FF">${recommand_rate}% </font>.
+									</span>
+								</p>
+								<p>
+									<span style="text-align: left;">2. Reduce your
+										retirement level to <font color="#6698FF">${recommand_retirement_level}%</font>
+										of your final year's income.
+									</span>
+								</p>
+								<p>
+									<span style="text-align: left;">3.Increase contributions
+										to <font color="#6698FF">${rec_saving_rate}%</font> of your
+										income
+									</span>
+								</p>
+								<p>
+									<span style="text-align: left;">4. Delay your retirement
+										until age <font color="#6698FF">${rec_retirement_age}</font>
+									</span>
+								</p>
 							</div>
 						</div>
 					</div>
@@ -347,7 +369,7 @@
 		});
 	</script>
 	<div id="footer_content"></div>
-	
+
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 

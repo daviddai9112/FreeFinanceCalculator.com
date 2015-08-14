@@ -5,6 +5,7 @@ public class FormBean {
 	private long beginretirementbalance;
 	private long investmentgrowth;
 	private long saving;
+	private long ssn;
 	private long Retirementspend;
 	private long Accountspending;
 	private long total;
@@ -39,6 +40,14 @@ public class FormBean {
 
 	public void setSaving(long l) {
 		saving = l;
+	}
+	
+	public long getSsn() {
+		return ssn;
+	}
+
+	public void setSsn(long l) {
+		ssn = l;
 	}
 
 	public long getRetirementspend() {

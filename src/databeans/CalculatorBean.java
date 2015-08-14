@@ -13,19 +13,24 @@ public class CalculatorBean {
 	private int    retire_age;
 	private int    saving_rate;
 	private int    income_increase_rate;
+	private boolean pension;
 	private int    pension_age;
 	private long    pension_amount;
+	private boolean ssn;
 	private int    SSN_age;
 	private long    SSN_amount;
+	private boolean partner;
+	private boolean partner_pension;
 	private int    partner_pension_age;
 	private long    partner_pension_amount;
+	private boolean partner_SSN;
 	private int    partner_SSN_age;
 	private long    partner_SSN_amount;
 	private int    dependent;
 	private int    retirement_level;
-	private int investment_rate_before;
-	private int investment_rate_after;
-	private int inflate_rate;
+	private int return_rate_before;
+	private int return_rate_after;
+	private int inflation_rate;
 	
 	public int    getCalId()               { return calId;            }
 	public void setCalId(int i) 		    {	calId      = i;        }
@@ -51,11 +56,27 @@ public class CalculatorBean {
 	public int    getIncome_Increase_Rate()               { return income_increase_rate;            }
 	public void setIncome_Increase_Rate(int i) 		    {	income_increase_rate      = i;        }
 	
+	public boolean    getPension()               { return pension;            }
+	public void setPension(int i) {
+		if (i == 1)
+			pension = true;
+		else
+			pension = false;
+	}
+	
 	public int    getPension_Age()               { return pension_age;            }
 	public void setPension_Age(int i) 		    {	pension_age      = i;        }
 	
 	public long    getPension_Amount()               { return pension_amount;            }
 	public void setPension_Amount(long l) 		    {	pension_amount      = l;        }
+	
+	public boolean    getSSN()               { return ssn;            }
+	public void setSSN(int i) {
+		if (i == 1)
+			ssn = true;
+		else
+			ssn = false;
+	}
 	
 	public int    getSSN_Age()               { return SSN_age;            }
 	public void setSSN_Age(int i) 		    {	SSN_age      = i;        }
@@ -63,9 +84,36 @@ public class CalculatorBean {
 	public long    getSSN_Amount()               { return SSN_amount;            }
 	public void setSSN_Amount(long l) 		    {	SSN_amount      = l;        }
 	
+	public boolean getPartner()               { return partner;            }
+	public void setPartner(int i) {
+		if (i == 1)
+			partner = true;
+		else
+			partner = false;
+	}
+	
+	public boolean getPartner_Pension()               { return partner_pension;            }
+	public void setPartner_Pension(int i) {
+		if (i == 1)
+			partner_pension = true;
+		else
+			partner_pension = false;
+	}
+	
+	public int    getPartner_Pension_Age()               { return partner_pension_age;            }
+	public void setPartner_Pension_Age(int i) 		    {	partner_pension_age      = i;        }
+	
 	public long    getPartner_Pension_Amount()               { return partner_pension_amount;            }
 	public void setPartner_Pension_Amount(long l) 		    {	partner_pension_amount      = l;        }
 
+	public boolean    getPartner_SSN()               { return partner_SSN;            }
+	public void setPartner_SSN(int i) {
+		if (i == 1)
+			partner_SSN = true;
+		else
+			partner_SSN = false;
+	}
+	
 	public int    getPartner_SSN_Age()               { return partner_SSN_age;            }
 	public void setPartner_SSN_Age(int i) 		    {	partner_SSN_age      = i;        }
 	
@@ -75,18 +123,15 @@ public class CalculatorBean {
 	public int    getDependent()               { return dependent;            }
 	public void setDependent(int i) 		    {	dependent      = i;        }
 	
-	public int    getPartner_Pension_Age()               { return partner_pension_age;            }
-	public void setPartner_Pension_Age(int i) 		    {	partner_pension_age      = i;        }
-	
 	public int    getRetirement_Level()               { return retirement_level;            }
 	public void setRetirement_Level(int i) 		    {	retirement_level      = i;        }
 	
-	public int    getInvestment_Rate_Before()               { return investment_rate_before;            }
-	public void setInvestment_Rate_Before(int i) 		    {	investment_rate_before      = i;        }
+	public int    getInvestment_Rate_Before()               { return return_rate_before;            }
+	public void setInvestment_Rate_Before(int i) 		    {	return_rate_before      = i;        }
 	
-	public int    getInvestment_Rate_After()               { return investment_rate_after;            }
-	public void setInvestment_Rate_After(int i) 		    {	investment_rate_after      = i;        }
+	public int    getInvestment_Rate_After()               { return return_rate_after;            }
+	public void setInvestment_Rate_After(int i) 		    {	return_rate_after      = i;        }
 	
-	public int    getInflate_Rate()               { return inflate_rate;            }
-	public void setInflate_Rate(int i) 		    {	inflate_rate      = i;        }
+	public int    getInflation_Rate()               { return inflation_rate;            }
+	public void setInflation_Rate(int i) 		    {	inflation_rate      = i;        }
 }

@@ -11,6 +11,7 @@
 
 <title>Retirement Calculator | Financial Calculate</title>
 
+<script src="js/Chart.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -35,9 +36,10 @@
 <!-- JQuery -->
 <script type="text/javascript" src="jQuery/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="jQuery/jquery-ui.js"></script>
+
 </head>
 
-<body id="page-top">
+<body id="page-top" style="font-family: Arial;">
 
 	<nav id="mainNav" class="navbar navbar-subpage navbar-fixed-top">
 		<div class="container-fluid">
@@ -49,8 +51,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand page-scroll" href="#page-top">Financial
-					Calculator</a>
+				<a class="navbar-brand page-scroll" href="#page-top">Retirement
+					Planner</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -82,90 +84,128 @@
 
 				<!-- start main_part -->
 				<div class="col-lg-12  text-center" id="main_part">
-					<h2>Financial Calculator</h2>
+					<h2>Retirement Planner</h2>
 					<hr>
-					<!-- here is the top_content -->
-					<div class="col-lg-12" id="top_content">
+
+					<!-- here is the left section -->
+					<div class="col-lg-7" id="left_chart">
+						<div id="result"></div>
+						<!-- here is chart -->
 						<div class="panel panel-default">
-							<div class="panel-body">
-								<div id="forecast_img" class="col-lg-2">
-									<img id="img" src="img/sun.png" style="float: center;">
-								</div>
-								<div id="text"
-									style="font-size: 25px; color: #D1D0CE; float: left; font-family: Arial"
-									class="col-lg-10">
-									You will run out of money at 85 years old.
-									<div id="text"
-										style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left;">
+							<div class="panel-body" style="padding: 8px;">
 
-										You're in <font color="#6698FF">excellent shape</font>. Your
-										average income in retirement is expected to exceed spending
-										goals, so you probably won't need to draw meaningfully on your
-										portfolio.
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- top_content end -->
-
-
-
-					<!-- here is the left_chart -->
-					<div class="col-lg-8" id="left_chart">
-						<div class="panel panel-default">
-							<div class="panel-body">
 								<div id="chart_div" style="height: 450px;"></div>
+
+								<!--  
+						  <canvas id="canvas" height="450" width="600"></canvas>
+						  -->
 								<!-- this is the google chart-->
 							</div>
 						</div>
+						<div class="panel panel-default" style = "text-align: left;">
+						    <p> <font color="#6698FF"><span>Total:</span></font> it indicates total balance in your account.</p>
+						    <p> <font color="#6698FF"><span>Saving:</span></font> it indicates total saving amount of the year on x axis, including investment gains and income savings, pensions and social security benefits.</p>
+						    <p> <font color="#6698FF"><span>Spending:</span></font> it indicates total spending amount of the year on x axis, including inflation, education and wedding fees for dependents.</p>
+						</div>
 					</div>
-					<!-- left_chart end -->
+
+					<!-- here is chart ending-->
+					<!-- left section end -->
 
 
 					<!-- right_div start -->
-					<div class="col-lg-4" id="right_div">
-						<script>
-							function myFunction_money_saved_span(myValue) {
-								document.getElementById("alert_comment_span").innerHTML = myValue);
-							}
-						</script>
+					<div class="col-lg-5" id="right_div">
+
 						<!-- alert -->
+
 						<div class="bs-component">
-							<div class="alert alert-dismissable alert-danger">
-								<button type="button" class="close" data-dismiss="alert">×</button>
-								<span id = "alert_comment_span">5% is below the recommended 7% savings rate</span>
+							<div class="alert alert-dismissable alert-info">
+								<div class="row">
+									<div class="col-lg-1">
+										<img id="img" height="42" width="42" src="img/tips.png"
+											style="float: left">
+									</div>
+									<div id="alert" class="col-lg-11" style="font-family: Arial;">
+									</div>
+								</div>
 							</div>
 						</div>
 
 						<!-- alert end -->
 
-						<!-- the way to directly go to some page -->
-						<!--  
-						<div class="col-lg-8">&nbsp;</div>
-						<div class="dropdown col-lg-4">
-							<a class="dropdown-toggle" aria-haspopup="true" role="button"
-								data-toggle="dropdown" href="#" aria-expanded="false">GO TO<span
-								class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Basic info</a></li>
-							</ul>
-						</div>
-						-->
-						<!-- the way to directly go to some page end-->
-
-
-
-
 						<div id="editor"></div>
 						<!-- editor -->
 
-						<button class="btn btn-primary" id="Pre">Prev</button>
+						<button class="btn btn-primary" id="Pre" style="display: none;">Prev</button>
 						&nbsp;&nbsp;
-						<button class="btn btn-primary" id="Next">Next</button>
+						<button class="btn btn-primary" id="Next" style="display: none;">Next</button>
+
+						<form method="POST" action="create_form.do">
+
+							<input type="hidden" value="50000" id="store_money_saved"
+								name="moneysaved"> <input type="hidden" value="100000"
+								id="store_income" name="income"> <input type="hidden"
+								value="30" id="store_cur_age" name="curage"> <input
+								type="hidden" value="67" id="store_retire_age" name="retireage">
+							<input type="hidden" value="0.15" id="store_saving_rate"
+								name="savingrate"> <input type="hidden" value="0.03"
+								id="store_income_increase_rate" name="incomeincreaserate">
+							<input type="hidden" value="1" id="store_pension" name="pension">
+							<input type="hidden" value="50" id="store_pension_age"
+								name="pensionage"> <input type="hidden" value="1"
+								id="store_pension_amount" name="pensionamount"> <input
+								type="hidden" value="0" id="store_eligible_SSN" name="ssn">
+							<input type="hidden" value="67" id="store_SSN_age" name="ssnage">
+							<input type="hidden" value="1" id="store_SSN_amount"
+								name="ssnamount"> <input type="hidden" value="1"
+								id="store_partner_eligible" name="partner"> <input
+								type="hidden" value="1" id="store_partner_pension"
+								name="partnerpension"> <input type="hidden" value="50"
+								id="store_partner_pension_age" name="partnerpensionage">
+							<input type="hidden" value="1" id="store_partner_pension_amount"
+								name="partnerpensionamount"> <input type="hidden"
+								value="0" id="store_partner_eligible_SSN" name="partnerssn">
+							<input type="hidden" value="67" id="store_partner_SSN_age"
+								name="partnerssnage"> <input type="hidden" value="1"
+								id="store_partner_SSN_amount" name="partnerssnamount"> <input
+								type="hidden" value="0" id="store_dependent" name="dependent">
+							<input type="hidden" value="0" id="store_pay_for_college">
+							<input type="hidden" value="0" id="store_pay_for_wedding"><input
+								type="hidden" value="0.90" id="store_retirement_level"
+								name="retirementlevel"> <input type="hidden"
+								value="0.08" id="store_investment_before"
+								name="returnratebefore"><input type="hidden"
+								value="0.04" id="store_investment_after" name="returnrateafter"><input
+								type="hidden" value="0.03" id="store_inflation_rate"
+								name="inflationrate"><input type="hidden" value="-1"
+								id="store_dependent_college_0"><input type="hidden"
+								value="-1" id="store_dependent_college_1"><input
+								type="hidden" value="-1" id="store_dependent_college_2"><input
+								type="hidden" value="-1" id="store_dependent_college_3"><input
+								type="hidden" value="-1" id="store_dependent_college_4"><input
+								type="hidden" value="-1" id="store_dependent_wedding_0"><input
+								type="hidden" value="-1" id="store_dependent_wedding_1"><input
+								type="hidden" value="-1" id="store_dependent_wedding_2"><input
+								type="hidden" value="-1" id="store_dependent_wedding_3"><input
+								type="hidden" value="-1" id="store_dependent_wedding_4">
+							<div style="display: none;" id="store_alert"></div>
+							<span style="display: none;" id="store_alert_saving_rate"></span><span
+								style="display: none;" id="store_alert_retirement_level"></span>
+
+
+							<br />
+							<button type="submit" class="btn btn-primary" id="viewdetails"
+								style="display: none;" name="action">View Detial</button>
+
+						</form>
 
 					</div>
 					<!--right_div end-->
+
+					<!-- 
+					<div class="col-lg-8" id="test">
+                    <canvas id="canvas" height="450" width="600"></canvas>
+                    </div>-->
 
 
 					<!-- here is the bottom_part -->
@@ -188,78 +228,330 @@
 		});
 	</script>
 	<div id="footer_content"></div>
-
 	<script>
 		function format2(n) {
 			return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 		}
 	</script>
 
+	<!--<div id="hidden_button">
+	
+	<button class="btn btn-primary" id="Pre" style="display:none;">Prev</button>
+						&nbsp;&nbsp;
+	<button class="btn btn-primary" id="Next" style="display:none;">Next</button>
+	</div>-->
+
+
+	<div id="hidden_alert">
+		<div id="alert0" style="display: none;">We would give you some
+			advice here.</div>
+
+		<div id="alert1" class="alert alert-dismissable alert-danger"
+			style="display: none;">
+			<span id="alert_saving_rate"></span>% is below the recommended 7%
+			savings rate.
+		</div>
+
+		<div id="alert2" class="alert alert-dismissable alert-danger"
+			style="display: none;">Get Tax Savings with a College Savings
+			Plan.</div>
+
+		<div id="alert3" class="alert alert-dismissable alert-danger"
+			style="display: none;">Paying for weddings is putting other
+			goals in jeopardy.</div>
+
+		<div id="alert4" class="alert alert-dismissable alert-danger"
+			style="display: none;">
+			<span id="alert_retirement_level"></span>% is above the recommended
+			90% retirement level.
+		</div>
+	</div>
+
+	<div id="hidden">
+		<!-- here is result0 -->
+
+		<div id="result0" style="display: none;">
+			<div class="panel panel-default">
+				<div class="panel-body" style="padding: 8px;">
+					<div class="row">
+						<div id="forecast_img" class="col-lg-3">
+							<img id="img" src="img/caluculator.png" height="100" width="100"
+								style="float: left;">
+						</div>
+						<div id="text" class="col-lg-9"
+							style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
+
+							Welcome to retirement planner, let's begin your retirement
+							planning.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- here is result0 ending-->
+		<!-- here is result1 -->
+
+		<div id="result1" style="display: none;">
+			<div class="panel panel-default">
+
+				<div class="panel-body" style="padding: 8px;">
+					<div id="text"
+						style="font-size: 25px; color: #D1D0CE; float: center; font-family: Arial"
+						class="col-lg-12">
+						You will run out of money at <span id="runOutAge"></span> years
+						old.
+					</div>
+					<div class="row" id="forecast_result"></div>
+				</div>
+			</div>
+		</div>
+		<!-- here is result1 ending-->
+
+		<!-- here is result2 -->
+		<div id="result2" style="display: none;">
+			<div class="panel panel-default">
+
+				<div class="panel-body" style="padding: 8px;">
+					<div class="row">
+						<div id="forecast_img" class="col-lg-3">
+							<img id="img" src="img/bright.png" height="100" width="100"
+								style="float: left;">
+						</div>
+
+						<div id="text" class="col-lg-9"
+							style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
+
+							Your retirement prospects are bright.
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<!-- here is result2 ending-->
+	</div>
+
+	<!-- here is forecast_result1 -->
+	<div id="forecast_result1" style="display: none;">
+
+		<div id="forecast_img" class="col-lg-3">
+			<img id="img" src="img/sun.png" height="100" width="100"
+				style="float: left;">
+		</div>
+
+		<div id="text" class="col-lg-9"
+			style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
+
+			You're in <font color="#6698FF">excellent shape</font>. Your average
+			income in retirement is expected to exceed spending goals, so you
+			probably won't need to draw meaningfully on your portfolio.
+		</div>
+
+	</div>
+
+
+
+
+	<!-- here is forecast_result1 ending-->
+
+	<!-- here is forecast_result2 -->
+	<div id="forecast_result2" style="display: none;">
+
+		<div id="forecast_img" class="col-lg-3">
+			<img id="img" src="img/windy.png" height="100" width="100"
+				style="float: left;">
+		</div>
+
+		<div id="text" class="col-lg-9"
+			style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
+
+			You're in <font color="#6698FF">average shape</font>. You need to
+			make some adjustments to your retirement plan, bump up savings or
+			defer retirement.
+		</div>
+
+
+
+
+	</div>
+
+	<!-- here is forecast_result2 ending-->
+
+	<!-- here is forecast_result3 -->
+	<div id="forecast_result3" style="display: none;">
+
+		<div id="forecast_img" class="col-lg-3">
+			<img id="img" src="img/rainy.png" height="100" width="100"
+				style="float: left;">
+		</div>
+
+		<div id="text" class="col-lg-9"
+			style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
+
+			It is high likely that you would <font color="#6698FF">run out
+				of money</font> before retirement. You need to make huge adjustments to
+			your retirement plan.
+		</div>
+
+	</div>
+
+	<!-- here is forecast_result3 ending-->
 
 	<div id="hidden_field">
 		<!-- ed0 start -->
-		<form method="POST" action="create_form.do">
+		<form method="POST" action="create_form.do" id="retirementform">
 			<div id="ed0" style="display: none">
 				<!-- this should be the same with the first apear -->
 
 
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Personal Information Inputs</b>
+					</div>
+					<!-- current age -->
+					<div class="panel-body" style="padding: 5px;">
+						<span class="help-block col-lg-6" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="Your current age"><b>Current Age:</b></label></span>
+						<div class="col-lg-6">
+							<input data-toggle="tooltip" data-placement="top" title=""
+								type="number" min="14" max="90" class="form-control" value="30"
+								id="cur_age" onchange="valueChange(this);" required>
+						</div>
+					</div>
+
+					<!-- retire age -->
+					<div class="panel-body" style="padding: 5px;">
+						<span class="help-block col-lg-6" style="text-align: left;"><label
+							data-toggle="tooltip" title="Age you wish to retire"
+							data-placement="left"><b>Retirement Age:</b></label></span>
+						<div class="col-lg-6">
+							<input data-toggle="tooltip" data-placement="top" title=""
+								type="number" class="form-control" max="90" value="67"
+								id="retire_age" onchange="valueChange(this);" required>
+						</div>
+					</div>
 
 					<!-- money saved -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_money_saved_span(myValue) {
 								document.getElementById("money_saved_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>How
-								much money do you have saved:</b>
-								</br> $ <span id="money_saved_span">55,000.00</span>
-						</span> <input type="range" min="0" name="moneysaved" max="1000000"
-							step="500" value="55000" id="money_saved"
-							onchange="valueChange(this);"
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip"
+							title="Total amount you are currently have saved toward your retirement. Included all sources of retirement 
+						savings such as 401(k)s, IRAs and annuities"
+							data-placement="left"><b>Current retirement savings:</b> </label>
+								$ <span id="money_saved_span">50,000.00</span></span> <input
+							type="range" min="0" max="1000000" step="500" value="50000"
+							id="money_saved" width="200px" onchange="valueChange(this);"
 							oninput="myFunction_money_saved_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">$0.00</span>
+							<span class="help-block" style="text-align: left;">$0</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">$1,000,000.00</span>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$1M</span>
 						</div>
 					</div>
 
 					<!-- house hold income -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_income_span(myValue) {
 								document.getElementById("income_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>House
-								Hold income:</b>
-								 $ <span id="income_span">55,000.00</span></span> <input
-							type="range" min="10000" max="300000" step="500" value="55000"
-							name="income" id="income" onchange="valueChange(this);"
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="Your total household income. If you are married, this should include
+						your spouse's income"><b>Household
+									income:</b></label> $ <span id="income_span">100,000</span></span> <input
+							type="range" min="0" max="1000000" step="500" value="100000"
+							id="income" onchange="valueChange(this);"
 							oninput="myFunction_income_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">$0.00</span>
+							<span class="help-block" style="text-align: left;">$0</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">$1,000,000.00</span>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$1M</span>
 						</div>
 					</div>
-					
-					<!-- retirement level -->
-					<div class="panel-body">
-					    <script>
-							function myFunction_retirement_level_span(myValue) {
-								document.getElementById("retirement_level_span").innerHTML = (myValue * 1000) / 10;
+
+
+					<!-- saving rate -->
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_saving_rate(myValue) {
+								document.getElementById("saving_rate_span").innerHTML = parseInt((myValue * 1000) / 10);
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>Retirement Level(percentage of spend after retirement): <span id="retirement_level_span">90</span></b> % 
-						</span> <input type="range" min="0" name="retirementlevel" max="1"
-							step="0.01" value="0.9" id="retirement_level"
-							onchange="valueChange(this);"
-							oninput="myFunction_retirement_level_span(this.value)" />
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="The percentage of your annual income you plan to contribute to your retirement
+						savings. This should reflect the total you save toward your retirement."><b>Saving
+									rates:</b></label> <span id="saving_rate_span">5</span>%</span> <input
+							type="range" min="0.01" max="0.25" step="0.01" id="saving_rate"
+							value="0.15" onchange="valueChange(this);"
+							oninput="myFunction_saving_rate(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">1%</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: right;">&nbsp;&nbsp;&nbsp;25%</span>
+						</div>
+					</div>
+
+					<!-- income increase -->
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_income_increase_rate(myValue) {
+								document
+										.getElementById("income_increase_rate_span").innerHTML = (myValue * 1000) / 10;
+							}
+						</script>
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="Annual percent increase you expect in your household income."><b>
+									Income increase rate:</b></label><span id="income_increase_rate_span">3</span>%</span>
+						<input type="range" min="0.01" max="1.00" step="0.01" value="0.03"
+							onchange="valueChange(this);" id="income_increase_rate"
+							oninput="myFunction_income_increase_rate(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">1%</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">100%</span>
+						</div>
+					</div>
+
+
+					<!-- retirement level -->
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_retirement_level(myValue) {
+								document
+										.getElementById("retirement_level_span").innerHTML = (myValue * 1000) / 10;
+							}
+						</script>
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="The percentage of your pre-retirement household income you think you will need in retirement.
+						This amount is based on the household income earned during the year immediately before your retirement. You can change this amount to be as low as 40% and as high as 160%."><b>
+									Retirement level:</b></label><span id="retirement_level_span">90</span>%</span> <input
+							type="range" min="0.40" max="1.60" step="0.01" value="0.90"
+							onchange="valueChange(this);" id="retirement_level"
+							oninput="myFunction_retirement_level(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">40%</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">160%</span>
+						</div>
 					</div>
 
 
@@ -270,83 +562,108 @@
 			<!-- ed0 end-->
 
 
-			<!--ed1 -->
 			<div id="ed1" style="display: none">
+				<!-- this should be the same with the first apear -->
+
+
 				<div class="panel panel-default">
-					<!-- current age -->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-6" style="text-align: left;">Current
-							Age:</span>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" value="35" id="cur_age"
-								name="curage" onchange="valueChange(this);">
-						</div>
+					<div class="panel-heading">
+						<b>Investment Returns, Inflation Rate</b>
 					</div>
+					<!-- investment return before retirement -->
 
-					<!-- retire age -->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-6" style="text-align: left;">Retire
-							Age:</span>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" value="65"
-								id="retire_age" name="retireage" onchange="valueChange(this);">
-						</div>
-					</div>
-
-					<!-- saving rate -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
-							function myFunction_saving_rate(myValue) {
-								document.getElementById("saving_rate_span").innerHTML = (myValue * 1000) / 10;
-							}
-						</script>
-						<span class="help-block" style="text-align: left;"><b>Saving
-								rates:</b> <span id="saving_rate_span">15</span>% of income</span> <input
-							type="range" min="0.01" max="0.25" step="0.01" id="saving_rate"
-							name="savingrate" value="0.15" onchange="valueChange(this);"
-							oninput="myFunction_saving_rate(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">1%</span>
-						</div>
-						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: right;">&nbsp;&nbsp;&nbsp;25%</span>
-						</div>
-					</div>
-
-					<!-- income increase -->
-					<div class="panel-body">
-						<script>
-							function myFunction_income_increase_rate(myValue) {
+							function myFunction_investment_before_span(myValue) {
 								document
-										.getElementById("income_increase_rate_span").innerHTML = (myValue * 1000) / 10;
-							}
+										.getElementById("investment_before_span").innerHTML = (myValue * 1000) / 10;
+							};
 						</script>
-						<span class="help-block" style="text-align: left;"><b>
-								Income increase rate:</b><span id="income_increase_rate_span">5</span>%</span>
-						<input type="range" min="0.01" max="1" step="0.01" value="0.05"
-							onchange="valueChange(this);" id="income_increase_rate"
-							name="incomeincreaserate"
-							oninput="myFunction_income_increase_rate(this.value)" />
-
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="This is the annual rate of return you expect from your retirement savings and investments before retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA."><b>Investment
+									return before retirement:</b></label><span id="investment_before_span">8</span>%
+						</span> <input type="range" min="0.00" max="0.20" step="0.01"
+							value="0.08" id="investment_before" onchange="valueChange(this);"
+							oninput="myFunction_investment_before_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">1%</span>
+							<span class="help-block" style="text-align: left;">0%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-8" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">100%</span>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">20%</span>
 						</div>
 					</div>
+
+
+					<!-- investment return before retirement -->
+
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_investment_after_span(myValue) {
+								document
+										.getElementById("investment_after_span").innerHTML = (myValue * 1000) / 10;
+							}
+						</script>
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="This is the annual rate of return you expect from your retirement savings and investments during retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA. It is often lower than the return earned before retirement due to more conservative investment choices to insure a steady flow of income."><b>Investment
+									return after retirement:</b></label><span id="investment_after_span">4</span>%
+						</span> <input type="range" min="0.00" max="0.20" step="0.01"
+							value="0.04" id="investment_after" onchange="valueChange(this);"
+							oninput="myFunction_investment_after_span(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">0%</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">20%</span>
+						</div>
+					</div>
+
+
+
+					<!-- inflation rate -->
+
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_inflation_rate_span(myValue) {
+								document.getElementById("inflation_rate_span").innerHTML = (myValue * 1000) / 10;
+							}
+						</script>
+						<span class="help-block" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="This is waht you expect for the average long-term inflation rate. The common measure of inflation in the U.S. is the Consumer Price Index(CPI). From 1925 through 2014 the CPI has a long-term average of 3.0% annually."><b>Inflation
+									rate:</b></label><span id="inflation_rate_span">3</span>% </span> <input
+							type="range" min="0.00" max="0.20" step="0.01" value="0.04"
+							id="inflation_rate" onchange="valueChange(this);"
+							oninput="myFunction_inflation_rate_span(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">0%</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">20%</span>
+						</div>
+					</div>
+
+
 				</div>
+
+
 			</div>
-			<!--ed1 end-->
+			<!-- ed1 end-->
 
 
 			<!-- ed2 -->
 			<div id="ed2" style="display: none">
 				<div class="panel panel-default">
 					<!-- pension-->
+					<div class="panel-heading">
+						<b>Pensions</b>
+					</div>
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">Do
-							you have a pension?</span>
+						<span class="help-block col-lg-12" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="Pensions are retirement benefits that are provided to people who have paid into a plan or who have been granted pension benefits by an employer. "><b>Do
+									you have a pension?</b></label></span>
 						<div class="col-lg-6">
 							<select class="form-control" id="pension"
 								onchange="valueChange(this);">
@@ -357,32 +674,43 @@
 						<div class="col-lg-6"></div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_pension_age(myValue) {
 								document.getElementById("pension_age_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
-								payment start:</b> <span id="pension_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value="50"
-							id="pension_age" name="pensionage" onchange="valueChange(this);"
+								payment start:</b> <span id="pension_age_span">60</span> </span> <input
+							type="range" min="50" max="70" step="1" id="pension_age"
+							value="60" onchange="valueChange(this);"
 							oninput="myFunction_pension_age(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">50</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">70</span>
+						</div>
 					</div>
 
 					<!--amount monthly-->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_pension_amount(myValue) {
 								document.getElementById("pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="pension_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" value="500" step="1"
-							id="pension_amount" name="pensionamount"
-							onchange="valueChange(this);"
+								monthly:</b> $<span id="pension_amount_span">100</span> </span> <input
+							type="range" min="100" max="2500" step="1" id="pension_amount"
+							value="100" onchange="valueChange(this);"
 							oninput="myFunction_pension_amount(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">$100</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$2,500</span>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -392,10 +720,16 @@
 			<!-- ed3 SSN -->
 			<div id="ed3" style="display: none">
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Social Security Benefits</b>
+					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">Are
-							you eligible for Social Security?</span>
+						<span class="help-block col-lg-12" style="text-align: left;"><label
+							data-toggle="tooltip" data-placement="left"
+							title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
+						Social Security benefits are paid out on a monthly basis to retired workers and their surviving spouses. "><b>Are
+									you eligible for Social Security?</b></label></span>
 						<div class="col-lg-6">
 							<select class="form-control" id="eligible_SSN"
 								onchange="valueChange(this);">
@@ -406,34 +740,49 @@
 						<div class="col-lg-6"></div>
 					</div>
 					<!-- SSN age -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_SSN_age(myValue) {
 								document.getElementById("SSN_age_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
-								payment start:</b> <span id="SSN_age_span">50</span> </span> <input
-							type="range" min="20" max="70" value="50" step="1" id="SSN_age"
-							name="ssnage" onchange="valueChange(this);"
+								planned to apply for social security benefits:</b> <span
+							id="SSN_age_span">67</span> </span> <input type="range" min="62"
+							max="80" step="1" id="SSN_age" value="67"
+							onchange="valueChange(this);"
 							oninput="myFunction_SSN_age(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">62</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">80</span>
+						</div>
 					</div>
 
 					<!--SSN monthly-->
-					<div class="panel-body">
+					<!--
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_SSN_amount(myValue) {
 								document.getElementById("SSN_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="SSN_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" value="500" step="1"
-							id="SSN_amount" name="ssnamount" onchange="valueChange(this);"
+								monthly:</b> $<span id="SSN_amount_span">100</span> </span> <input
+							type="range" min="100" max="1000" step="1" id="SSN_amount" value="100"
+							onchange="valueChange(this);"
 							oninput="myFunction_SSN_amount(this.value)" />
-					</div>
+						    <div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">$100</span>
+						    </div>
+						    <div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$3,000</span>
+						    </div>
+					</div>-->
 				</div>
 			</div>
+
 
 
 			<!-- ed3 end -->
@@ -442,9 +791,12 @@
 			<!-- ed4 -->
 			<div id="ed4" style="display: none">
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Spouse Benefits</b>
+					</div>
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">Do
-							you have a partner eligible for retirement benefits?</span>
+						<span class="help-block col-lg-12" style="text-align: left;"><b>Do
+								You have a spouse?</b></span>
 						<div class="col-lg-6">
 							<select class="form-control" id="partner_eligible"
 								onchange="valueChange(this);">
@@ -462,10 +814,13 @@
 			<!-- ed5 -->
 			<div id="ed5" style="display: none">
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Spouse Pension</b>
+					</div>
 					<!-- pension-->
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">Does
-							your partner eligibile to pesion?</span>
+						<span class="help-block col-lg-12" style="text-align: left;"><b>Does
+								your partner eligibile to pesion?</b></span>
 						<div class="col-lg-6">
 							<select class="form-control" id="partner_pension"
 								onchange="valueChange(this);">
@@ -476,7 +831,7 @@
 						<div class="col-lg-6"></div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_partner_pension_age(myValue) {
 								document
@@ -485,39 +840,52 @@
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
 								payment start:</b> <span id="partner_pension_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value="50"
-							id="partner_pension_age" name="partnerpensionage"
-							onchange="valueChange(this);"
+							type="range" min="50" max="70" step="1" id="partner_pension_age"
+							value="50" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_age(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">50</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">70</span>
+						</div>
 					</div>
 
 					<!--amount monthly-->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_partner_pension_amount(myValue) {
-								document
-										.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
+								document.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="partner_pension_amount_span">500.00</span> </span>
-						<input type="range" min="100" max="1000" step="1" value="500"
-							id="partner_pension_amount" name="partnerpensionamount"
-							onchange="valueChange(this);"
+								monthly:</b> $<span id="partner_pension_amount_span">100</span> </span> <input
+							type="range" min="100" max="2500" step="1" value="100"
+							id="partner_pension_amount" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_amount(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">$100</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$2,500</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- ed5 end -->
 
-			<!-- ed 6 -->
+			<!-- ed6 -->
 			<div id="ed6" style="display: none">
 				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Spouse Social Security Benefits</b>
+					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">Is
-							your partner eligible for Social Security? </span>
+						<span class="help-block col-lg-12" style="text-align: left;"><b>Is
+								your partner eligible for Social Security? </b></span>
 						<div class="col-lg-6">
 							<select class="form-control" id="partner_eligible_SSN"
 								onchange="valueChange(this);">
@@ -528,22 +896,29 @@
 						<div class="col-lg-6"></div>
 					</div>
 					<!-- SSN age -->
-					<div class="panel-body">
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_partner_SSN_age(myValue) {
 								document.getElementById("partner_SSN_age_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
-								payment start:</b> <span id="partner_SSN_age_span">50</span> </span> <input
-							type="range" min="20" max="70" step="1" value="50"
-							id="partner_SSN_age" name="partnerSSNage"
+								planned to apply for social security benefits:</b> <span
+							id="partner_SSN_age_span">67</span> </span> <input type="range" min="62"
+							max="80" step="1" id="partner_SSN_age" value="67"
 							onchange="valueChange(this);"
 							oninput="myFunction_partner_SSN_age(this.value)" />
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">62</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">80</span>
+						</div>
 					</div>
 
 					<!--SSN monthly-->
-					<div class="panel-body">
+					<!-- 
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_partner_SSN_amount(myValue) {
 								document
@@ -551,12 +926,17 @@
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="partner_SSN_amount_span">500.00</span> </span> <input
-							type="range" min="100" max="1000" step="1" value="500"
-							id="partner_SSN_amount" name="partnerSSNamount"
-							onchange="valueChange(this);"
+								monthly:</b> $<span id="partner_SSN_amount_span">100</span> </span> <input
+							type="range" min="100" max="1000" step="1" value="100"
+							id="partner_SSN_amount" onchange="valueChange(this);"
 							oninput="myFunction_partner_SSN_amount(this.value)" />
-					</div>
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">$100</span>
+						    </div>
+						    <div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">$1,000</span>
+						</div>
+					</div> -->
 				</div>
 			</div>
 			<!-- ed6 end -->
@@ -565,89 +945,114 @@
 			<!-- ed7 -->
 			<div id="ed7" style="display: none">
 				<div class="panel panel-default">
-					<div class="panel-body">
+					<div class="panel-heading">
+						<b>Dependents Education, Wedding</b>
+					</div>
+					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_dependent(myValue) {
 								document.getElementById("dependent_span").innerHTML = myValue;
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"> <b>How
-								many dependents?</b> <span id="dependent_span">3</span>
-						</span> <input type="range" min="0" max="10" step="1" value="3"
-							id="dependent" name="dependent" value="3"
-							onchange="valueChange(this);"
-							oninput="myFunction_dependent(this.value)" />
-					</div>
 
+						<span class="help-block" style="text-align: left;"> <b>How
+								many dependents?</b> <span id="dependent_span">1</span>
+						</span> <input type="range" min="0" max="5" step="1" id="dependent"
+							value="1" onchange="valueChange(this);"
+							oninput="myFunction_dependent(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">0</span>
+						</div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">5</span>
+						</div>
+					</div>
 
 					<!--pay for college-->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">
-							Do you want to pay for the college? </span>
-						<div class="col-lg-6">
-							<select class="form-control" id="pay_college"
-								onchange="valueChange(this);">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_pay_for_college(myValue) {
+								document.getElementById("pay_for_college_span").innerHTML = myValue;
+							}
+						</script>
+
+						<span class="help-block" style="text-align: left;"> <b>How
+								many of dependents would you pay for college?</b> <span
+							id="pay_for_college_span">1</span>
+						</span> <input type="range" min="0" max="5" step="1" id="pay_for_college"
+							value="1" onchange="valueChange(this);"
+							oninput="myFunction_pay_for_college(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">0</span>
 						</div>
-						<div class="col-lg-6"></div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">5</span>
+						</div>
 					</div>
 
+
+
 					<!--pay for wedding-->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;">
-							Do you want to pay for the wedding? </span>
-						<div class="col-lg-6">
-							<select class="form-control" id="pay_wedding"
-								onchange="valueChange(this);">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+					<div class="panel-body" style="padding: 8px;">
+						<script>
+							function myFunction_pay_for_wedding(myValue) {
+								document.getElementById("pay_for_wedding_span").innerHTML = myValue;
+							}
+						</script>
+
+						<span class="help-block" style="text-align: left;"> <b>How
+								many of dependents would you pay for wedding?</b> <span
+							id="pay_for_wedding_span">1</span>
+						</span> <input type="range" min="0" max="5" step="1" id="pay_for_wedding"
+							value="1" onchange="valueChange(this);"
+							oninput="myFunction_pay_for_wedding(this.value)" />
+
+						<div class="col-lg-1" style="padding: 0">
+							<span class="help-block" style="text-align: left;">0</span>
 						</div>
-						<div class="col-lg-6"></div>
+						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+							<span class="help-block" style="text-align: left;">5</span>
+						</div>
 					</div>
 
 				</div>
 			</div>
-			<input type="submit" class="btn btn-primary btn-block flat"
-				name="action" value="Create form" />
+
 			<!-- ed7 end -->
+
+
+			<!-- ed8 -->
+			<div id="ed8" style="display: none">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<b>Dependents Age</b>
+					</div>
+					<span class="help-block" style="text-align: left; padding: 4px;">
+						Current age for college dependents</span>
+					<div id='college_age'></div>
+					<span class="help-block" style="text-align: left; padding: 4px;">
+						Current age for wedding dependents</span>
+					<div id='wedding_age'></div>
+				</div>
+			</div>
+
+			<!-- ed8 end -->
+
 		</form>
 	</div>
 	<!--hidden_filed end-->
 
 
-	<div id="store">
-		<input type="hidden" value="50000" id="store_money_saved"> <input
-			type="hidden" value="100000" id="store_income"> <input
-			type="hidden" value="30" id="store_cur_age"> <input
-			type="hidden" value="67" id="store_retire_age"> <input
-			type="hidden" value="0.05" id="store_saving_rate"> <input
-			type="hidden" value="0.05" id="store_income_increase_rate"> <input
-			type="hidden" value="1" id="store_pension"> <input
-			type="hidden" value="1" id="store_pension_age"> <input
-			type="hidden" value="1" id="store_pension_amount"> <input
-			type="hidden" value="1" id="store_eligible_SSN"> <input
-			type="hidden" value="1" id="store_SSN_age"> <input
-			type="hidden" value="1" id="store_SSN_amount"> <input
-			type="hidden" value="1" id="store_partner_eligible"> <input
-			type="hidden" value="1" id="store_partner_pension"> <input
-			type="hidden" value="1" id="store_partner_pension_age"> <input
-			type="hidden" value="1" id="store_partner_pension_amount"> <input
-			type="hidden" value="1" id="store_partner_eligible_SSN"> <input
-			type="hidden" value="1" id="store_partner_SSN_age"> <input
-			type="hidden" value="1" id="store_partner_SSN_amount"> <input
-			type="hidden" value="1" id="store_dependent"> <input
-			type="hidden" value="1" id="store_pay_college"> <input
-			type="hidden" value="1" id="store_pay_wedding">
-	</div>
+
 
 
 
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/validator.js"></script>
 
 	<!-- Plugin JavaScript -->
 	<script src="js/jquery.easing.min.js"></script>
@@ -668,17 +1073,28 @@
 	<script src="js_finance_calculator/finance_calculator_excel.js"></script>
 	<!-- import the event js -->
 	<script src="js_finance_calculator/retire_event.js"></script>
+
+	<!-- enable all the tooltip in the document -->
+	<script>
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 	<script>
 		//variables
-		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5', 'ed6', 'ed7' ];
+		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5', 'ed6',
+				'ed7', 'ed8' ];
 		var cur = 0;
-		var cur_income_value = 11000;
-		var save_rates_value = 0.02;
-
+		var flag = 0;//used to set the reuslt of the top-content on the left section
+		var tag0 = 0;
+		var tag1 = 0;
+		var tag2 = 0;
 		//elements
 		var nextBtn = document.getElementById("Next");
 		var preBtn = document.getElementById("Pre");
 		var editor = document.getElementById("editor");
+		var alert = document.getElementById("alert");
+		var result = document.getElementById("result");
 
 		addEvent();
 	</script>

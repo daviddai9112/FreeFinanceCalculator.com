@@ -10,15 +10,24 @@ public class CalculatorForm extends FormBean {
 	private String    retireage;
 	private String    savingrate;
 	private String    incomeincreaserate;
+	private String    pension;
 	private String    pensionage;
 	private String    pensionamount;
+	private String    ssn;
 	private String    ssnage;
 	private String    ssnamount;
+	private String    partner;
+	private String    partnerpension;
 	private String    partnerpensionage;
 	private String    partnerpensionamount;
-	private String    partnerSSNage;
-	private String    partnerSSNamount;
+	private String    partnerssn;
+	private String    partnerssnage;
+	private String    partnerssnamount;
 	private String    dependent;
+	private String    retirementlevel;
+	private String    returnratebefore;
+	private String    returnrateafter;
+	private String    inflationrate;
 	
 	public String    getMoneysaved()               { return moneysaved;            }
 	public void setMoneysaved(String s) 		    {	moneysaved      = s;        }
@@ -35,14 +44,21 @@ public class CalculatorForm extends FormBean {
 	public String    getSavingrate()               { return savingrate;            }
 	public void setSavingrate(String s) 		    {	savingrate      = s;        }
 	
+	
 	public String    getIncomeincreaserate()               { return incomeincreaserate;            }
 	public void setIncomeincreaserate(String s) 		    {	incomeincreaserate      = s;        }
 	
+	public String    getPension()               { return pension;            }
+	public void setPension(String s) 		    {	pension      = s;        }
+	
 	public String    getPensionage()               { return pensionage;            }
 	public void setPensionage(String s) 		    {	pensionage      = s;        }
-	
+
 	public String    getPensionamount()               { return pensionamount;            }
 	public void setPensionamount(String s) 		    {	pensionamount      = s;        }
+	
+	public String    getSsn()               { return ssn;            }
+	public void setSsn(String s) 		    {	ssn      = s;        }
 	
 	public String    getSsnage()               { return ssnage;            }
 	public void setSsnage(String s) 		    {	ssnage      = s;        }
@@ -50,20 +66,40 @@ public class CalculatorForm extends FormBean {
 	public String    getSsnamount()               { return ssnamount;            }
 	public void setSsnamount(String s) 		    {	ssnamount      = s;        }
 	
-	public String    getPartnerpensionamount()               { return partnerpensionamount;            }
-	public void setPartnerpensionamount(String s) 		    {	partnerpensionamount      = s;        }
-
-	public String    getPartnerSSNage()               { return partnerSSNage;            }
-	public void setPartnerSSNage(String s) 		    {	partnerSSNage      = s;        }
+	public String    getPartner()               { return partner;            }
+	public void setPartner(String s) 		    {	partner      = s;        }
 	
-	public String    getPartnerSSNamount()               { return partnerSSNamount;            }
-	public void setPartnerSSNamount(String s) 		    {	partnerSSNamount      = s;        }
-	
-	public String    getDependent()               { return dependent;            }
-	public void setDependent(String s) 		    {	dependent      = s;        }
+	public String    getPartnerpension()               { return partnerpension;            }
+	public void setPartnerpension(String s) 		    {	partnerpension      = s;        }
 	
 	public String    getPartnerpensionage()               { return partnerpensionage;            }
 	public void setPartnerpensionage(String s) 		    {	partnerpensionage      = s;        }
 	
-    
+	public String    getPartnerpensionamount()               { return partnerpensionamount;            }
+	public void setPartnerpensionamount(String s) 		    {	partnerpensionamount      = s;        }
+	
+	public String    getPartnerssn()               { return partnerssn;            }
+	public void setPartnerssn(String s) 		    {	partnerssn      = s;        }
+
+	public String    getPartnerssnage()               { return partnerssnage;            }
+	public void setPartnerssnage(String s) 		    {	partnerssnage      = s;        }
+	
+	public String    getPartnerssnamount()               { return partnerssnamount;            }
+	public void setPartnerssnamount(String s) 		    {	partnerssnamount      = s;        }
+	
+	public String    getDependent()               { return dependent;            }
+	public void setDependent(String s) 		    {	dependent      = s;        }
+	
+	public String    getRetirementlevel()               { return retirementlevel;            }
+	public void setRetirementlevel(String s) 		    {	retirementlevel      = s;        }
+	
+	public String    getReturnratebefore()               { return returnratebefore;            }
+	public void setReturnratebefore(String s) 		    {	returnratebefore      = s;        }
+	
+	public String    getReturnrateafter()               { return returnrateafter;            }
+	public void setReturnrateafter(String s) 		    {	returnrateafter      = s;        }
+	
+	public String    getInflationrate()               { return inflationrate;            }
+	public void setInflationrate(String s) 		    {	inflationrate      = s;        }
+	
 }
