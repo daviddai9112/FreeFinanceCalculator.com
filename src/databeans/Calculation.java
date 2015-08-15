@@ -18,26 +18,26 @@ public class Calculation {
 				1.08, 1.04, 1.01, 1.00, 1.00, 1.00 };
 		// 1954-2015 used to calculate the social security benefits
 
-		int cur_age = cb.getCur_Age();
+		int cur_age = cb.getCurage();
 		FormBean[] fb = new FormBean[101 - cur_age];
-		int retire_age = cb.getRetire_Age();
-		long cur_saving = cb.getMoney_Saved();
+		int retire_age = cb.getRetire_age();
+		long cur_saving = cb.getMoney_saved();
 		long cur_income = cb.getIncome();
-		int saving_rate = cb.getSaving_Rate();
-		int income_increase = cb.getIncome_Increase_Rate();
-		int retire_level = cb.getRetirement_Level();
-		int investment_before = cb.getInvestment_Rate_Before();
-		int investment_after = cb.getInvestment_Rate_After();
-		int inflation_rate = cb.getInflation_Rate();
-		int pension_age = cb.getPension_Age();
-		long pension = cb.getPension() ? cb.getPension_Amount() : 0;
-		int partner_pension_age = cb.getPartner_Pension_Age();
-		long partner_pension = cb.getPartner_Pension() ? cb
-				.getPartner_Pension_Amount() : 0;
-		int ssn_age = cb.getSSN_Age();
-		long ssn = cb.getSSN() ? cb.getSSN_Amount() : 0;
-		int partner_ssn_age = cb.getPartner_SSN_Age();
-		long partner_ssn = cb.getPartner_SSN() ? cb.getPartner_SSN_Amount() : 0;
+		int saving_rate = cb.getSaving_rate();
+		int income_increase = cb.getIncome_increase_rate();
+		int retire_level = cb.getRetirement_level();
+		int investment_before = cb.getReturn_rate_before();
+		int investment_after = cb.getReturn_rate_after();
+		int inflation_rate = cb.getInflation_rate();
+		int pension_age = cb.getPension_age();
+		long pension = cb.getPension() ? cb.getPension_amount() : 0;
+		int partner_pension_age = cb.getPartner_pension_age();
+		long partner_pension = cb.getPartner_pension() ? cb
+				.getPartner_pension_amount() : 0;
+		int ssn_age = cb.getSsn_age();
+		long ssn = cb.getSsn() ? cb.getSsn_amount() : 0;
+		int partner_ssn_age = cb.getPartner_ssn_age();
+		long partner_ssn = cb.getPartner_ssn() ? cb.getPartner_ssn_amount() : 0;
 
 		int[] age_array = get_age_array(cur_age);
 
@@ -66,8 +66,9 @@ public class Calculation {
 		int j = 0;
 		for (int i = 0; i < 5; i++) {
 			if (arr_college[i] >= 0) {
-
-				arr_index_college[j] = 18 - arr_college[i];
+				
+				if(18 - arr_college[i] >= 0) arr_index_college[j] = 18 - arr_college[i];
+				else arr_index_college[j] = -1;
 			} else {
 				arr_index_college[j] = -1;
 			}
@@ -77,7 +78,9 @@ public class Calculation {
 		j = 0;
 		for (int i = 0; i < 5; i++) {
 			if (arr_wedding[i] >= 0) {
-				arr_index_wedding[j] = 28 - arr_wedding[i];
+				
+				if(28 - arr_wedding[i] >= 0) arr_index_wedding[j] = 28 - arr_wedding[i];
+				else arr_index_wedding[j] = -1;
 			} else {
 				arr_index_wedding[j] = -1;
 			}
@@ -115,7 +118,6 @@ public class Calculation {
 		
 		// make a loop from 0 to the length of age_array, compute all the things
 		long temp = income_array[retire_age - cur_age - 2];
-		System.out.println("temp" + temp);
 		for (int i = 0; i < age_array.length; i++) {
 			if (i == 0) {
 				FormBean fb0 = new FormBean();
@@ -203,28 +205,28 @@ public class Calculation {
 		if (runout == -1)
 			runout = 100;
 
-		for (int i = 0; i < fb.length; i++) {
-			System.out.println("total_array[" + i
-					+ "]                                 " + total_array[i]);
-			System.out.println("pension_array[" + i
-					+ "]                               " + pension_array[i]);
-			System.out.println("ssn_array[" + i
-					+ "]                                   " + ssn_array[i]);
-			System.out.println("partner_pension_array[" + i
-					+ "]                       " + partner_pension_array[i]);
-			System.out.println("partner_ssn_array[" + i
-					+ "]                           " + partner_ssn_array[i]);
-			System.out.println("savings_array[" + i
-					+ "]                               " + savings_array[i]);
-			System.out.println("investment_gain_array[" + i
-					+ "]                       " + investment_gain_array[i]);
-			System.out.println("spending_array[" + i
-					+ "]                              " + spending_array[i]);
-			System.out.println("net_array[" + i
-					+ "]                                   " + net_array[i]);
-			System.out.println("income_array[" + i
-					+ "]                                " + income_array[i]);
-		}
+//		for (int i = 0; i < fb.length; i++) {
+//			System.out.println("total_array[" + i
+//					+ "]                                 " + total_array[i]);
+//			System.out.println("pension_array[" + i
+//					+ "]                               " + pension_array[i]);
+//			System.out.println("ssn_array[" + i
+//					+ "]                                   " + ssn_array[i]);
+//			System.out.println("partner_pension_array[" + i
+//					+ "]                       " + partner_pension_array[i]);
+//			System.out.println("partner_ssn_array[" + i
+//					+ "]                           " + partner_ssn_array[i]);
+//			System.out.println("savings_array[" + i
+//					+ "]                               " + savings_array[i]);
+//			System.out.println("investment_gain_array[" + i
+//					+ "]                       " + investment_gain_array[i]);
+//			System.out.println("spending_array[" + i
+//					+ "]                              " + spending_array[i]);
+//			System.out.println("net_array[" + i
+//					+ "]                                   " + net_array[i]);
+//			System.out.println("income_array[" + i
+//					+ "]                                " + income_array[i]);
+//		}
 		return fb;
 	}
 

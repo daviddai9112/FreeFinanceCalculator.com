@@ -276,6 +276,66 @@ function valueChange(ele) {
 		if (ele.value > Number(document.getElementById("store_dependent").value))
 			ele.value = Number(document.getElementById("store_dependent").value);
 	}
+	
+	if (ele.id == "cur_age") {
+		if (ele.value > 90)
+			ele.value = 90;
+		if (ele.value < 14)
+			ele.value = 14;
+		if (ele.value > Number(document.getElementById("store_retire_age").value))
+		    ele.value = Number(document.getElementById("store_retire_age").value) - 1;
+	}
+	
+	if (ele.id == "retire_age") {
+		if (ele.value > 90)
+			ele.value = 90;
+		if (ele.value < 14)
+			ele.value = 14;
+		if (ele.value < Number(document.getElementById("store_cur_age").value))
+		    ele.value = Number(document.getElementById("store_cur_age").value) + 1;
+	}
+	
+	if (ele.id == "dependent_college_0") {
+		if (ele.value > 18)
+			ele.value = 18;
+	}
+	if (ele.id == "dependent_college_1") {
+		if (ele.value > 18)
+			ele.value = 18;
+	}
+	if (ele.id == "dependent_college_2") {
+		if (ele.value > 18)
+			ele.value = 18;
+	}
+	if (ele.id == "dependent_college_3") {
+		if (ele.value > 18)
+			ele.value = 18;
+	}
+	if (ele.id == "dependent_college_4") {
+		if (ele.value > 18)
+			ele.value = 18;
+	}
+	
+	if (ele.id == "dependent_wedding_0") {
+		if (ele.value > 28)
+			ele.value = 28;
+	}
+	if (ele.id == "dependent_wedding_1") {
+		if (ele.value > 28)
+			ele.value = 28;
+	}
+	if (ele.id == "dependent_wedding_2") {
+		if (ele.value > 28)
+			ele.value = 28;
+	}
+	if (ele.id == "dependent_wedding_3") {
+		if (ele.value > 28)
+			ele.value = 28;
+	}
+	if (ele.id == "dependent_wedding_4") {
+		if (ele.value > 28)
+			ele.value = 28;
+	}
 	var store_ele = document.getElementById('store_' + ele.id);
 	store_ele.value = ele.value;
 	if(ele.id == "cur_age") {

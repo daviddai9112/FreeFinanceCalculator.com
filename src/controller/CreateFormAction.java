@@ -89,60 +89,60 @@ public class CreateFormAction extends Action {
 
 			CalculatorBean calbean = new CalculatorBean();
 
-			calbean.setMoney_Saved(Long.parseLong(form.getMoneysaved()));
+			calbean.setMoney_saved(Long.parseLong(form.getMoneysaved()));
 
 			calbean.setIncome(Long.parseLong(form.getIncome()));
-			calbean.setCur_Age(Integer.parseInt(form.getCurage()));
-			calbean.setRetire_Age(Integer.parseInt(form.getRetireage()));
+			calbean.setCurage(Integer.parseInt(form.getCurage()));
+			calbean.setRetire_age(Integer.parseInt(form.getRetireage()));
 
 			double savingrate = Double.parseDouble(form.getSavingrate());
-			calbean.setSaving_Rate((int) (savingrate * 100));
+			calbean.setSaving_rate((int) (savingrate * 100));
 
 			double incomeincreaserate = Double.parseDouble(form
 					.getIncomeincreaserate());
-			calbean.setIncome_Increase_Rate((int) (incomeincreaserate * 100));
+			calbean.setIncome_increase_rate((int) (incomeincreaserate * 100));
 
 			// pension
 			calbean.setPension(Integer.parseInt(form.getPension()));
-			calbean.setPension_Age(Integer.parseInt(form.getPensionage()));
-			calbean.setPension_Amount(Long.parseLong(form.getPensionamount()));
+			calbean.setPension_age(Integer.parseInt(form.getPensionage()));
+			calbean.setPension_amount(Long.parseLong(form.getPensionamount()));
 
 			// SSN
-			calbean.setSSN(Integer.parseInt(form.getSsn()));
-			calbean.setSSN_Age(Integer.parseInt(form.getSsnage()));
-			calbean.setSSN_Amount((long) Double.parseDouble(form.getSsnamount()));
+			calbean.setSsn(Integer.parseInt(form.getSsn()));
+			calbean.setSsn_age(Integer.parseInt(form.getSsnage()));
+			calbean.setSsn_amount((long) Double.parseDouble(form.getSsnamount()));
 
 			calbean.setPartner(Integer.parseInt(form.getPartner()));
 			// partner_pension
-			calbean.setPartner_Pension(Integer.parseInt(form
+			calbean.setPartner_pension(Integer.parseInt(form
 					.getPartnerpension()));
-			calbean.setPartner_Pension_Age(Integer.parseInt(form
+			calbean.setPartner_pension_age(Integer.parseInt(form
 					.getPartnerpensionage()));
-			calbean.setPartner_Pension_Amount(Long.parseLong(form
+			calbean.setPartner_pension_amount(Long.parseLong(form
 					.getPartnerpensionamount()));
 
 			// partner_ssn
-			calbean.setPartner_SSN(Integer.parseInt(form.getPartnerssn()));
-			calbean.setPartner_SSN_Age(Integer.parseInt(form.getPartnerssnage()));
-			calbean.setPartner_SSN_Amount((long) Double.parseDouble(form
+			calbean.setPartner_ssn(Integer.parseInt(form.getPartnerssn()));
+			calbean.setPartner_ssn_age(Integer.parseInt(form.getPartnerssnage()));
+			calbean.setPartner_ssn_amount((long) Double.parseDouble(form
 					.getPartnerssnamount()));
 
 			calbean.setDependent(Integer.parseInt(form.getDependent()));
 
 			double retirement_level = Double.parseDouble(form
 					.getRetirementlevel());
-			calbean.setRetirement_Level((int) (retirement_level * 100));
+			calbean.setRetirement_level((int) (retirement_level * 100));
 
 			double return_rate_before = Double.parseDouble(form
 					.getReturnratebefore());
-			calbean.setInvestment_Rate_Before((int) (return_rate_before * 100));
+			calbean.setReturn_rate_before((int) (return_rate_before * 100));
 
 			double return_rate_after = Double.parseDouble(form
 					.getReturnrateafter());
-			calbean.setInvestment_Rate_After((int) (return_rate_after * 100));
+			calbean.setReturn_rate_after((int) (return_rate_after * 100));
 
 			double inflation_rate = Double.parseDouble(form.getInflationrate());
-			calbean.setInflation_Rate((int) (inflation_rate * 100));
+			calbean.setInflation_rate((int) (inflation_rate * 100));
 			
 			calbean.setStore_dependent_college_0(Integer.parseInt(form.getStore_dependent_college_0()));
 			calbean.setStore_dependent_college_1(Integer.parseInt(form.getStore_dependent_college_1()));
@@ -198,7 +198,7 @@ public class CreateFormAction extends Action {
 			// + calbean.getDependent());
 			// System.out.println("calbean.getRetirement_Level()      ++"
 			// + calbean.getRetirement_Level());
-			// System.out.println("calbean.getInvestment_Rate_Before()++"
+			// System.out.println("calbean.getReturn_Rate_Before()++"
 			// + calbean.getInvestment_Rate_Before());
 			// System.out.println("calbean.getInvestment_Rate_After() ++"
 			// + calbean.getInvestment_Rate_After());
@@ -209,7 +209,7 @@ public class CreateFormAction extends Action {
 			// CalculatorBean test = new CalculatorBean();
 			// test.setMoney_Saved(1000);
 			// test.setIncome(110000);
-			// test.setCur_Age(25);
+			// test.setCurage(25);
 			// test.setRetire_Age(67);
 			// test.setSaving_Rate(15);
 			// test.setIncome_Increase_Rate(2);
@@ -251,17 +251,17 @@ public class CreateFormAction extends Action {
 //			}
 			request.setAttribute("calbean", calbean);
 			request.setAttribute("formBeans", formBean);
-			request.setAttribute("income_rate", calbean.getSaving_Rate());
+			request.setAttribute("income_rate", calbean.getSaving_rate());
 			request.setAttribute("retirement_level",
-					calbean.getRetirement_Level());
+					calbean.getRetirement_level());
 			request.setAttribute("run_out", calculation.runout);
 			request.setAttribute("lastyr_income", calculation.lastyr_income);
 			request.setAttribute("total_retired", calculation.total_retired);
 			request.setAttribute("retirement_spending", calculation.retirement_spending);
 			request.setAttribute("rate_before",
-					new Integer(calbean.getInvestment_Rate_Before()));
+					new Integer(calbean.getReturn_rate_before()));
 
-			if (calbean.getPartner_Pension())
+			if (calbean.getPartner_pension())
 				request.setAttribute("partner_pension", 1);
 			else
 				request.setAttribute("partner_pension", 0);
@@ -269,11 +269,11 @@ public class CreateFormAction extends Action {
 				request.setAttribute("partner", 1);
 			else
 				request.setAttribute("partner", 0);
-			if (calbean.getPartner_SSN())
+			if (calbean.getPartner_ssn())
 				request.setAttribute("partner_ssn", 1);
 			else
 				request.setAttribute("partner_ssn", 0);
-			if (calbean.getSSN())
+			if (calbean.getSsn())
 				request.setAttribute("ssn", 1);
 			else
 				request.setAttribute("ssn", 0);
@@ -281,52 +281,60 @@ public class CreateFormAction extends Action {
 				request.setAttribute("pension", 1);
 			else
 				request.setAttribute("pension", 0);
-
+			//set graphic parameter
+			request.setAttribute("saving_rate", (double)calbean.getSaving_rate()/(double)100);
+			request.setAttribute("income_increase_rate", (double)calbean.getIncome_increase_rate()/(double)100);
+			request.setAttribute("retirement_level1", (double)calbean.getRetirement_level()/(double)100);
+			request.setAttribute("return_rate_before", (double)calbean.getReturn_rate_before()/(double)100);
+			request.setAttribute("return_rate_after", (double)calbean.getReturn_rate_after()/(double)100);
+			request.setAttribute("inflation_rate", (double)calbean.getInflation_rate()/(double)100);
+			
+			
 			if (runout < 100) {
-				int newrate = calbean.getInvestment_Rate_Before();
+				int newrate = calbean.getReturn_rate_before();
 				newrate++;
 				
 				CalculatorBean tmpbean = new CalculatorBean();
 				// create tmpbean
-				tmpbean.setMoney_Saved(calbean.getMoney_Saved());
+				tmpbean.setMoney_saved(calbean.getMoney_saved());
 				tmpbean.setIncome(calbean.getIncome());
-				tmpbean.setCur_Age(calbean.getCur_Age());
-				tmpbean.setRetire_Age(calbean.getRetire_Age());
-				tmpbean.setSaving_Rate(calbean.getSaving_Rate());
-				tmpbean.setIncome_Increase_Rate(calbean.getIncome_Increase_Rate());
+				tmpbean.setCurage(calbean.getCurage());
+				tmpbean.setRetire_age(calbean.getRetire_age());
+				tmpbean.setSaving_rate(calbean.getSaving_rate());
+				tmpbean.setIncome_increase_rate(calbean.getIncome_increase_rate());
 				if (calbean.getPension())
 					tmpbean.setPension(1);
 				else
 					tmpbean.setPension(0);
-				tmpbean.setPension_Age(calbean.getPension_Age());
-				tmpbean.setPension_Amount(calbean.getPension_Amount());
-				if (calbean.getSSN())
-					tmpbean.setSSN(1);
+				tmpbean.setPension_age(calbean.getPension_age());
+				tmpbean.setPension_amount(calbean.getPension_amount());
+				if (calbean.getSsn())
+					tmpbean.setSsn(1);
 				else
-					tmpbean.setSSN(0);
-				tmpbean.setSSN_Age(calbean.getSSN_Age());
-				tmpbean.setSSN_Amount(calbean.getSSN_Amount());
+					tmpbean.setSsn(0);
+				tmpbean.setSsn_age(calbean.getSsn_age());
+				tmpbean.setSsn_amount(calbean.getSsn_amount());
 				if (calbean.getPartner())
 					tmpbean.setPartner(1);
 				else
 					tmpbean.setPartner(0);
-				if (calbean.getPartner_Pension())
-					tmpbean.setPartner_Pension(1);
+				if (calbean.getPartner_pension())
+					tmpbean.setPartner_pension(1);
 				else
-					tmpbean.setPartner_Pension(0);
-				tmpbean.setPartner_Pension_Age(calbean.getPartner_Pension_Age());
-				tmpbean.setPartner_Pension_Amount(calbean.getPartner_Pension_Amount());
-				if (calbean.getPartner_SSN())
-					tmpbean.setPartner_SSN(1);
+					tmpbean.setPartner_pension(0);
+				tmpbean.setPartner_pension_age(calbean.getPartner_pension_age());
+				tmpbean.setPartner_pension_amount(calbean.getPartner_pension_amount());
+				if (calbean.getPartner_ssn())
+					tmpbean.setPartner_ssn(1);
 				else
-					tmpbean.setPartner_SSN(0);
-				tmpbean.setPartner_SSN_Age(calbean.getPartner_SSN_Age());
-				tmpbean.setPartner_SSN_Amount(calbean.getPartner_SSN_Amount());
+					tmpbean.setPartner_ssn(0);
+				tmpbean.setPartner_ssn_age(calbean.getPartner_ssn_age());
+				tmpbean.setPartner_ssn_amount(calbean.getPartner_ssn_amount());
 				tmpbean.setDependent(calbean.getDependent());
-				tmpbean.setRetirement_Level(calbean.getRetirement_Level());
-				tmpbean.setInvestment_Rate_Before(calbean.getInvestment_Rate_Before());
-				tmpbean.setInvestment_Rate_After(calbean.getInvestment_Rate_After());
-				tmpbean.setInflation_Rate(calbean.getInflation_Rate());
+				tmpbean.setRetirement_level(calbean.getRetirement_level());
+				tmpbean.setReturn_rate_before(calbean.getReturn_rate_before());
+				tmpbean.setReturn_rate_after(calbean.getReturn_rate_after());
+				tmpbean.setInflation_rate(calbean.getInflation_rate());
 				tmpbean.setStore_dependent_college_0(calbean.getStore_dependent_college_0());
 				tmpbean.setStore_dependent_college_1(calbean.getStore_dependent_college_1());
 				tmpbean.setStore_dependent_college_2(calbean.getStore_dependent_college_2());
@@ -339,13 +347,13 @@ public class CreateFormAction extends Action {
 				tmpbean.setStore_dependent_wedding_4(calbean.getStore_dependent_wedding_4());
 				
 				
-				tmpbean.setInvestment_Rate_Before(newrate);
+				tmpbean.setReturn_rate_before(newrate);
 		
 				Calculation tmpcal = new Calculation();
 				FormBean[] tempbeans = tmpcal.calculation(tmpbean);
 				while (tmpcal.runout < 100) {
 					newrate++;
-					tmpbean.setInvestment_Rate_Before(newrate);
+					tmpbean.setReturn_rate_before(newrate);
 					tmpcal = new Calculation();
 					tempbeans = tmpcal.calculation(tmpbean);
 				}
@@ -365,7 +373,7 @@ public class CreateFormAction extends Action {
 			// recommend_retirement_level;
 			// long rec_retirement = retirement_level(total_retired,
 			// test.getRetire_Age(), test.getInflation_Rate(),
-			// test.getInvestment_Rate_After());
+			// test.getReturn_Rate_After());
 			int rec_retirement_level = getRetirement_level(calbean, calculation);
 			// (int) ((rec_retirement * 100) / lastyr_income);
 			System.out
@@ -445,137 +453,137 @@ public class CreateFormAction extends Action {
 
 	}
 
-	// calculate table
-	private FormBean[] calculation1(CalculatorBean cb) {
-		int age = cb.getCur_Age();
-		FormBean[] fb = new FormBean[101 - age];
-		int retire_age = cb.getRetire_Age();
-		long money_saved = cb.getMoney_Saved();
-		long income = cb.getIncome();
-		int saving_rate = cb.getSaving_Rate();
-		int income_increase_rate = cb.getIncome_Increase_Rate();
-		int retirement_level = cb.getRetirement_Level();
-		int investment_rate_before = cb.getInvestment_Rate_Before();
-		int investment_rate_after = cb.getInvestment_Rate_After();
-		int inflate_rate = cb.getInflation_Rate();
-		int pension_age = cb.getPension_Age();
-		long pension = cb.getPension() ? cb.getPension_Amount() : 0;
-		int partner_pension_age = cb.getPartner_Pension_Age();
-		long partner_pension = cb.getPartner_Pension() ? cb
-				.getPartner_Pension_Amount() : 0;
-		int ssn_age = cb.getSSN_Age();
-		long ssn = cb.getSSN() ? cb.getSSN_Amount() : 0;
-		int partner_ssn_age = cb.getPartner_SSN_Age();
-		long partner_ssn = cb.getPartner_SSN() ? cb.getPartner_SSN_Amount() : 0;
-
-
-		retirement_total_spending = 0;
-
-		// fb[0]
-		FormBean fb0 = new FormBean();
-		fb0.setAge(age + 1);
-		fb0.setBeginretirementbalance(money_saved);
-		fb0.setInvestmentgrowth(Math.round((double) (fb0
-				.getBeginretirementbalance() * investment_rate_before)
-				/ (double) 100));
-		long f0_ssn = 0;
-		if (age + 1 >= pension_age)
-			f0_ssn += pension;
-		if (age + 1 >= partner_pension_age)
-			f0_ssn += partner_pension;
-		if (age + 1 >= ssn_age)
-			f0_ssn += ssn;
-		if (age + 1 >= partner_ssn_age)
-			f0_ssn += partner_ssn;
-		fb0.setSsn(f0_ssn);
-		fb0.setSaving(Math
-				.round((double) (income * saving_rate) / (double) 100));
-		fb0.setRetirementspend(0);
-		fb0.setAccountspending(0);
-		fb0.setTotal(fb0.getBeginretirementbalance()
-				+ fb0.getInvestmentgrowth() + fb0.getSaving() + fb0.getSsn());
-		fb[0] = fb0;
-
-		for (int i = age + 1; i < retire_age - 1; i++) {
-			income = Math
-					.round((double) ((100 + income_increase_rate) * income)
-							/ (double) 100);
-			FormBean temp = fb[i - age - 1];
-			FormBean newbean = new FormBean();
-			newbean.setAge(i + 1);
-			newbean.setBeginretirementbalance(temp.getTotal());
-			newbean.setInvestmentgrowth(Math.round((double) (newbean
-					.getBeginretirementbalance() * investment_rate_before)
-					/ (double) 100));
-			long cur_ssn = 0;
-			if (i + 1 >= pension_age)
-				cur_ssn += pension;
-			if (i + 1 >= partner_pension_age)
-				cur_ssn += partner_pension;
-			if (i + 1 >= ssn_age)
-				cur_ssn += ssn;
-			if (i + 1 >= partner_ssn_age)
-				cur_ssn += partner_ssn;
-			newbean.setSsn(cur_ssn);
-			newbean.setSaving(Math.round((double) income * saving_rate
-					/ (double) 100));
-			newbean.setRetirementspend(0);
-			newbean.setAccountspending(0);
-			newbean.setTotal(newbean.getBeginretirementbalance()
-					+ newbean.getInvestmentgrowth() + newbean.getSaving()
-					+ newbean.getSsn());
-			fb[i - age] = newbean;
-		}
-		income = (100 + income_increase_rate) * income / 100;
-		lastyr_income = income;
-		long spending = income * retirement_level / 100;
-		retirement_spending = spending;
-		for (int i = retire_age - 1; i < 101; i++) {
-			FormBean temp = fb[i - age - 1];
-			if (total_retired == -1) {
-				total_retired = temp.getTotal();
-			}
-			FormBean newbean = new FormBean();
-			newbean.setAge(i);
-			newbean.setBeginretirementbalance(temp.getTotal());
-			newbean.setInvestmentgrowth(Math.round((double) (newbean
-					.getBeginretirementbalance() * investment_rate_after)
-					/ (double) 100));
-			long cur_snn = 0;
-			if (i + 1 >= pension_age)
-				cur_snn += pension;
-			if (i + 1 >= partner_pension_age)
-				cur_snn += partner_pension;
-			if (i + 1 >= ssn_age)
-				cur_snn += ssn;
-			if (i + 1 >= partner_ssn_age)
-				cur_snn += partner_ssn;
-			newbean.setSsn(cur_snn);
-			newbean.setSaving(0);
-			newbean.setRetirementspend(spending);
-			retirement_total_spending += spending;
-			spending = Math.round((double) ((100 + inflate_rate) * spending)
-					/ (double) 100);
-			newbean.setAccountspending((newbean.getBeginretirementbalance() + newbean
-					.getInvestmentgrowth()) > newbean.getRetirementspend() ? newbean
-					.getRetirementspend() : (newbean
-					.getBeginretirementbalance() + newbean
-					.getInvestmentgrowth()));
-			newbean.setTotal(newbean.getBeginretirementbalance()
-					+ newbean.getInvestmentgrowth()
-					- newbean.getAccountspending());
-			fb[i - age] = newbean;
-			if (newbean.getBeginretirementbalance()
-					+ newbean.getInvestmentgrowth()
-					- newbean.getAccountspending() == 0
-					&& runout == -1) {
-				runout = i + 1;
-			}
-		}
-		if (runout == -1)
-			runout = 100;
-		return fb;
-	}
+//	// calculate table
+//	private FormBean[] calculation1(CalculatorBean cb) {
+//		int age = cb.getCurage();
+//		FormBean[] fb = new FormBean[101 - age];
+//		int retire_age = cb.getRetire_Age();
+//		long money_saved = cb.getMoney_Saved();
+//		long income = cb.getIncome();
+//		int saving_rate = cb.getSaving_Rate();
+//		int income_increase_rate = cb.getIncome_Increase_Rate();
+//		int retirement_level = cb.getRetirement_Level();
+//		int investment_rate_before = cb.getReturn_Rate_Before();
+//		int investment_rate_after = cb.getReturn_Rate_After();
+//		int inflate_rate = cb.getInflation_Rate();
+//		int pension_age = cb.getPension_Age();
+//		long pension = cb.getPension() ? cb.getPension_Amount() : 0;
+//		int partner_pension_age = cb.getPartner_Pension_Age();
+//		long partner_pension = cb.getPartner_Pension() ? cb
+//				.getPartner_Pension_Amount() : 0;
+//		int ssn_age = cb.getSSN_Age();
+//		long ssn = cb.getSSN() ? cb.getSSN_Amount() : 0;
+//		int partner_ssn_age = cb.getPartner_SSN_Age();
+//		long partner_ssn = cb.getPartner_SSN() ? cb.getPartner_SSN_Amount() : 0;
+//
+//
+//		retirement_total_spending = 0;
+//
+//		// fb[0]
+//		FormBean fb0 = new FormBean();
+//		fb0.setAge(age + 1);
+//		fb0.setBeginretirementbalance(money_saved);
+//		fb0.setReturngrowth(Math.round((double) (fb0
+//				.getBeginretirementbalance() * investment_rate_before)
+//				/ (double) 100));
+//		long f0_ssn = 0;
+//		if (age + 1 >= pension_age)
+//			f0_ssn += pension;
+//		if (age + 1 >= partner_pension_age)
+//			f0_ssn += partner_pension;
+//		if (age + 1 >= ssn_age)
+//			f0_ssn += ssn;
+//		if (age + 1 >= partner_ssn_age)
+//			f0_ssn += partner_ssn;
+//		fb0.setSsn(f0_ssn);
+//		fb0.setSaving(Math
+//				.round((double) (income * saving_rate) / (double) 100));
+//		fb0.setRetirementspend(0);
+//		fb0.setAccountspending(0);
+//		fb0.setTotal(fb0.getBeginretirementbalance()
+//				+ fb0.getReturngrowth() + fb0.getSaving() + fb0.getSsn());
+//		fb[0] = fb0;
+//
+//		for (int i = age + 1; i < retire_age - 1; i++) {
+//			income = Math
+//					.round((double) ((100 + income_increase_rate) * income)
+//							/ (double) 100);
+//			FormBean temp = fb[i - age - 1];
+//			FormBean newbean = new FormBean();
+//			newbean.setAge(i + 1);
+//			newbean.setBeginretirementbalance(temp.getTotal());
+//			newbean.setReturngrowth(Math.round((double) (newbean
+//					.getBeginretirementbalance() * investment_rate_before)
+//					/ (double) 100));
+//			long cur_ssn = 0;
+//			if (i + 1 >= pension_age)
+//				cur_ssn += pension;
+//			if (i + 1 >= partner_pension_age)
+//				cur_ssn += partner_pension;
+//			if (i + 1 >= ssn_age)
+//				cur_ssn += ssn;
+//			if (i + 1 >= partner_ssn_age)
+//				cur_ssn += partner_ssn;
+//			newbean.setSsn(cur_ssn);
+//			newbean.setSaving(Math.round((double) income * saving_rate
+//					/ (double) 100));
+//			newbean.setRetirementspend(0);
+//			newbean.setAccountspending(0);
+//			newbean.setTotal(newbean.getBeginretirementbalance()
+//					+ newbean.getReturngrowth() + newbean.getSaving()
+//					+ newbean.getSsn());
+//			fb[i - age] = newbean;
+//		}
+//		income = (100 + income_increase_rate) * income / 100;
+//		lastyr_income = income;
+//		long spending = income * retirement_level / 100;
+//		retirement_spending = spending;
+//		for (int i = retire_age - 1; i < 101; i++) {
+//			FormBean temp = fb[i - age - 1];
+//			if (total_retired == -1) {
+//				total_retired = temp.getTotal();
+//			}
+//			FormBean newbean = new FormBean();
+//			newbean.setAge(i);
+//			newbean.setBeginretirementbalance(temp.getTotal());
+//			newbean.setReturngrowth(Math.round((double) (newbean
+//					.getBeginretirementbalance() * investment_rate_after)
+//					/ (double) 100));
+//			long cur_snn = 0;
+//			if (i + 1 >= pension_age)
+//				cur_snn += pension;
+//			if (i + 1 >= partner_pension_age)
+//				cur_snn += partner_pension;
+//			if (i + 1 >= ssn_age)
+//				cur_snn += ssn;
+//			if (i + 1 >= partner_ssn_age)
+//				cur_snn += partner_ssn;
+//			newbean.setSsn(cur_snn);
+//			newbean.setSaving(0);
+//			newbean.setRetirementspend(spending);
+//			retirement_total_spending += spending;
+//			spending = Math.round((double) ((100 + inflate_rate) * spending)
+//					/ (double) 100);
+//			newbean.setAccountspending((newbean.getBeginretirementbalance() + newbean
+//					.getReturngrowth()) > newbean.getRetirementspend() ? newbean
+//					.getRetirementspend() : (newbean
+//					.getBeginretirementbalance() + newbean
+//					.getReturngrowth()));
+//			newbean.setTotal(newbean.getBeginretirementbalance()
+//					+ newbean.getReturngrowth()
+//					- newbean.getAccountspending());
+//			fb[i - age] = newbean;
+//			if (newbean.getBeginretirementbalance()
+//					+ newbean.getReturngrowth()
+//					- newbean.getAccountspending() == 0
+//					&& runout == -1) {
+//				runout = i + 1;
+//			}
+//		}
+//		if (runout == -1)
+//			runout = 100;
+//		return fb;
+//	}
 
 	// calculate recommend retirement level
 	// private long retirement_level(long total, int retirement_age,
@@ -656,47 +664,48 @@ public class CreateFormAction extends Action {
 
 	private int getSaving_rate(CalculatorBean calbean) {
 		Calculation calculation = new Calculation();
+		
 		CalculatorBean tmpbean = new CalculatorBean();
 		// create tmpbean
-		tmpbean.setMoney_Saved(calbean.getMoney_Saved());
+		tmpbean.setMoney_saved(calbean.getMoney_saved());
 		tmpbean.setIncome(calbean.getIncome());
-		tmpbean.setCur_Age(calbean.getCur_Age());
-		tmpbean.setRetire_Age(calbean.getRetire_Age());
-		tmpbean.setSaving_Rate(calbean.getSaving_Rate());
-		tmpbean.setIncome_Increase_Rate(calbean.getIncome_Increase_Rate());
+		tmpbean.setCurage(calbean.getCurage());
+		tmpbean.setRetire_age(calbean.getRetire_age());
+		tmpbean.setSaving_rate(calbean.getSaving_rate());
+		tmpbean.setIncome_increase_rate(calbean.getIncome_increase_rate());
 		if (calbean.getPension())
 			tmpbean.setPension(1);
 		else
 			tmpbean.setPension(0);
-		tmpbean.setPension_Age(calbean.getPension_Age());
-		tmpbean.setPension_Amount(calbean.getPension_Amount());
-		if (calbean.getSSN())
-			tmpbean.setSSN(1);
+		tmpbean.setPension_age(calbean.getPension_age());
+		tmpbean.setPension_amount(calbean.getPension_amount());
+		if (calbean.getSsn())
+			tmpbean.setSsn(1);
 		else
-			tmpbean.setSSN(0);
-		tmpbean.setSSN_Age(calbean.getSSN_Age());
-		tmpbean.setSSN_Amount(calbean.getSSN_Amount());
+			tmpbean.setSsn(0);
+		tmpbean.setSsn_age(calbean.getSsn_age());
+		tmpbean.setSsn_amount(calbean.getSsn_amount());
 		if (calbean.getPartner())
 			tmpbean.setPartner(1);
 		else
 			tmpbean.setPartner(0);
-		if (calbean.getPartner_Pension())
-			tmpbean.setPartner_Pension(1);
+		if (calbean.getPartner_pension())
+			tmpbean.setPartner_pension(1);
 		else
-			tmpbean.setPartner_Pension(0);
-		tmpbean.setPartner_Pension_Age(calbean.getPartner_Pension_Age());
-		tmpbean.setPartner_Pension_Amount(calbean.getPartner_Pension_Amount());
-		if (calbean.getPartner_SSN())
-			tmpbean.setPartner_SSN(1);
+			tmpbean.setPartner_pension(0);
+		tmpbean.setPartner_pension_age(calbean.getPartner_pension_age());
+		tmpbean.setPartner_pension_amount(calbean.getPartner_pension_amount());
+		if (calbean.getPartner_ssn())
+			tmpbean.setPartner_ssn(1);
 		else
-			tmpbean.setPartner_SSN(0);
-		tmpbean.setPartner_SSN_Age(calbean.getPartner_SSN_Age());
-		tmpbean.setPartner_SSN_Amount(calbean.getPartner_SSN_Amount());
+			tmpbean.setPartner_ssn(0);
+		tmpbean.setPartner_ssn_age(calbean.getPartner_ssn_age());
+		tmpbean.setPartner_ssn_amount(calbean.getPartner_ssn_amount());
 		tmpbean.setDependent(calbean.getDependent());
-		tmpbean.setRetirement_Level(calbean.getRetirement_Level());
-		tmpbean.setInvestment_Rate_Before(calbean.getInvestment_Rate_Before());
-		tmpbean.setInvestment_Rate_After(calbean.getInvestment_Rate_After());
-		tmpbean.setInflation_Rate(calbean.getInflation_Rate());
+		tmpbean.setRetirement_level(calbean.getRetirement_level());
+		tmpbean.setReturn_rate_before(calbean.getReturn_rate_before());
+		tmpbean.setReturn_rate_after(calbean.getReturn_rate_after());
+		tmpbean.setInflation_rate(calbean.getInflation_rate());
 		tmpbean.setStore_dependent_college_0(calbean.getStore_dependent_college_0());
 		tmpbean.setStore_dependent_college_1(calbean.getStore_dependent_college_1());
 		tmpbean.setStore_dependent_college_2(calbean.getStore_dependent_college_2());
@@ -708,14 +717,14 @@ public class CreateFormAction extends Action {
 		tmpbean.setStore_dependent_wedding_3(calbean.getStore_dependent_wedding_3());
 		tmpbean.setStore_dependent_wedding_4(calbean.getStore_dependent_wedding_4());
 
-		int cur_saving_rate = tmpbean.getSaving_Rate();
+		int cur_saving_rate = tmpbean.getSaving_rate();
 		if (cur_saving_rate >= 100)
 			return 100;
 		int start = cur_saving_rate;
 		int end = 100;
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
-			tmpbean.setSaving_Rate(mid);
+			tmpbean.setSaving_rate(mid);
 			FormBean[] temp = calculation.calculation(tmpbean);
 			if (temp[temp.length - 1].getTotal() <= 0) {
 				if (temp[temp.length - 2].getTotal() > 0)
@@ -730,47 +739,48 @@ public class CreateFormAction extends Action {
 	}
 
 	private int getRetirement_level(CalculatorBean calbean, Calculation calculation) {
+		Calculation tmpcalculation = new Calculation();
 		CalculatorBean tmpbean = new CalculatorBean();
 		// create tmpbean
-		tmpbean.setMoney_Saved(calbean.getMoney_Saved());
+		tmpbean.setMoney_saved(calbean.getMoney_saved());
 		tmpbean.setIncome(calbean.getIncome());
-		tmpbean.setCur_Age(calbean.getCur_Age());
-		tmpbean.setRetire_Age(calbean.getRetire_Age());
-		tmpbean.setSaving_Rate(calbean.getSaving_Rate());
-		tmpbean.setIncome_Increase_Rate(calbean.getIncome_Increase_Rate());
+		tmpbean.setCurage(calbean.getCurage());
+		tmpbean.setRetire_age(calbean.getRetire_age());
+		tmpbean.setSaving_rate(calbean.getSaving_rate());
+		tmpbean.setIncome_increase_rate(calbean.getIncome_increase_rate());
 		if (calbean.getPension())
 			tmpbean.setPension(1);
 		else
 			tmpbean.setPension(0);
-		tmpbean.setPension_Age(calbean.getPension_Age());
-		tmpbean.setPension_Amount(calbean.getPension_Amount());
-		if (calbean.getSSN())
-			tmpbean.setSSN(1);
+		tmpbean.setPension_age(calbean.getPension_age());
+		tmpbean.setPension_amount(calbean.getPension_amount());
+		if (calbean.getSsn())
+			tmpbean.setSsn(1);
 		else
-			tmpbean.setSSN(0);
-		tmpbean.setSSN_Age(calbean.getSSN_Age());
-		tmpbean.setSSN_Amount(calbean.getSSN_Amount());
+			tmpbean.setSsn(0);
+		tmpbean.setSsn_age(calbean.getSsn_age());
+		tmpbean.setSsn_amount(calbean.getSsn_amount());
 		if (calbean.getPartner())
 			tmpbean.setPartner(1);
 		else
 			tmpbean.setPartner(0);
-		if (calbean.getPartner_Pension())
-			tmpbean.setPartner_Pension(1);
+		if (calbean.getPartner_pension())
+			tmpbean.setPartner_pension(1);
 		else
-			tmpbean.setPartner_Pension(0);
-		tmpbean.setPartner_Pension_Age(calbean.getPartner_Pension_Age());
-		tmpbean.setPartner_Pension_Amount(calbean.getPartner_Pension_Amount());
-		if (calbean.getPartner_SSN())
-			tmpbean.setPartner_SSN(1);
+			tmpbean.setPartner_pension(0);
+		tmpbean.setPartner_pension_age(calbean.getPartner_pension_age());
+		tmpbean.setPartner_pension_amount(calbean.getPartner_pension_amount());
+		if (calbean.getPartner_ssn())
+			tmpbean.setPartner_ssn(1);
 		else
-			tmpbean.setPartner_SSN(0);
-		tmpbean.setPartner_SSN_Age(calbean.getPartner_SSN_Age());
-		tmpbean.setPartner_SSN_Amount(calbean.getPartner_SSN_Amount());
+			tmpbean.setPartner_ssn(0);
+		tmpbean.setPartner_ssn_age(calbean.getPartner_ssn_age());
+		tmpbean.setPartner_ssn_amount(calbean.getPartner_ssn_amount());
 		tmpbean.setDependent(calbean.getDependent());
-		tmpbean.setRetirement_Level(calbean.getRetirement_Level());
-		tmpbean.setInvestment_Rate_Before(calbean.getInvestment_Rate_Before());
-		tmpbean.setInvestment_Rate_After(calbean.getInvestment_Rate_After());
-		tmpbean.setInflation_Rate(calbean.getInflation_Rate());
+		tmpbean.setRetirement_level(calbean.getRetirement_level());
+		tmpbean.setReturn_rate_before(calbean.getReturn_rate_before());
+		tmpbean.setReturn_rate_after(calbean.getReturn_rate_after());
+		tmpbean.setInflation_rate(calbean.getInflation_rate());
 		tmpbean.setStore_dependent_college_0(calbean.getStore_dependent_college_0());
 		tmpbean.setStore_dependent_college_1(calbean.getStore_dependent_college_1());
 		tmpbean.setStore_dependent_college_2(calbean.getStore_dependent_college_2());
@@ -782,7 +792,7 @@ public class CreateFormAction extends Action {
 		tmpbean.setStore_dependent_wedding_3(calbean.getStore_dependent_wedding_3());
 		tmpbean.setStore_dependent_wedding_4(calbean.getStore_dependent_wedding_4());
 
-		int cur_retirement_level = tmpbean.getRetirement_Level();
+		int cur_retirement_level = tmpbean.getRetirement_level();
 		if (cur_retirement_level >= 160)
 			return 160;
 		if (cur_retirement_level <= 40)
@@ -791,8 +801,8 @@ public class CreateFormAction extends Action {
 		int start = 40;
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
-			tmpbean.setRetirement_Level(mid);
-			FormBean[] temp = calculation.calculation(tmpbean);
+			tmpbean.setRetirement_level(mid);
+			FormBean[] temp = tmpcalculation.calculation(tmpbean);
 			if (temp[temp.length - 1].getTotal() <= 0) {
 				if (temp[temp.length - 2].getTotal() > 0)
 					return mid;
@@ -807,47 +817,48 @@ public class CreateFormAction extends Action {
 
 	private int getRetirement_age(CalculatorBean calbean) {
 		Calculation tmp = new Calculation();
+		
 		CalculatorBean tmpbean = new CalculatorBean();
 		// create tmpbean
-		tmpbean.setMoney_Saved(calbean.getMoney_Saved());
+		tmpbean.setMoney_saved(calbean.getMoney_saved());
 		tmpbean.setIncome(calbean.getIncome());
-		tmpbean.setCur_Age(calbean.getCur_Age());
-		tmpbean.setRetire_Age(calbean.getRetire_Age());
-		tmpbean.setSaving_Rate(calbean.getSaving_Rate());
-		tmpbean.setIncome_Increase_Rate(calbean.getIncome_Increase_Rate());
+		tmpbean.setCurage(calbean.getCurage());
+		tmpbean.setRetire_age(calbean.getRetire_age());
+		tmpbean.setSaving_rate(calbean.getSaving_rate());
+		tmpbean.setIncome_increase_rate(calbean.getIncome_increase_rate());
 		if (calbean.getPension())
 			tmpbean.setPension(1);
 		else
 			tmpbean.setPension(0);
-		tmpbean.setPension_Age(calbean.getPension_Age());
-		tmpbean.setPension_Amount(calbean.getPension_Amount());
-		if (calbean.getSSN())
-			tmpbean.setSSN(1);
+		tmpbean.setPension_age(calbean.getPension_age());
+		tmpbean.setPension_amount(calbean.getPension_amount());
+		if (calbean.getSsn())
+			tmpbean.setSsn(1);
 		else
-			tmpbean.setSSN(0);
-		tmpbean.setSSN_Age(calbean.getSSN_Age());
-		tmpbean.setSSN_Amount(calbean.getSSN_Amount());
+			tmpbean.setSsn(0);
+		tmpbean.setSsn_age(calbean.getSsn_age());
+		tmpbean.setSsn_amount(calbean.getSsn_amount());
 		if (calbean.getPartner())
 			tmpbean.setPartner(1);
 		else
 			tmpbean.setPartner(0);
-		if (calbean.getPartner_Pension())
-			tmpbean.setPartner_Pension(1);
+		if (calbean.getPartner_pension())
+			tmpbean.setPartner_pension(1);
 		else
-			tmpbean.setPartner_Pension(0);
-		tmpbean.setPartner_Pension_Age(calbean.getPartner_Pension_Age());
-		tmpbean.setPartner_Pension_Amount(calbean.getPartner_Pension_Amount());
-		if (calbean.getPartner_SSN())
-			tmpbean.setPartner_SSN(1);
+			tmpbean.setPartner_pension(0);
+		tmpbean.setPartner_pension_age(calbean.getPartner_pension_age());
+		tmpbean.setPartner_pension_amount(calbean.getPartner_pension_amount());
+		if (calbean.getPartner_ssn())
+			tmpbean.setPartner_ssn(1);
 		else
-			tmpbean.setPartner_SSN(0);
-		tmpbean.setPartner_SSN_Age(calbean.getPartner_SSN_Age());
-		tmpbean.setPartner_SSN_Amount(calbean.getPartner_SSN_Amount());
+			tmpbean.setPartner_ssn(0);
+		tmpbean.setPartner_ssn_age(calbean.getPartner_ssn_age());
+		tmpbean.setPartner_ssn_amount(calbean.getPartner_ssn_amount());
 		tmpbean.setDependent(calbean.getDependent());
-		tmpbean.setRetirement_Level(calbean.getRetirement_Level());
-		tmpbean.setInvestment_Rate_Before(calbean.getInvestment_Rate_Before());
-		tmpbean.setInvestment_Rate_After(calbean.getInvestment_Rate_After());
-		tmpbean.setInflation_Rate(calbean.getInflation_Rate());
+		tmpbean.setRetirement_level(calbean.getRetirement_level());
+		tmpbean.setReturn_rate_before(calbean.getReturn_rate_before());
+		tmpbean.setReturn_rate_after(calbean.getReturn_rate_after());
+		tmpbean.setInflation_rate(calbean.getInflation_rate());
 		tmpbean.setStore_dependent_college_0(calbean.getStore_dependent_college_0());
 		tmpbean.setStore_dependent_college_1(calbean.getStore_dependent_college_1());
 		tmpbean.setStore_dependent_college_2(calbean.getStore_dependent_college_2());
@@ -859,7 +870,7 @@ public class CreateFormAction extends Action {
 		tmpbean.setStore_dependent_wedding_3(calbean.getStore_dependent_wedding_3());
 		tmpbean.setStore_dependent_wedding_4(calbean.getStore_dependent_wedding_4());
 
-		int cur_retirement_age = tmpbean.getRetire_Age();
+		int cur_retirement_age = tmpbean.getRetire_age();
 		if (cur_retirement_age >= 100)
 			return 100;
 		int start = cur_retirement_age;
@@ -867,7 +878,7 @@ public class CreateFormAction extends Action {
 		while (start <= end) {
 			int mid = start + (end - start) / 2;
 			
-			tmpbean.setRetire_Age(mid);
+			tmpbean.setRetire_age(mid);
 			FormBean[] temp = tmp.calculation(tmpbean);
 			
 			

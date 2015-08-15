@@ -51,7 +51,7 @@
 		return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 	}
 </script>
-<body id="page-top">
+<body id="page-top" id="page-top" style="font-family: Arial;">
 
 	<nav id="mainNav" class="navbar navbar-subpage navbar-fixed-top">
 		<div class="container-fluid">
@@ -83,6 +83,47 @@
 
 	<!-- the header picture is unique, naroow-->
 	<!-- header-->
+
+	                     
+							<input type="hidden" value="${calbean.money_saved}" id="store_money_saved" name="moneysaved"> 
+							<input type="hidden" value="${calbean.income}" id="store_income" name="income"> 
+							<input type="hidden" value="${calbean.curage}" id="store_cur_age" name="curage"> 
+							<input type="hidden" value="${calbean.retire_age}" id="store_retire_age" name="retireage">
+							<input type="hidden" value="${saving_rate}" id="store_saving_rate" name="savingrate"> 
+							<input type="hidden" value="${income_increase_rate}" id="store_income_increase_rate" name="incomeincreaserate">
+							<input type="hidden" value="${pension}" id="store_pension" name="pension">
+							<input type="hidden" value="${calbean.pension_age}" id="store_pension_age" name="pensionage"> 
+							<input type="hidden" value="${calbean.pension_amount}" id="store_pension_amount" name="pensionamount"> 
+							<input type="hidden" value="${ssn}" id="store_eligible_SSN" name="ssn">
+							<input type="hidden" value="${calbean.ssn_age}" id="store_SSN_age" name="ssnage">
+							<input type="hidden" value="${calbean.ssn_amount}" id="store_SSN_amount" name="ssnamount"> 
+							<input type="hidden" value="${partner}" id="store_partner_eligible" name="partner"> 
+							<input type="hidden" value="${partner_pension}" id="store_partner_pension" name="partnerpension"> 
+							<input type="hidden" value="${calbean.partner_pension_age}" id="store_partner_pension_age" name="partnerpensionage">
+							<input type="hidden" value="${calbean.partner_pension_amount}" id="store_partner_pension_amount" name="partnerpensionamount"> 
+							<input type="hidden" value="${partner_ssn}" id="store_partner_eligible_SSN" name="partnerssn">
+							<input type="hidden" value="${calbean.partner_ssn_age}" id="store_partner_SSN_age" name="partnerssnage"> 
+							<input type="hidden" value="${calbean.partner_ssn_amount}" id="store_partner_SSN_amount" name="partnerssnamount"> 
+							<input type="hidden" value="${calbean.dependent}" id="store_dependent" name="dependent">
+							<input type="hidden" value="0" id="store_pay_for_college">
+							<input type="hidden" value="0" id="store_pay_for_wedding">
+							<input type="hidden" value="${retirement_level1}" id="store_retirement_level" name="retirementlevel"> 
+							<input type="hidden" value="${return_rate_before}" id="store_investment_before" name="returnratebefore">
+							<input type="hidden" value="${return_rate_after}" id="store_investment_after" name="returnrateafter">
+							<input type="hidden" value="${inflation_rate}" id="store_inflation_rate" name="inflationrate">
+							<input type="hidden" value="${calbean.store_dependent_college_0}" id="store_dependent_college_0" name = "store_dependent_college_0">
+							<input type="hidden" value="${calbean.store_dependent_college_1}" id="store_dependent_college_1" name = "store_dependent_college_1">
+							<input type="hidden" value="${calbean.store_dependent_college_2}" id="store_dependent_college_2" name = "store_dependent_college_2">
+							<input type="hidden" value="${calbean.store_dependent_college_3}" id="store_dependent_college_3" name = "store_dependent_college_3">
+							<input type="hidden" value="${calbean.store_dependent_college_4}" id="store_dependent_college_4" name = "store_dependent_college_4">
+							<input type="hidden" value="${calbean.store_dependent_wedding_0}" id="store_dependent_wedding_0" name = "store_dependent_wedding_0">
+							<input type="hidden" value="${calbean.store_dependent_wedding_1}" id="store_dependent_wedding_1" name = "store_dependent_wedding_1">
+							<input type="hidden" value="${calbean.store_dependent_wedding_2}" id="store_dependent_wedding_2" name = "store_dependent_wedding_2">
+							<input type="hidden" value="${calbean.store_dependent_wedding_3}" id="store_dependent_wedding_3" name = "store_dependent_wedding_3">
+							<input type="hidden" value="${calbean.store_dependent_wedding_4}" id="store_dependent_wedding_4" name = "store_dependent_wedding_4">
+							<div style="display: none;" id="store_alert"></div>
+							<span style="display: none;" id="store_alert_saving_rate"></span><span
+								style="display: none;" id="store_alert_retirement_level"></span>
 
 
 	<!-- end header -->
@@ -116,16 +157,26 @@
 								</div>
 								<div class="panel-body" style = "padding: 8px;" id="tabscontent">
 									<!--  <div class="panel-body" style = "padding: 8px;" id="tabpage_1" style="text-align: left;">-->
-									<div class="panel-body" style = "padding: 8px;" id="tabpage_1">
-										<br/><br /> <img id="img" src="${pic}" style="float: left;">
-
-										<p align="left">
+									<div class="panel panel-default col-lg-12" style = "padding: 8px;" id="tabpage_1">
+															
+                                        <div class="row">
+							                <div class="panel-body col-lg-2">
+							                    <img width="80" height = "80" id="img" src="${pic}"
+											style="float: centre;">
+							                </div>
+									
+									
+									
+                                            <div>
+										        <p align="left">
 											You will run out of money at ${run_out} years old. This
 											assumes annual retirement expenses of $<span
 												id="retirement_spending"></span> which is
 											${retirement_level}% of your last year's income of $<span
 												id="lastyr_income"></span> .
-										</p>
+										        </p>
+										    </div>
+										</div>
 										<script>
 											var retirement_spending = ${retirement_spending};
 											var lastyr_income = ${lastyr_income};
@@ -142,7 +193,22 @@
 									<div class="panel-body" style = "padding: 8px;" id="tabpage_2">
 									<br/>
 									<br/>
-						                <div class="panel panel-default" style = "text-align: left;">
+									
+									    <!-- this is the google chart-->
+						                <div id="result"></div>
+						                <!-- here is chart -->
+						                <div class="panel panel-default">
+							                <div class="panel-body" style="padding: 8px;">
+                                                <!-- this is the google chart-->
+								                <div id="chart_div" style="height: 420px;"></div>
+							                </div>
+							                <div class="panel-body" style="padding: 2px;">
+                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Yearly Expenses:</b></font> including yearly expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
+                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="blue"><b>Yearly Savings:</b></font>including income savings, pensions, social security benefits, spouse benefits and investment gains</span>
+							                </div>
+						                </div>
+									
+						               <!--  <div class="panel panel-default" style = "text-align: left;">
 						                    <p> <font color="#6698FF"><span>Inner Element:</span></font> Inner element is parent category of outer element, such as relationship between spending and education spending.</p>
 						                    <p> <font color="#6698FF"><span>Percentage:</span></font> It indicates the percentage of current element in its source parent element.</p>
 						                    <p> <font color="#6698FF"><span>Amount:</span></font> It indicates total amount of current element.</p>
@@ -167,8 +233,9 @@
 												// Hack to make this example display correctly in an iframe on bl.ocks.org
 												d3.select(self.frameElement).style("height","700px");
 											</script>
-										</div>
+										</div>-->
 									</div>
+									
 									<!-- table start -->
 									<div class="panel-body" style = "padding: 8px;" id="tabpage_3">
 										<table class="table table-hover ">
@@ -207,10 +274,18 @@
 							</div><div id="collapseTwo" class="panel-collapse collapse">-->
 										<br/><br />
 										<div class="panel-heading" style="text-align: left;">
-											<p>Please help us do a quick survey with no more than 5
-												minutes. You would have chance to win $10 Amazon gift card.
-												Lucky draw will be on August 28, 2015. We would contact you
-												with email address you have entered</p>
+								            <div class="row">
+												<div class="panel-body col-lg-1">
+													<img id="img" height="60" width="60" src="img/survey.png"
+														style="float: left">
+												</div>
+												<div class="panel-body col-lg-11">
+													<p>Please help us do a quick survey. There will be 5 lucky person
+														 to win a $10 Amazon gift card. I Lucky draw will be on
+														August 28th, 2015. We would send you the gift code via
+														email.</p>
+												</div>
+											</div>
 										</div>
 										<div class="panel-body" style = "padding: 8px;" id="fund_list">
 											<jsp:include page="error.jsp" />
@@ -269,7 +344,7 @@
 													</div>
 												</div>
 
-												<input type="submit" class="btn btn-primary btn-block flat"
+												<input type="submit" class="btn btn-primary"
 													name="action" value="submit" />
 											</form>
 										</div>
@@ -296,16 +371,27 @@
 								s.parentNode.insertBefore(ga, s);
 							})();
 						</script>
+						
+						<div class="panel panel-default col-lg-12">
+                            <div class="row">
+							    <div class="panel-body col-lg-6">
+								    <img id="img" height="180" width="380" src="img/amazon.png"
+									style="float: left">
+							    </div>
+							    <div class="panel-body col-lg-6">
 
-						<!-- this is the google chart-->
-						<!--  <div class="panel panel-default">
-							<div class="panel-body" style = "padding: 8px;">
-								<div id="chart_div" style="height: 450px;"></div>
-
+								<p align="left"><span style="text-align: left; float: left;"><b>Short online
+									survey on motivation: Win $10 Amazon coupon!</b></span> <br></br> <span
+									style="text-align: left; float: left;">We are doing research about personal financial plan.
+									We need your help to do a quick survey.
+									Survey takes no more than three minutes and just four questions.
+									 Why not help us and give you a chance to get a gift card! Just click "<b><font color="#6698FF">survey"</font> </b>on tab bar to start.
+									</span> <br></br> <span style="text-align: left; float: left;">
+									There will be five lucky person by the end of August 2015. Come and join us!</span></p>
+							    </div>
 							</div>
-						</div>-->
-
-
+						</div>
+						
 					</div>
                     <!-- left_chart end -->
 
@@ -316,36 +402,40 @@
 							<div class="panel-heading">
 								<b>Suggestions for you</b>
 							</div>
-							<div class="panel-body" style = "padding: 8px;" style="text-align: left;">
+							<div class="panel-body" style = "padding: 8px; text-align: left;">
 								<p>
-								<span style="text-align: left;">To help meet your goal, you may wish to do the
+								<span style="text-align: left; float: left;">To help meet your goal, you may wish to do the
 										following:</span>
 								</p>
 								<p>
-									<span style="text-align: left;">1. Increase your rate of
+									<span style="text-align: left; float: left;">1. Increase your rate of
 										return before retirement from <font color="#6698FF">${rate_before}%
 									</font> to <font color="#6698FF">${recommand_rate}% </font>.
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left;">2. Reduce your
+									<span style="text-align: left; float: left;">2. Reduce your
 										retirement level to <font color="#6698FF">${recommand_retirement_level}%</font>
 										of your final year's income.
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left;">3.Increase contributions
+									<span style="text-align: left; float: left;">3.Increase contributions
 										to <font color="#6698FF">${rec_saving_rate}%</font> of your
 										income
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left;">4. Delay your retirement
+									<span style="text-align: left; float: left;">4. Delay your retirement
 										until age <font color="#6698FF">${rec_retirement_age}</font>
 									</span>
 								</p>
 							</div>
 						</div>
+						<form method="POST" action="manage.do">
+						<button type="submit" class="btn btn-primary" name="action"
+													value="recalculate" >recalculate</button>
+						</form>
 					</div>
 					<!--right_div end-->
 
@@ -386,25 +476,17 @@
 	<!-- the following is for google chart -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript"
-		src="js_finance_calculator/line_chart.js"></script>
+		src="js_finance_calculator/line_chart2.js"></script>
 
 	<!-- the excel algorithm -->
-	<script src="js_finance_calculator/finance_calculator_excel.js"></script>
+	<script src="js_finance_calculator/finance_calculator_excel2.js"></script>
 	<!-- import the event js -->
 	<script src="js_finance_calculator/retire_event.js"></script>
+<!-- enable all the tooltip in the document -->
 	<script>
-		//variables
-		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5', 'ed6', 'ed7' ];
-		var cur = 0;
-		var cur_income_value = 11000;
-		var save_rates_value = 0.02;
-
-		//elements
-		var nextBtn = document.getElementById("Next");
-		var preBtn = document.getElementById("Pre");
-		var editor = document.getElementById("editor");
-
-		addEvent();
+		$(document).ready(function() {
+			$('[data-toggle="tooltip"]').tooltip();
+		});
 	</script>
 
 </body>
