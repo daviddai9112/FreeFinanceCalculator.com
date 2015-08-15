@@ -93,19 +93,17 @@
 						<!-- here is chart -->
 						<div class="panel panel-default">
 							<div class="panel-body" style="padding: 8px;">
-
-								<div id="chart_div" style="height: 450px;"></div>
-
-								<!--  
-						  <canvas id="canvas" height="450" width="600"></canvas>
-						  -->
-								<!-- this is the google chart-->
+                                <!-- this is the google chart-->
+								<div id="chart_div" style="height: 420px;"></div>
+                                
+								
+								
 							</div>
-						</div>
-						<div class="panel panel-default" style = "text-align: left;">
-						    <p> <font color="#6698FF"><span>Total:</span></font> it indicates total balance in your account.</p>
-						    <p> <font color="#6698FF"><span>Saving:</span></font> it indicates total saving amount of the year on x axis, including investment gains and income savings, pensions and social security benefits.</p>
-						    <p> <font color="#6698FF"><span>Spending:</span></font> it indicates total spending amount of the year on x axis, including inflation, education and wedding fees for dependents.</p>
+							<div class="panel-body" style="padding: 2px;">
+                                  <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Yearly Expenses:</b></font> including yearly expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
+                                  <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="blue"><b>Yearly Savings:</b></font>including income savings, pensions, social security benefits, spouse benefits and investment gains</span>
+								
+							</div>
 						</div>
 					</div>
 
@@ -178,16 +176,16 @@
 								value="0.04" id="store_investment_after" name="returnrateafter"><input
 								type="hidden" value="0.03" id="store_inflation_rate"
 								name="inflationrate"><input type="hidden" value="-1"
-								id="store_dependent_college_0"><input type="hidden"
-								value="-1" id="store_dependent_college_1"><input
-								type="hidden" value="-1" id="store_dependent_college_2"><input
-								type="hidden" value="-1" id="store_dependent_college_3"><input
-								type="hidden" value="-1" id="store_dependent_college_4"><input
-								type="hidden" value="-1" id="store_dependent_wedding_0"><input
-								type="hidden" value="-1" id="store_dependent_wedding_1"><input
-								type="hidden" value="-1" id="store_dependent_wedding_2"><input
-								type="hidden" value="-1" id="store_dependent_wedding_3"><input
-								type="hidden" value="-1" id="store_dependent_wedding_4">
+								id="store_dependent_college_0" name = "store_dependent_college_0"><input type="hidden"
+								value="-1" id="store_dependent_college_1" name = "store_dependent_college_1"><input
+								type="hidden" value="-1" id="store_dependent_college_2" name = "store_dependent_college_2"><input
+								type="hidden" value="-1" id="store_dependent_college_3" name = "store_dependent_college_3"><input
+								type="hidden" value="-1" id="store_dependent_college_4" name = "store_dependent_college_4"><input
+								type="hidden" value="-1" id="store_dependent_wedding_0" name = "store_dependent_wedding_0"><input
+								type="hidden" value="-1" id="store_dependent_wedding_1" name = "store_dependent_wedding_1"><input
+								type="hidden" value="-1" id="store_dependent_wedding_2" name = "store_dependent_wedding_2"><input
+								type="hidden" value="-1" id="store_dependent_wedding_3" name = "store_dependent_wedding_3"><input
+								type="hidden" value="-1" id="store_dependent_wedding_4" name = "store_dependent_wedding_4">
 							<div style="display: none;" id="store_alert"></div>
 							<span style="display: none;" id="store_alert_saving_rate"></span><span
 								style="display: none;" id="store_alert_retirement_level"></span>
@@ -321,8 +319,7 @@
 						<div id="text" class="col-lg-9"
 							style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
 
-							Your retirement prospects are bright.
-						</div>
+							Your retirement prospects are bright.</div>
 
 					</div>
 
@@ -389,8 +386,8 @@
 		<div id="text" class="col-lg-9"
 			style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
 
-			It is high likely that you would <font color="#6698FF">run out
-				of money</font> before retirement. You need to make huge adjustments to
+			It is highly likely that you would <font color="#6698FF">run
+				out of money</font> before retirement. You need to make huge adjustments to
 			your retirement plan.
 		</div>
 
@@ -410,28 +407,38 @@
 						<b>Personal Information Inputs</b>
 					</div>
 					<!-- current age -->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-6" style="text-align: left;"><label
-							data-toggle="tooltip" data-placement="left"
-							title="Your current age"><b>Current Age:</b></label></span>
-						<div class="col-lg-6">
-							<input data-toggle="tooltip" data-placement="top" title=""
-								type="number" min="14" max="90" class="form-control" value="30"
-								id="cur_age" onchange="valueChange(this);" required>
+					<div class="panel-body" style="padding: 5px; height: 55px;">
+						<div class="col-lg-6" style="padding: 2px;">
+							<span class="help-block col-lg-7"
+								style="text-align: left; padding: 3px; width: 115px;"><label
+								data-toggle="tooltip" data-placement="left"
+								title="Your current age"><b>Current Age:</b></label></span>
+							<div class="col-lg-5" style="padding: 3px;">
+								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
+									data-placement="top" title="" type="number" min="14" max="90"
+									class="form-control" value="30" id="cur_age"
+									onchange="valueChange(this);" required>
+							</div>
+
 						</div>
+
+						<div class="col-lg-6" style="padding: 2px;">
+							<span class="help-block col-lg-7"
+								style="text-align: left; padding: 5px;"><label
+								data-toggle="tooltip" title="Age you wish to retire"
+								data-placement="left"><b>Retirement Age:</b></label></span>
+							<div class="col-lg-5" style="padding: 3px;">
+								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
+									data-placement="top" title="" type="number"
+									class="form-control" max="90" value="67" id="retire_age"
+									onchange="valueChange(this);" required>
+							</div>
+
+						</div>
+
 					</div>
 
-					<!-- retire age -->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-6" style="text-align: left;"><label
-							data-toggle="tooltip" title="Age you wish to retire"
-							data-placement="left"><b>Retirement Age:</b></label></span>
-						<div class="col-lg-6">
-							<input data-toggle="tooltip" data-placement="top" title=""
-								type="number" class="form-control" max="90" value="67"
-								id="retire_age" onchange="valueChange(this);" required>
-						</div>
-					</div>
+
 
 					<!-- money saved -->
 					<div class="panel-body" style="padding: 8px;">
@@ -440,19 +447,20 @@
 								document.getElementById("money_saved_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><label
+						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip"
 							title="Total amount you are currently have saved toward your retirement. Included all sources of retirement 
 						savings such as 401(k)s, IRAs and annuities"
-							data-placement="left"><b>Current retirement savings:</b> </label>
-								$ <span id="money_saved_span">50,000.00</span></span> <input
+							data-placement="left"><b>Current retirement savings:</b>
+						</label> $ <span id="money_saved_span">50,000.00</span></span> <input
 							type="range" min="0" max="1000000" step="500" value="50000"
-							id="money_saved" width="200px" onchange="valueChange(this);"
+							id="money_saved" onchange="valueChange(this);"
 							oninput="myFunction_money_saved_span(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">$0</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">$1M</span>
 						</div>
 					</div>
@@ -464,7 +472,7 @@
 								document.getElementById("income_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><label
+						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="Your total household income. If you are married, this should include
 						your spouse's income"><b>Household
@@ -472,11 +480,12 @@
 							type="range" min="0" max="1000000" step="500" value="100000"
 							id="income" onchange="valueChange(this);"
 							oninput="myFunction_income_span(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
-							<span class="help-block" style="text-align: left;">$0</span>
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
+							<span class="help-block" style="text-align: left; height: 15px;">$0</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
-							<span class="help-block" style="text-align: left;">$1M</span>
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
+							<span class="help-block" style="text-align: left; height: 15px;">$1M</span>
 						</div>
 					</div>
 
@@ -488,7 +497,7 @@
 								document.getElementById("saving_rate_span").innerHTML = parseInt((myValue * 1000) / 10);
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><label
+						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="The percentage of your annual income you plan to contribute to your retirement
 						savings. This should reflect the total you save toward your retirement."><b>Saving
@@ -496,10 +505,11 @@
 							type="range" min="0.01" max="0.25" step="0.01" id="saving_rate"
 							value="0.15" onchange="valueChange(this);"
 							oninput="myFunction_saving_rate(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">1%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: right;">&nbsp;&nbsp;&nbsp;25%</span>
 						</div>
 					</div>
@@ -512,7 +522,7 @@
 										.getElementById("income_increase_rate_span").innerHTML = (myValue * 1000) / 10;
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><label
+						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="Annual percent increase you expect in your household income."><b>
 									Income increase rate:</b></label><span id="income_increase_rate_span">3</span>%</span>
@@ -520,10 +530,11 @@
 							onchange="valueChange(this);" id="income_increase_rate"
 							oninput="myFunction_income_increase_rate(this.value)" />
 
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">1%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">100%</span>
 						</div>
 					</div>
@@ -537,7 +548,7 @@
 										.getElementById("retirement_level_span").innerHTML = (myValue * 1000) / 10;
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><label
+						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="The percentage of your pre-retirement household income you think you will need in retirement.
 						This amount is based on the household income earned during the year immediately before your retirement. You can change this amount to be as low as 40% and as high as 160%."><b>
@@ -546,10 +557,11 @@
 							onchange="valueChange(this);" id="retirement_level"
 							oninput="myFunction_retirement_level(this.value)" />
 
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">40%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">160%</span>
 						</div>
 					</div>
@@ -561,7 +573,7 @@
 			</div>
 			<!-- ed0 end-->
 
-
+			<!-- ed1 start-->
 			<div id="ed1" style="display: none">
 				<!-- this should be the same with the first apear -->
 
@@ -586,10 +598,11 @@
 						</span> <input type="range" min="0.00" max="0.20" step="0.01"
 							value="0.08" id="investment_before" onchange="valueChange(this);"
 							oninput="myFunction_investment_before_span(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">0%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">20%</span>
 						</div>
 					</div>
@@ -611,10 +624,11 @@
 						</span> <input type="range" min="0.00" max="0.20" step="0.01"
 							value="0.04" id="investment_after" onchange="valueChange(this);"
 							oninput="myFunction_investment_after_span(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">0%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">20%</span>
 						</div>
 					</div>
@@ -636,10 +650,11 @@
 							type="range" min="0.00" max="0.20" step="0.01" value="0.04"
 							id="inflation_rate" onchange="valueChange(this);"
 							oninput="myFunction_inflation_rate_span(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">0%</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">20%</span>
 						</div>
 					</div>
@@ -660,18 +675,20 @@
 						<b>Pensions</b>
 					</div>
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;"><label
+					<div class="form-group">
+						<span class="help-block col-lg-6"
+							style="text-align: left; padding: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="Pensions are retirement benefits that are provided to people who have paid into a plan or who have been granted pension benefits by an employer. "><b>Do
 									you have a pension?</b></label></span>
-						<div class="col-lg-6">
+						<div class="col-lg-6" style="padding: 3px;">
 							<select class="form-control" id="pension"
-								onchange="valueChange(this);">
+								onchange="valueChange(this);"style="width: 100px;">
 								<option value="1">Yes</option>
 								<option value="0">No</option>
 							</select>
 						</div>
-						<div class="col-lg-6"></div>
+					</div>
 					</div>
 					<!-- pension age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -685,10 +702,11 @@
 							type="range" min="50" max="70" step="1" id="pension_age"
 							value="60" onchange="valueChange(this);"
 							oninput="myFunction_pension_age(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">50</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">70</span>
 						</div>
 					</div>
@@ -705,39 +723,37 @@
 							type="range" min="100" max="2500" step="1" id="pension_amount"
 							value="100" onchange="valueChange(this);"
 							oninput="myFunction_pension_amount(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">$100</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">$2,500</span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- ed2 end -->
 
-
-			<!-- ed3 SSN -->
-			<div id="ed3" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Social Security Benefits</b>
 					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;"><label
+					<div class="form-group">
+						<span class="help-block col-lg-8"
+							style="text-align: left; padding: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
 						Social Security benefits are paid out on a monthly basis to retired workers and their surviving spouses. "><b>Are
 									you eligible for Social Security?</b></label></span>
-						<div class="col-lg-6">
+						<div class="col-lg-4" style="padding: 3px;">
 							<select class="form-control" id="eligible_SSN"
-								onchange="valueChange(this);">
+								onchange="valueChange(this);" style = "width:100px;">
 								<option value="1">Yes</option>
 								<option value="0">No</option>
 							</select>
 						</div>
-						<div class="col-lg-6"></div>
+					</div>
 					</div>
 					<!-- SSN age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -752,17 +768,18 @@
 							max="80" step="1" id="SSN_age" value="67"
 							onchange="valueChange(this);"
 							oninput="myFunction_SSN_age(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">62</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">80</span>
 						</div>
 					</div>
 
 					<!--SSN monthly-->
 					<!--
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body">
 						<script>
 							function myFunction_SSN_amount(myValue) {
 								document.getElementById("SSN_amount_span").innerHTML = format2(parseInt(myValue));
@@ -782,72 +799,71 @@
 					</div>-->
 				</div>
 			</div>
+			<!-- ed2 end -->
 
 
-
-			<!-- ed3 end -->
-
-
-			<!-- ed4 -->
-			<div id="ed4" style="display: none">
+			<!-- ed3 -->
+			<div id="ed3" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Spouse Benefits</b>
+						<b>Spouse</b>
 					</div>
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;"><b>Do
-								You have a spouse?</b></span>
-						<div class="col-lg-6">
-							<select class="form-control" id="partner_eligible"
-								onchange="valueChange(this);">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+					<div class="panel-body" style="padding: 5px;height:45px;">
+						<div class="form-group">
+							<span data-toggle="tooltip"
+							title="Chooose 'Yes' if you are married."
+							data-placement="left" class="col-lg-6 help-block" style="text-align: left; padding: 8px;"><b>Do
+									you have a spouse?</b></span>
+							<div class="col-lg-6" style="padding: 3px;">
+								<select class="form-control" id="partner_eligible"
+									onchange="valueChange(this);" style="width: 100px;">
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
 						</div>
-						<div class="col-lg-6"></div>
+
 					</div>
 				</div>
-			</div>
-			<!-- ed4 end -->
 
-
-			<!-- ed5 -->
-			<div id="ed5" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Spouse Pension</b>
 					</div>
 					<!-- pension-->
-					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;"><b>Does
-								your partner eligibile to pesion?</b></span>
-						<div class="col-lg-6">
-							<select class="form-control" id="partner_pension"
-								onchange="valueChange(this);">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+					<div class="panel-body" style="padding: 5px; height:45px;">
+						<div class="form-group">
+
+							<span class="col-lg-8 help-block" style="text-align: left;padding: 8px;"><b>Is
+									your partner eligibile to pesions?</b></span>
+							<div class="col-lg-4" style="padding: 3px;">
+								<select class="form-control" id="partner_pension"
+									onchange="valueChange(this);" style="width: 100px;">
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
 						</div>
-						<div class="col-lg-6"></div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" style="padding: 8px; height:45px;">
 						<script>
 							function myFunction_partner_pension_age(myValue) {
 								document
 										.getElementById("partner_pension_age_span").innerHTML = myValue;
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>Age
+						<span class="help-block" style="text-align: left; margin: 3px;"><b>Age
 								payment start:</b> <span id="partner_pension_age_span">50</span> </span> <input
 							type="range" min="50" max="70" step="1" id="partner_pension_age"
 							value="50" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_age(this.value)" />
 
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="height: 15px;">
 							<span class="help-block" style="text-align: left;">50</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">70</span>
 						</div>
 					</div>
@@ -856,44 +872,45 @@
 					<div class="panel-body" style="padding: 8px;">
 						<script>
 							function myFunction_partner_pension_amount(myValue) {
-								document.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
+								document
+										.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>Amount
+						<span class="help-block" style="text-align: left; margin: 3px;"><b>Amount
 								monthly:</b> $<span id="partner_pension_amount_span">100</span> </span> <input
 							type="range" min="100" max="2500" step="1" value="100"
 							id="partner_pension_amount" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_amount(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="height: 15px;">
 							<span class="help-block" style="text-align: left;">$100</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-9" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-9"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">$2,500</span>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!-- ed5 end -->
 
-			<!-- ed6 -->
-			<div id="ed6" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Spouse Social Security Benefits</b>
 					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-						<span class="help-block col-lg-12" style="text-align: left;"><b>Is
-								your partner eligible for Social Security? </b></span>
-						<div class="col-lg-6">
+					  <div class = "form-group">
+					    <span class="col-lg-9 help-block" style="text-align: left;padding:8px;height:42px;"><b>Is
+								your partner eligible for Social Security Benefits?</b></span>
+						
+						<div class="col-lg-3" style="padding: 3px;">
 							<select class="form-control" id="partner_eligible_SSN"
-								onchange="valueChange(this);">
+								onchange="valueChange(this);" style="width:100px;">
 								<option value="1">Yes</option>
 								<option value="0">No</option>
 							</select>
 						</div>
-						<div class="col-lg-6"></div>
+						</div>
+						
 					</div>
 					<!-- SSN age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -902,23 +919,24 @@
 								document.getElementById("partner_SSN_age_span").innerHTML = myValue;
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>Age
+						<span class="help-block" style="text-align: left; margin: 3px;"><b>Age
 								planned to apply for social security benefits:</b> <span
 							id="partner_SSN_age_span">67</span> </span> <input type="range" min="62"
 							max="80" step="1" id="partner_SSN_age" value="67"
 							onchange="valueChange(this);"
 							oninput="myFunction_partner_SSN_age(this.value)" />
-						<div class="col-lg-1" style="padding: 0">
+						<div class="col-lg-1" style="height: 15px;">
 							<span class="help-block" style="text-align: left;">62</span>
 						</div>
-						<div class="col-lg-1 col-lg-offset-10" style="text-align: right;">
+						<div class="col-lg-1 col-lg-offset-10"
+							style="text-align: right; height: 15px;">
 							<span class="help-block" style="text-align: left;">80</span>
 						</div>
 					</div>
 
 					<!--SSN monthly-->
 					<!-- 
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body">
 						<script>
 							function myFunction_partner_SSN_amount(myValue) {
 								document
@@ -938,12 +956,14 @@
 						</div>
 					</div> -->
 				</div>
+
+
+
 			</div>
-			<!-- ed6 end -->
+			<!-- ed3 end -->
 
-
-			<!-- ed7 -->
-			<div id="ed7" style="display: none">
+			<!-- ed4 -->
+			<div id="ed4" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Dependents Education, Wedding</b>
@@ -1020,11 +1040,11 @@
 				</div>
 			</div>
 
-			<!-- ed7 end -->
+			<!-- ed4 end -->
 
 
-			<!-- ed8 -->
-			<div id="ed8" style="display: none">
+			<!-- ed5 -->
+			<div id="ed5" style="display: none">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<b>Dependents Age</b>
@@ -1037,8 +1057,7 @@
 					<div id='wedding_age'></div>
 				</div>
 			</div>
-
-			<!-- ed8 end -->
+			<!-- ed5 end -->
 
 		</form>
 	</div>
@@ -1082,13 +1101,13 @@
 	</script>
 	<script>
 		//variables
-		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5', 'ed6',
-				'ed7', 'ed8' ];
+		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5' ];
 		var cur = 0;
 		var flag = 0;//used to set the reuslt of the top-content on the left section
 		var tag0 = 0;
 		var tag1 = 0;
 		var tag2 = 0;
+		var tag3 = 0;
 		//elements
 		var nextBtn = document.getElementById("Next");
 		var preBtn = document.getElementById("Pre");

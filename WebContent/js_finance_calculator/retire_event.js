@@ -103,7 +103,7 @@ function setElementValue() {
 
 function addAge () {
 	
-    if (editor.innerHTML === document.getElementById('ed8').innerHTML) {
+    if (editor.innerHTML === document.getElementById('ed5').innerHTML) {
 		
 	    var collegeCount = document.getElementById("store_pay_for_college").value;
 	    
@@ -168,12 +168,12 @@ function addEvent() {
 };
 
 function setButton() {
-	if(cur % contents.length !== 8 && 
+	if(cur % contents.length !== 5 && 
 			cur % contents.length !== 0) {
 	    $("#Next").show();
 	    $("#Pre").show();
 	    $("#viewdetails").hide();
-	} else if (cur % contents.length === 8){
+	} else if (cur % contents.length === 5){
 		$("#Pre").show();
 		$("#Next").hide();
 		$("#viewdetails").show();
@@ -212,11 +212,18 @@ function setAlert() {
 		    	  document.getElementById("store_alert_retirement_level").innerHTML =  (retirement_level * 1000) / 10;
 		      }
 		      
-	} else if (cur % contents.length === 7) {
+	} else if (cur % contents.length === 4) {
+		var run_out_of_money_age = Number( document.getElementById("runOutAge").innerHTML);
 		var education_number =Number( document.getElementById("store_pay_for_college").value);
 		if (education_number >= 1 && tag2 == 0) {
 			document.getElementById("store_alert").innerHTML += "</br>" + document.getElementById('alert2').innerHTML;
 			tag2 = 1;
+		}
+		
+		var education_number1 =Number( document.getElementById("store_pay_for_wedding").value);
+		if (education_number1 >= 1 && tag3 == 0 && run_out_of_money_age < 90) {
+			document.getElementById("store_alert").innerHTML += "</br>" + document.getElementById('alert3').innerHTML;
+			tag3 = 1;
 		}
 		
 	}
@@ -416,9 +423,9 @@ function calculate() {
 function reDraw(rows){
 	var data = new google.visualization.DataTable();
 	data.addColumn('number', 'Age');
-	data.addColumn('number', 'Savings');
-	data.addColumn('number', 'Spending');
-	data.addColumn('number', 'Total');
+	data.addColumn('number', 'Yearly Savings');
+	data.addColumn('number', 'Yearly Expenses');
+	data.addColumn('number', 'Total Balance');
 	
 	data.addRows(rows);
 	var options = {
@@ -427,9 +434,11 @@ function reDraw(rows){
 			subtitle : 'in dollars (USD)'
 		},
 		width : 620,
-		height : 400
+		height : 400,
+		
 	};
 	var chart = new google.charts.Line(document.getElementById('chart_div'));
+	
 	chart.draw(data, options);
 }
 
