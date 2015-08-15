@@ -31,6 +31,17 @@ public class CalculatorBean {
 	private int return_rate_before;
 	private int return_rate_after;
 	private int inflation_rate;
+	private int store_dependent_college_0;
+	private int store_dependent_college_1;
+	private int store_dependent_college_2;
+	private int store_dependent_college_3;
+	private int store_dependent_college_4;
+	private int store_dependent_wedding_0;
+	private int store_dependent_wedding_1;
+	private int store_dependent_wedding_2;
+	private int store_dependent_wedding_3;
+	private int store_dependent_wedding_4;
+
 	
 	public int    getCalId()               { return calId;            }
 	public void setCalId(int i) 		    {	calId      = i;        }
@@ -134,4 +145,36 @@ public class CalculatorBean {
 	
 	public int    getInflation_Rate()               { return inflation_rate;            }
 	public void setInflation_Rate(int i) 		    {	inflation_rate      = i;        }
+	
+	
+	public int    getStore_dependent_college_0()               { return store_dependent_college_0;            }
+	public void setStore_dependent_college_0(int i) 		    {	store_dependent_college_0      = i;        }
+	
+	public int    getStore_dependent_college_1()               { return store_dependent_college_1;            }
+	public void setStore_dependent_college_1(int i) 		    {	store_dependent_college_1      = i;        }
+
+	public int    getStore_dependent_college_2()               { return store_dependent_college_2;            }
+	public void setStore_dependent_college_2(int i) 		    {	store_dependent_college_2      = i;        }
+	
+	public int    getStore_dependent_college_3()               { return store_dependent_college_3;            }
+	public void setStore_dependent_college_3(int i) 		    {	store_dependent_college_3      = i;        }
+	
+	public int    getStore_dependent_college_4()               { return store_dependent_college_4;            }
+	public void setStore_dependent_college_4(int i) 		    {	store_dependent_college_4      = i;        }
+	
+	public int    getStore_dependent_wedding_0()               { return store_dependent_wedding_0;            }
+	public void setStore_dependent_wedding_0(int i) 		    {	store_dependent_wedding_0      = i;        }
+	
+	public int    getStore_dependent_wedding_1()               { return store_dependent_wedding_1;            }
+	public void setStore_dependent_wedding_1(int i) 		    {	store_dependent_wedding_1      = i;        }
+
+	public int    getStore_dependent_wedding_2()               { return store_dependent_wedding_2;            }
+	public void setStore_dependent_wedding_2(int i) 		    {	store_dependent_wedding_2      = i;        }
+	
+	public int    getStore_dependent_wedding_3()               { return store_dependent_wedding_3;            }
+	public void setStore_dependent_wedding_3(int i) 		    {	store_dependent_wedding_3      = i;        }
+	
+	public int    getStore_dependent_wedding_4()               { return store_dependent_wedding_4;            }
+	public void setStore_dependent_wedding_4(int i) 		    {	store_dependent_wedding_4      = i;        }
+
 }

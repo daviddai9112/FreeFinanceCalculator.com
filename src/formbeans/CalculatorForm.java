@@ -28,6 +28,16 @@ public class CalculatorForm extends FormBean {
 	private String    returnratebefore;
 	private String    returnrateafter;
 	private String    inflationrate;
+	private String store_dependent_college_1;
+	private String store_dependent_college_2;
+	private String store_dependent_college_3;
+	private String store_dependent_college_4;
+	private String store_dependent_college_0;
+	private String store_dependent_wedding_1;
+	private String store_dependent_wedding_2;
+	private String store_dependent_wedding_3;
+	private String store_dependent_wedding_4;
+	private String store_dependent_wedding_0;
 	
 	public String    getMoneysaved()               { return moneysaved;            }
 	public void setMoneysaved(String s) 		    {	moneysaved      = s;        }
@@ -101,5 +111,35 @@ public class CalculatorForm extends FormBean {
 	
 	public String    getInflationrate()               { return inflationrate;            }
 	public void setInflationrate(String s) 		    {	inflationrate      = s;        }
+	
+	public String    getStore_dependent_college_0()               { return store_dependent_college_0;            }
+	public void setStore_dependent_college_0(String s) 		    {	store_dependent_college_0      = s;        }
+	
+	public String    getStore_dependent_college_1()               { return store_dependent_college_1;            }
+	public void setStore_dependent_college_1(String s) 		    {	store_dependent_college_1      = s;        }
+
+	public String    getStore_dependent_college_2()               { return store_dependent_college_2;            }
+	public void setStore_dependent_college_2(String s) 		    {	store_dependent_college_2      = s;        }
+	
+	public String    getStore_dependent_college_3()               { return store_dependent_college_3;            }
+	public void setStore_dependent_college_3(String s) 		    {	store_dependent_college_3      = s;        }
+	
+	public String    getStore_dependent_college_4()               { return store_dependent_college_4;            }
+	public void setStore_dependent_college_4(String s) 		    {	store_dependent_college_4      = s;        }
+	
+	public String    getStore_dependent_wedding_0()               { return store_dependent_wedding_0;            }
+	public void setStore_dependent_wedding_0(String s) 		    {	store_dependent_wedding_0      = s;        }
+	
+	public String    getStore_dependent_wedding_1()               { return store_dependent_wedding_1;            }
+	public void setStore_dependent_wedding_1(String s) 		    {	store_dependent_wedding_1      = s;        }
+
+	public String    getStore_dependent_wedding_2()               { return store_dependent_wedding_2;            }
+	public void setStore_dependent_wedding_2(String s) 		    {	store_dependent_wedding_2      = s;        }
+	
+	public String    getStore_dependent_wedding_3()               { return store_dependent_wedding_3;            }
+	public void setStore_dependent_wedding_3(String s) 		    {	store_dependent_wedding_3      = s;        }
+	
+	public String    getStore_dependent_wedding_4()               { return store_dependent_wedding_4;            }
+	public void setStore_dependent_wedding_4(String s) 		    {	store_dependent_wedding_4      = s;        }
 	
 }
