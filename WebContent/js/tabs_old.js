@@ -1,3 +1,4 @@
+
 window.onload=function() {
 
   // get tab container
@@ -14,6 +15,8 @@ window.onload=function() {
     //set current tab with class of activetabheader
     navitem.setAttribute("class","tabActiveHeader");
 
+    
+    
     //hide two tab contents we don't need
      document.getElementById('tabpage_2').style.display="none";
      document.getElementById('tabpage_3').style.display="none";

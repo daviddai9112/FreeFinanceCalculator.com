@@ -46,6 +46,8 @@
 <script type="text/javascript" src="jQuery/jquery-ui.js"></script>
 
 </head>
+
+
 <script>
 	function format(n) {
 		return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
@@ -139,27 +141,40 @@
 					<h2>Retirement Planner</h2>
 					<hr>
 					<!-- here is the top_content -->
-					<div class="col-lg-6" id="top_content"></div>
+					<div class="col-lg-6" id="top_content">
+					<jsp:include page="error.jsp" />
+					</div>
 					<!-- top_content end -->
 
+					
+					
+					
+					
 					<!-- here is the left_chart -->
+					<script>
+					$(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+						drawChart();
+					})
+					</script>
+					
 					<div class="col-lg-9" id="left_div">
 						<div id="wrapper">
 							<div id="tabContainer" class="panel panel-default">
 								<div id="tabs" class="col-lg-9">
-									<ul class="nav navbar-nav navbar-left" id="tabs">
-										<li id="tabHeader_1"><a class="page-scroll">Summary</a></li>
-										<li id="tabHeader_2"><a class="page-scroll">Graphic</a></li>
-										<li id="tabHeader_3"><a class="page-scroll">Yearly
+									<ul id="myTabs" class="nav nav-tabs" role="tablist">
+										<li role="presentation" class="active"><a href="#summary" id="#summary-tab" role="tab" data-toggle="tab" aria-controls="summary">Summary</a></li>
+										<li role="presentation"><a href="#graph" role="tab" id="graph-tab" data-toggle="tab" aria-controls="graph">Graph</a></li>
+
+										<li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Yearly
 												Report</a></li>
-										<li id="tabHeader_4"><a class="page-scroll">Survey</a></li>
+										<li role="presentation"><a href="#survey" aria-controls="survey" role="tab" data-toggle="tab">Survey</a></li>
 									</ul>
 								</div>
-								<div class="panel-body" style = "padding: 8px;" id="tabscontent">
+								<div class="tab-content" style = "padding: 8px;" id="tabscontent">
 									<!--  <div class="panel-body" style = "padding: 8px;" id="tabpage_1" style="text-align: left;">-->
-									<div class="panel panel-default col-lg-12" style = "padding: 8px;" id="tabpage_1">
-															
-                                        <div class="row">
+									<div role="tabpanel" class="tab-pane fade in active" id="summary" aria-labelledby="summary-tab">
+				                            <br/>
+				                            	<br/>
 							                <div class="panel-body col-lg-2">
 							                    <img width="80" height = "80" id="img" src="${pic}"
 											style="float: centre;">
@@ -176,7 +191,6 @@
 												id="lastyr_income"></span> .
 										        </p>
 										    </div>
-										</div>
 										<script>
 											var retirement_spending = ${retirement_spending};
 											var lastyr_income = ${lastyr_income};
@@ -190,17 +204,14 @@
 									</div>
 									<!-- </div> -->
 									<!-- pie chart -->
-									<div class="panel-body" style = "padding: 8px;" id="tabpage_2">
-									<br/>
-									<br/>
+									<div role="tabpanel" class="tab-pane fade" id="graph" aria-labelledby="graph-tab"  style="height:600px;">
 									
 									    <!-- this is the google chart-->
-						                <div id="result"></div>
 						                <!-- here is chart -->
-						                <div class="panel panel-default">
+						                <div class="panel col-lg-12">
 							                <div class="panel-body" style="padding: 8px;">
                                                 <!-- this is the google chart-->
-								                <div id="chart_div" style="height: 420px;"></div>
+								                <div id="chart_div" style="height: 450px;"></div>
 							                </div>
 							                <div class="panel-body" style="padding: 2px;">
                                                 <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Yearly Expenses:</b></font> including yearly expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
@@ -237,7 +248,7 @@
 									</div>
 									
 									<!-- table start -->
-									<div class="panel-body" style = "padding: 8px;" id="tabpage_3">
+									<div role="tabpanel" class="tab-pane fade" id="report" aria-labelledby="report-tab">
 										<table class="table table-hover ">
 											<tr>
 												<td>Age</td>
@@ -245,7 +256,7 @@
 												<td>Investment Growth</td>
 												<td>SSN &amp Pension</td>
 												<td>Contributions at ${income_rate}% of Income</td>
-												<td>Retire with ${retirement_level}& of Income</td>
+												<td>Retire with ${retirement_level}% of Income</td>
 												<td>Retirement Account Withdrawals</td>
 												<td>Ending Retirement Balance</td>
 											</tr>
@@ -265,7 +276,7 @@
 										</table>
 									</div>
 									<!-- survey -->
-									<div class="panel-body" style = "padding: 8px;" id="tabpage_4">
+									<div role="tabpanel" class="tab-pane fade" id="survey" aria-labelledby="survey-tab">
 										<!-- <div class="panel-heading">
 								<h4 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
@@ -281,73 +292,74 @@
 												</div>
 												<div class="panel-body col-lg-11">
 													<p>Please help us do a quick survey. There will be 5 lucky person
-														 to win a $10 Amazon gift card. I Lucky draw will be on
+														 to win a $10 Amazon gift card. Lucky draw will be on
 														August 28th, 2015. We would send you the gift code via
 														email.</p>
 												</div>
 											</div>
 										</div>
-										<div class="panel-body" style = "padding: 8px;" id="fund_list">
-											<jsp:include page="error.jsp" />
-											<form method="POST" action="survey.do">
-												<div id="email" class="panel-body" style = "padding: 8px;">
-													<span class="help-block" style="text-align: left;">Please
-														provide us your email:</span>
-													<div class="col-lg-6" style="text-align: left;">
-														<input type="email" name="email"
-															placeholder="example@abc.com">
+										<div class="panel-body" style="padding: 8px;" id="fund_list">
+											<form method="POST" action="survey.do" name = "surveyform">
+												<div id="email" class="panel-body" style="padding: 8px;">
+													<span class="help-block" style="text-align: left;"><b>Please
+															enter your email address:</b></span>
+													<div class="col-lg-6"
+														style="text-align: left; padding: 3px;">
+														<input type="email" class="form-control" name="email"
+															placeholder="example@abc.com" required="required">
 													</div>
 												</div>
 
-												<div id="question1" class="panel-body" style = "padding: 8px;">
-													<span class="help-block" style="text-align: left;">1.Currently,
-														Do you have financial plan?</span>
+												<div id="question1" class="panel-body" style="padding: 8px;">
+													<span class="help-block" style="text-align: left;"><b>1.Currently,
+															Do you have financial plan?</b></span>
 													<div class="col-lg-6" style="text-align: left;">
-														<label class="radio"> <input type="radio"
-															name="surveyq1" value="Yes">A. Yes
-														</label> <label class="radio"><input type="radio"
-															name="surveyq1" value="No">B. No </label><label
-															class="radio"><input type="radio" name="surveyq1"
-															value="not really">B. Not really </label>
+														<label class="radio" style="font-weight: normal;">
+															<input type="radio" name="surveyq1" value="Yes" required="required">A.
+															Yes
+														</label> <label class="radio" style="font-weight: normal;"><input
+															type="radio" name="surveyq1" value="No">B. No </label>
 													</div>
 												</div>
-												<div id="question2" class="panel-body" style = "padding: 8px;">
-													<span class="help-block" style="text-align: left;">2.Would
-														you mind connecting your account to financial plan website
-														to get financial services in return?</span>
+												<div id="question2" class="panel-body" style="padding: 8px;">
+													<span class="help-block" style="text-align: left;"><b>2.Would
+															you mind connecting your account to financial plan
+															website to get financial services in return?</b></span>
 													<div class="col-lg-6" style="text-align: left;">
-														<label class="radio"><input type="radio"
-															name="surveyq2" value="Yes, I am willing to">A.
-															Yes, I am willing to </label> <label class="radio"><input
-															type="radio" name="surveyq2"
+														<label class="radio" style="font-weight: normal;"><input
+															type="radio" name="surveyq2" value="Yes, I am willing to" required="required">A.
+															Yes, I am willing to </label> <label class="radio"
+															style="font-weight: normal;"><input type="radio"
+															name="surveyq2"
 															value="only well-known website or bank website">B.
-															Well-known website or bank website</label> <label class="radio"><input
-															type="radio" name="surveyq2"
-															value="Only the website I trust">C. Only the
-															website I trust</label> <label class="radio"><input
-															type="radio" name="surveyq2" value="I won't">D.
-															No, I won't</label>
+															Well-known website or bank website</label> <label class="radio"
+															style="font-weight: normal;"><input type="radio"
+															name="surveyq2" value="Only the website I trust">C.
+															Only the website I trust</label> <label class="radio"
+															style="font-weight: normal;"><input type="radio"
+															name="surveyq2" value="I won't">D. No, I won't</label>
 													</div>
 												</div>
-												<div id="question3" class="panel-body" style = "padding: 8px;">
-													<span class="help-block" style="text-align: left;">3.What
-														kind of financial service are you looking for?</span>
+												<div id="question3" class="panel-body" style="padding: 8px;">
+													<span class="help-block" style="text-align: left;"><b>3.What
+															kind of financial service are you looking for?</b></span>
 													<div class="col-lg-6" style="text-align: left;">
-														<textarea cols="70" rows="5" name="surveyq3"></textarea>
+														<textarea cols="70" rows="5" name="surveyq3" required="required"></textarea>
 													</div>
 												</div>
-												<div id="question4" class="panel-body" style = "padding: 8px;">
-													<span class="help-block" style="text-align: left;">4.
-														What suggestions do you have for us?</span>
+												<div id="question4" class="panel-body" style="padding: 8px;">
+													<span class="help-block" style="text-align: left;"><b>4.
+															What suggestions do you have for us?</b></span>
 													<div class="col-lg-6" style="text-align: left;">
-														<textarea cols="70" rows="5" name="surveyq4"></textarea>
+														<textarea cols="70" rows="5" name="surveyq4" required="required"></textarea>
 													</div>
 												</div>
 
-												<input type="submit" class="btn btn-primary"
-													name="action" value="submit" />
+												<input type="submit" class="btn btn-primary" name="action"
+													value="submit"/>
 											</form>
 										</div>
+
 									</div>
 									<!-- </div> -->
 
@@ -356,7 +368,7 @@
 								</div>
                             </div>
 						</div>
-						<script src="js/tabs_old.js"></script>
+						<!-- <script src="js/tabs_old.js"></script> -->
 						<script type="text/javascript">
 							var _gaq = _gaq || [];
 							_gaq.push([ '_setAccount', 'UA-1332079-8' ]);
@@ -379,19 +391,17 @@
 									style="float: left">
 							    </div>
 							    <div class="panel-body col-lg-6">
-
+                                 <br/>
 								<p align="left"><span style="text-align: left; float: left;"><b>Short online
-									survey on motivation: Win $10 Amazon coupon!</b></span> <br></br> <span
-									style="text-align: left; float: left;">We are doing research about personal financial plan.
-									We need your help to do a quick survey.
-									Survey takes no more than three minutes and just four questions.
-									 Why not help us and give you a chance to get a gift card! Just click "<b><font color="#6698FF">survey"</font> </b>on tab bar to start.
-									</span> <br></br> <span style="text-align: left; float: left;">
-									There will be five lucky person by the end of August 2015. Come and join us!</span></p>
+									survey on motivation: Win Amazon coupon!</b></span></p>
+									<br/><br/>
+									<p><span
+									style="text-align: left; float: left;">
+									Answer a quick 5-question survey to help us improve our services and enter to win a
+$50 Amazon gift card. Click <a href = "#survey" aria-controls="survey" role="tab" data-toggle="tab">here</a> to take our survey.</span></p>
 							    </div>
 							</div>
 						</div>
-						
 					</div>
                     <!-- left_chart end -->
 
@@ -427,7 +437,7 @@
 								</p>
 								<p>
 									<span style="text-align: left; float: left;">4. Delay your retirement
-										until age <font color="#6698FF">${rec_retirement_age}</font>
+										until age <font color="#6698FF">${rec_retirement_age}</font>.
 									</span>
 								</p>
 							</div>
@@ -460,7 +470,9 @@
 	</script>
 	<div id="footer_content"></div>
 
-	<!-- Bootstrap Core JavaScript -->
+
+
+    	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
 
 	<!-- Plugin JavaScript -->
@@ -477,17 +489,12 @@
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<script type="text/javascript"
 		src="js_finance_calculator/line_chart2.js"></script>
-
 	<!-- the excel algorithm -->
 	<script src="js_finance_calculator/finance_calculator_excel2.js"></script>
 	<!-- import the event js -->
 	<script src="js_finance_calculator/retire_event.js"></script>
 <!-- enable all the tooltip in the document -->
-	<script>
-		$(document).ready(function() {
-			$('[data-toggle="tooltip"]').tooltip();
-		});
-	</script>
+
 
 </body>
 

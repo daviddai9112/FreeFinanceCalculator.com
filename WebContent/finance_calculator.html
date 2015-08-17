@@ -6,8 +6,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="description"
+	content="This is a free financial tool that help young people create their retirement plan.
+View your retirement savings balance and withdrawals for each year until the end of your retirement.Social security is 
+calculated on a sliding scale based on your income.We also take your independents education and wedding fee into consideration.">
+<meta name="author" content="A team dedicated to developing personal financial tools.">
 
 <title>Retirement Calculator | Financial Calculate</title>
 
@@ -59,10 +62,10 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<!-- <li><a class="page-scroll" href="#about">About</a></li>
+					<!--<li><a class="page-scroll" href="#about">About</a></li>
 					<li><a class="page-scroll" href="#services">Services</a></li>
 					<li><a class="page-scroll" href="#calculator">Calculator</a></li>
-					<li><a class="page-scroll" href="#contact">Contact</a></li> -->
+					<li><a class="page-scroll" href="#contact">Contact</a></li>-->
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -71,10 +74,7 @@
 	</nav>
 
 	<!-- the header picture is unique, naroow-->
-	<!-- header-->
 
-
-	<!-- end header -->
 
 	<!--here is the main part -->
 	<section id="services">
@@ -93,13 +93,23 @@
 						<!-- here is chart -->
 						<div class="panel panel-default">
 							<div class="panel-body" style="padding: 8px;">
-                                <!-- this is the google chart-->
+								<!-- this is the google chart-->
 								<div id="chart_div" style="height: 420px;"></div>
+
+
+
 							</div>
 							<div class="panel-body" style="padding: 2px;">
-                                  <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Yearly Expenses:</b></font> including yearly expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
-                                  <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="blue"><b>Yearly Savings:</b></font>including income savings, pensions, social security benefits, spouse benefits and investment gains</span>
-								
+								<span class="help-block"
+									style="font-family: Arial; text-align: left; float: left;"><font
+									color="	#E00000"><b>Yearly Expenses:</b></font> including yearly
+									expenses after retirement, education, wedding expenses for
+									dependents and inflation rates</span> <span class="help-block"
+									style="font-family: Arial; text-align: left; float: left;"><font
+									color="#3399FF"><b>Yearly Savings:</b></font>including income
+									savings, pensions, social security benefits, spouse benefits
+									and investment gains</span>
+
 							</div>
 						</div>
 					</div>
@@ -173,16 +183,25 @@
 								value="0.04" id="store_investment_after" name="returnrateafter"><input
 								type="hidden" value="0.03" id="store_inflation_rate"
 								name="inflationrate"><input type="hidden" value="-1"
-								id="store_dependent_college_0" name = "store_dependent_college_0"><input type="hidden"
-								value="-1" id="store_dependent_college_1" name = "store_dependent_college_1"><input
-								type="hidden" value="-1" id="store_dependent_college_2" name = "store_dependent_college_2"><input
-								type="hidden" value="-1" id="store_dependent_college_3" name = "store_dependent_college_3"><input
-								type="hidden" value="-1" id="store_dependent_college_4" name = "store_dependent_college_4"><input
-								type="hidden" value="-1" id="store_dependent_wedding_0" name = "store_dependent_wedding_0"><input
-								type="hidden" value="-1" id="store_dependent_wedding_1" name = "store_dependent_wedding_1"><input
-								type="hidden" value="-1" id="store_dependent_wedding_2" name = "store_dependent_wedding_2"><input
-								type="hidden" value="-1" id="store_dependent_wedding_3" name = "store_dependent_wedding_3"><input
-								type="hidden" value="-1" id="store_dependent_wedding_4" name = "store_dependent_wedding_4">
+								id="store_dependent_college_0" name="store_dependent_college_0"><input
+								type="hidden" value="-1" id="store_dependent_college_1"
+								name="store_dependent_college_1"><input type="hidden"
+								value="-1" id="store_dependent_college_2"
+								name="store_dependent_college_2"><input type="hidden"
+								value="-1" id="store_dependent_college_3"
+								name="store_dependent_college_3"><input type="hidden"
+								value="-1" id="store_dependent_college_4"
+								name="store_dependent_college_4"><input type="hidden"
+								value="-1" id="store_dependent_wedding_0"
+								name="store_dependent_wedding_0"><input type="hidden"
+								value="-1" id="store_dependent_wedding_1"
+								name="store_dependent_wedding_1"><input type="hidden"
+								value="-1" id="store_dependent_wedding_2"
+								name="store_dependent_wedding_2"><input type="hidden"
+								value="-1" id="store_dependent_wedding_3"
+								name="store_dependent_wedding_3"><input type="hidden"
+								value="-1" id="store_dependent_wedding_4"
+								name="store_dependent_wedding_4">
 							<div style="display: none;" id="store_alert"></div>
 							<span style="display: none;" id="store_alert_saving_rate"></span><span
 								style="display: none;" id="store_alert_retirement_level"></span>
@@ -228,13 +247,6 @@
 			return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 		}
 	</script>
-
-	<!--<div id="hidden_button">
-	
-	<button class="btn btn-primary" id="Pre" style="display:none;">Prev</button>
-						&nbsp;&nbsp;
-	<button class="btn btn-primary" id="Next" style="display:none;">Next</button>
-	</div>-->
 
 
 	<div id="hidden_alert">
@@ -409,7 +421,7 @@
 							<span class="help-block col-lg-7"
 								style="text-align: left; padding: 3px; width: 115px;"><label
 								data-toggle="tooltip" data-placement="left"
-								title="Your current age"><b>Current Age:</b></label></span>
+								title="Your current age."><b>Current Age:</b></label></span>
 							<div class="col-lg-5" style="padding: 3px;">
 								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
 									data-placement="top" title="" type="number" min="14" max="90"
@@ -422,7 +434,7 @@
 						<div class="col-lg-6" style="padding: 2px;">
 							<span class="help-block col-lg-7"
 								style="text-align: left; padding: 5px;"><label
-								data-toggle="tooltip" title="Age you wish to retire"
+								data-toggle="tooltip" title="Age you wish to retire."
 								data-placement="left"><b>Retirement Age:</b></label></span>
 							<div class="col-lg-5" style="padding: 3px;">
 								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
@@ -447,7 +459,7 @@
 						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip"
 							title="Total amount you are currently have saved toward your retirement. Included all sources of retirement 
-						savings such as 401(k)s, IRAs and annuities"
+						savings such as 401(k)s, IRAs and annuities."
 							data-placement="left"><b>Current retirement savings:</b>
 						</label> $ <span id="money_saved_span">50,000.00</span></span> <input
 							type="range" min="0" max="1000000" step="500" value="50000"
@@ -472,7 +484,7 @@
 						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="Your total household income. If you are married, this should include
-						your spouse's income"><b>Household
+						your spouse's income."><b>Household
 									income:</b></label> $ <span id="income_span">100,000</span></span> <input
 							type="range" min="0" max="1000000" step="500" value="100000"
 							id="income" onchange="valueChange(this);"
@@ -672,20 +684,20 @@
 						<b>Pensions</b>
 					</div>
 					<div class="panel-body" style="padding: 5px;">
-					<div class="form-group">
-						<span class="help-block col-lg-6"
-							style="text-align: left; padding: 3px;"><label
-							data-toggle="tooltip" data-placement="left"
-							title="Pensions are retirement benefits that are provided to people who have paid into a plan or who have been granted pension benefits by an employer. "><b>Do
-									you have a pension?</b></label></span>
-						<div class="col-lg-6" style="padding: 3px;">
-							<select class="form-control" id="pension"
-								onchange="valueChange(this);"style="width: 100px;">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+						<div class="form-group">
+							<span class="help-block col-lg-6"
+								style="text-align: left; padding: 3px;"><label
+								data-toggle="tooltip" data-placement="left"
+								title="Pensions are retirement benefits that are provided to people who have paid into a plan or who have been granted pension benefits by an employer. "><b>Do
+										you have a pension?</b></label></span>
+							<div class="col-lg-6" style="padding: 3px;">
+								<select class="form-control" id="pension"
+									onchange="valueChange(this);" style="width: 100px;">
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
 						</div>
-					</div>
 					</div>
 					<!-- pension age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -715,10 +727,12 @@
 								document.getElementById("pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left;"><b>Amount
-								monthly:</b> $<span id="pension_amount_span">100</span> </span> <input
-							type="range" min="100" max="2500" step="1" id="pension_amount"
-							value="100" onchange="valueChange(this);"
+						<span class="help-block" style="text-align: left;"
+							data-toggle="tooltip" title="The monthly amount of your pension."
+							data-placement="left"><b>Amount monthly:</b> $<span
+							id="pension_amount_span">100</span> </span> <input type="range"
+							min="100" max="2500" step="1" id="pension_amount" value="100"
+							onchange="valueChange(this);"
 							oninput="myFunction_pension_amount(this.value)" />
 						<div class="col-lg-1" style="padding: 0; height: 15px;">
 							<span class="help-block" style="text-align: left;">$100</span>
@@ -736,21 +750,21 @@
 					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-					<div class="form-group">
-						<span class="help-block col-lg-8"
-							style="text-align: left; padding: 3px;"><label
-							data-toggle="tooltip" data-placement="left"
-							title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
+						<div class="form-group">
+							<span class="help-block col-lg-8"
+								style="text-align: left; padding: 3px;"><label
+								data-toggle="tooltip" data-placement="left"
+								title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
 						Social Security benefits are paid out on a monthly basis to retired workers and their surviving spouses. "><b>Are
-									you eligible for Social Security?</b></label></span>
-						<div class="col-lg-4" style="padding: 3px;">
-							<select class="form-control" id="eligible_SSN"
-								onchange="valueChange(this);" style = "width:100px;">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+										you eligible for Social Security?</b></label></span>
+							<div class="col-lg-4" style="padding: 3px;">
+								<select class="form-control" id="eligible_SSN"
+									onchange="valueChange(this);" style="width: 100px;">
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
 						</div>
-					</div>
 					</div>
 					<!-- SSN age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -805,12 +819,13 @@
 					<div class="panel-heading">
 						<b>Spouse</b>
 					</div>
-					<div class="panel-body" style="padding: 5px;height:45px;">
+					<div class="panel-body" style="padding: 5px; height: 45px;">
 						<div class="form-group">
 							<span data-toggle="tooltip"
-							title="Chooose 'Yes' if you are married."
-							data-placement="left" class="col-lg-6 help-block" style="text-align: left; padding: 8px;"><b>Do
-									you have a spouse?</b></span>
+								title="Choose 'Yes' if you are married." data-placement="left"
+								class="col-lg-6 help-block"
+								style="text-align: left; padding: 8px;"><b>Do you
+									have a spouse?</b></span>
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible"
 									onchange="valueChange(this);" style="width: 100px;">
@@ -828,11 +843,14 @@
 						<b>Spouse Pension</b>
 					</div>
 					<!-- pension-->
-					<div class="panel-body" style="padding: 5px; height:45px;">
+					<div class="panel-body" style="padding: 5px; height: 45px;">
 						<div class="form-group">
 
-							<span class="col-lg-8 help-block" style="text-align: left;padding: 8px;"><b>Is
-									your partner eligibile to pesions?</b></span>
+							<span class="col-lg-8 help-block"
+								style="text-align: left; padding: 8px;" data-toggle="tooltip"
+								title="Choose ‘Yes’ if your spouse is eligible for social security benefits."
+								data-placement="left"><b>Is your partner eligibile to
+									pesions?</b></span>
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="partner_pension"
 									onchange="valueChange(this);" style="width: 100px;">
@@ -843,7 +861,7 @@
 						</div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body" style="padding: 8px; height:45px;">
+					<div class="panel-body" style="padding: 8px; height: 45px;">
 						<script>
 							function myFunction_partner_pension_age(myValue) {
 								document
@@ -873,9 +891,12 @@
 										.getElementById("partner_pension_amount_span").innerHTML = format2(parseInt(myValue));
 							}
 						</script>
-						<span class="help-block" style="text-align: left; margin: 3px;"><b>Amount
-								monthly:</b> $<span id="partner_pension_amount_span">100</span> </span> <input
-							type="range" min="100" max="2500" step="1" value="100"
+						<span class="help-block" style="text-align: left; margin: 3px;"
+							data-toggle="tooltip"
+							title="The monthly amount of pension of your spouse."
+							data-placement="left"><b>Amount monthly:</b> $<span
+							id="partner_pension_amount_span">100</span> </span> <input type="range"
+							min="100" max="2500" step="1" value="100"
 							id="partner_pension_amount" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_amount(this.value)" />
 						<div class="col-lg-1" style="height: 15px;">
@@ -895,19 +916,23 @@
 					</div>
 					<!-- SSN-->
 					<div class="panel-body" style="padding: 5px;">
-					  <div class = "form-group">
-					    <span class="col-lg-9 help-block" style="text-align: left;padding:8px;height:42px;"><b>Is
-								your partner eligible for Social Security Benefits?</b></span>
-						
-						<div class="col-lg-3" style="padding: 3px;">
-							<select class="form-control" id="partner_eligible_SSN"
-								onchange="valueChange(this);" style="width:100px;">
-								<option value="1">Yes</option>
-								<option value="0">No</option>
-							</select>
+						<div class="form-group">
+							<span class="col-lg-9 help-block"
+								style="text-align: left; padding: 8px; height: 42px;"
+								data-toggle="tooltip"
+								title="Choose 'Yes' if your partner is eligible for social security benefits."
+								data-placement="left"><b>Is your partner eligible
+									for Social Security Benefits?</b></span>
+
+							<div class="col-lg-3" style="padding: 3px;">
+								<select class="form-control" id="partner_eligible_SSN"
+									onchange="valueChange(this);" style="width: 100px;">
+									<option value="1">Yes</option>
+									<option value="0">No</option>
+								</select>
+							</div>
 						</div>
-						</div>
-						
+
 					</div>
 					<!-- SSN age -->
 					<div class="panel-body" style="padding: 8px;">
@@ -972,8 +997,11 @@
 							}
 						</script>
 
-						<span class="help-block" style="text-align: left;"> <b>How
-								many dependents?</b> <span id="dependent_span">1</span>
+						<span class="help-block" style="text-align: left;"
+							data-toggle="tooltip"
+							title="Choose the number of your dependents."
+							data-placement="left"> <b>How many dependents do you
+								have?</b> <span id="dependent_span">1</span>
 						</span> <input type="range" min="0" max="5" step="1" id="dependent"
 							value="1" onchange="valueChange(this);"
 							oninput="myFunction_dependent(this.value)" />

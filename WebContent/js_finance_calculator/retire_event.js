@@ -278,21 +278,34 @@ function valueChange(ele) {
 	}
 	
 	if (ele.id == "cur_age") {
-		if (ele.value > 90)
+		
+		if (ele.value > 90) {
 			ele.value = 90;
-		if (ele.value < 14)
+			$("#cur_age").attr('data-original-title', 'Your current age should not be more than 90.');
+		}
+		if (ele.value < 14){
 			ele.value = 14;
-		if (ele.value > Number(document.getElementById("store_retire_age").value))
+			$("#cur_age").attr('data-original-title', 'Your current age should not be less than 14.');
+		}
+		if (ele.value >= Number(document.getElementById("store_retire_age").value)) {
 		    ele.value = Number(document.getElementById("store_retire_age").value) - 1;
+		    $("#cur_age").attr('data-original-title', 'Your current age should be less than retirement age.');
+		} 
 	}
 	
 	if (ele.id == "retire_age") {
-		if (ele.value > 90)
+		if (ele.value > 90) {
 			ele.value = 90;
-		if (ele.value < 14)
+			$("#retire_age").attr('data-original-title', 'Your retirement age should not be more than 90.');
+		}
+		if (ele.value < 14){
 			ele.value = 14;
-		if (ele.value < Number(document.getElementById("store_cur_age").value))
+			$("#retire_age").attr('data-original-title', 'Your retirement age should not be less than 14.');
+		}
+		if (ele.value <= Number(document.getElementById("store_cur_age").value)) {
 		    ele.value = Number(document.getElementById("store_cur_age").value) + 1;
+		    $("#retire_age").attr('data-original-title', 'Your retirement age should be more than current age.');
+		} 
 	}
 	
 	if (ele.id == "dependent_college_0") {
@@ -338,7 +351,8 @@ function valueChange(ele) {
 	}
 	var store_ele = document.getElementById('store_' + ele.id);
 	store_ele.value = ele.value;
-	if(ele.id == "cur_age") {
+	
+	/*if(ele.id == "cur_age") {
 		if (store_ele.value < 14) {
 			$("#cur_age").attr('data-original-title', 'Your current age should not be less than 14.');
 		} else if (store_ele.value > 90) {
@@ -361,7 +375,7 @@ function valueChange(ele) {
 			$("#retire_age").attr('data-original-title', '').tooltip('fixTitle').tooltip('show');
 			
 		}
-	}
+	}*/
 	
 	
 	setAlert();
