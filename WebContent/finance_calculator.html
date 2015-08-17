@@ -10,7 +10,8 @@
 	content="This is a free financial tool that help young people create their retirement plan.
 View your retirement savings balance and withdrawals for each year until the end of your retirement.Social security is 
 calculated on a sliding scale based on your income.We also take your independents education and wedding fee into consideration.">
-<meta name="author" content="A team dedicated to developing personal financial tools.">
+<meta name="author"
+	content="A team dedicated to developing personal financial tools.">
 
 <title>Retirement Calculator | Financial Calculate</title>
 
@@ -72,6 +73,12 @@ calculated on a sliding scale based on your income.We also take your independent
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+	<!--<header class="subpage"
+		style="background-image: url(img/Retirement_long.jpg); background-position: top;">
+		<div class="header-content">
+			<div class="header-content-inner">&nbsp;</div>
+		</div>
+	</header> -->
 
 	<!-- the header picture is unique, naroow-->
 
@@ -102,9 +109,9 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="panel-body" style="padding: 2px;">
 								<span class="help-block"
 									style="font-family: Arial; text-align: left; float: left;"><font
-									color="	#E00000"><b>Yearly Expenses:</b></font> including yearly
-									expenses after retirement, education, wedding expenses for
-									dependents and inflation rates</span> <span class="help-block"
+									color="	#E00000"><b>Yearly Expenses:</b></font> including
+									yearly expenses after retirement, education, wedding expenses
+									for dependents and inflation rates</span> <span class="help-block"
 									style="font-family: Arial; text-align: left; float: left;"><font
 									color="#3399FF"><b>Yearly Savings:</b></font>including income
 									savings, pensions, social security benefits, spouse benefits
@@ -137,7 +144,10 @@ calculated on a sliding scale based on your income.We also take your independent
 						</div>
 
 						<!-- alert end -->
-
+						
+						<!-- pregress starts -->
+						<div id="progressbar"></div>
+						<!-- pregress ends -->
 						<div id="editor"></div>
 						<!-- editor -->
 
@@ -247,6 +257,46 @@ calculated on a sliding scale based on your income.We also take your independent
 			return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 		}
 	</script>
+
+	<div id="hidden_progess">
+	    <div id="progress0" style="display: none;">
+		<div  class="progress" >
+			<div class="progress-bar" style="width: 16%;">1/6</div>
+		</div>
+		</div>
+	    
+	    <div id="progress1" style="display: none;">
+		<div class="progress">
+			<div class="progress-bar" style="width: 32%;">2/6</div>
+		</div>
+		</div>
+        
+        <div id="progress2" style="display: none;">
+		<div class="progress">
+			<div class="progress-bar" style="width: 48%;">3/6</div>
+		</div>
+		</div>
+		
+		
+        <div id="progress3" style="display: none;">
+		<div class="progress">
+			<div class="progress-bar" style="width: 64%;">4/6</div>
+		</div>
+		</div>
+        
+        <div id="progress4" style="display: none;">
+		<div class="progress">
+			<div class="progress-bar" style="width: 80%;">5/6</div>
+		</div>
+		</div>
+		
+		<div id="progress5" style="display: none;">
+		<div  class="progress">
+			<div class="progress-bar" style="width: 100%;">6/6</div>
+		</div>
+		</div>
+		
+	</div>
 
 
 	<div id="hidden_alert">
@@ -921,8 +971,8 @@ calculated on a sliding scale based on your income.We also take your independent
 								style="text-align: left; padding: 8px; height: 42px;"
 								data-toggle="tooltip"
 								title="Choose 'Yes' if your partner is eligible for social security benefits."
-								data-placement="left"><b>Is your partner eligible
-									for Social Security Benefits?</b></span>
+								data-placement="left"><b>Is your partner eligible for
+									Social Security Benefits?</b></span>
 
 							<div class="col-lg-3" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible_SSN"
@@ -1127,6 +1177,7 @@ calculated on a sliding scale based on your income.We also take your independent
 	<script>
 		//variables
 		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5' ];
+		var progressname = [ 'progress0', 'progress1', 'progress2', 'progress3', 'progress4', 'progress5' ];
 		var cur = 0;
 		var flag = 0;//used to set the reuslt of the top-content on the left section
 		var tag0 = 0;
@@ -1137,6 +1188,7 @@ calculated on a sliding scale based on your income.We also take your independent
 		var nextBtn = document.getElementById("Next");
 		var preBtn = document.getElementById("Pre");
 		var editor = document.getElementById("editor");
+		var progress = document.getElementById("progressbar");
 		var alert = document.getElementById("alert");
 		var result = document.getElementById("result");
 
