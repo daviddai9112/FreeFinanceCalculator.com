@@ -36,10 +36,71 @@ calculated on a sliding scale based on your income.We also take your independent
 
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/creative.css" type="text/css">
+<link rel="stylesheet" href="css/bootstrap-switch.css" type="text/css">
+<link
+	href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css"
+	rel="stylesheet">
 
 <!-- JQuery -->
 <script type="text/javascript" src="jQuery/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="jQuery/jquery-ui.js"></script>
+
+<!-- toggle -->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+
+<script>
+	function showPension(ele) {
+		if (ele.value == "1") {
+			document.getElementById("pension_age_div").style.display = "block";
+			document.getElementById("pension_amount_div").style.display = "block";
+		} else {
+			document.getElementById("pension_age_div").style.display = "none";
+			document.getElementById("pension_amount_div").style.display = "none";
+		}
+	}
+</script>
+<script>
+	function showSS(ele) {
+		if (ele.value == "1") {
+			document.getElementById("ss_age_div").style.display = "block";
+		} else {
+			document.getElementById("ss_age_div").style.display = "none";
+		}
+	}
+</script>
+
+<script>
+	function showSpouse(ele) {
+		if (ele.value == "1") {
+			document.getElementById("spouse_pension_div").style.display = "block";
+			document.getElementById("spouse_ss_div").style.display = "block";
+		} else {
+			document.getElementById("spouse_pension_div").style.display = "none";
+			document.getElementById("spouse_ss_div").style.display = "none";
+		}
+	}
+</script>
+<script>
+	function showSpousePension(ele) {
+		if (ele.value == "1") {
+			document.getElementById("spouse_pension_age_div").style.display = "block";
+			document.getElementById("spouse_pension_amount_div").style.display = "block";
+		} else {
+			document.getElementById("spouse_pension_age_div").style.display = "none";
+			document.getElementById("spouse_pension_amount_div").style.display = "none";
+		}
+	}
+</script>
+<script>
+	function showSpouseSS(ele) {
+		if (ele.value == "1") {
+			document.getElementById("spouse_ss_age_div").style.display = "block";
+		} else {
+			document.getElementById("spouse_ss_age_div").style.display = "none";
+		}
+	}
+</script>
 
 </head>
 
@@ -92,6 +153,9 @@ calculated on a sliding scale based on your income.We also take your independent
 				<!-- start main_part -->
 				<div class="col-lg-12  text-center" id="main_part">
 					<h2>Retirement Planner</h2>
+			<!-- <div>
+				<input type="checkbox" checked data-toggle="toggle">
+			</div> -->
 					<hr>
 
 					<!-- here is the left section -->
@@ -109,11 +173,11 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="panel-body" style="padding: 2px;">
 								<span class="help-block"
 									style="font-family: Arial; text-align: left; float: left;"><font
-									color="	#E00000"><b>Yearly Expenses:</b></font> including
-									yearly expenses after retirement, education, wedding expenses
+									color="	#E00000"><b>Annual Expenses:</b></font> including
+									Annual expenses after retirement, education, wedding expenses
 									for dependents and inflation rates</span> <span class="help-block"
 									style="font-family: Arial; text-align: left; float: left;"><font
-									color="#3399FF"><b>Yearly Savings:</b></font>including income
+									color="#3399FF"><b>Annual Savings:</b></font>including income
 									savings, pensions, social security benefits, spouse benefits
 									and investment gains</span>
 
@@ -138,13 +202,34 @@ calculated on a sliding scale based on your income.We also take your independent
 											style="float: left">
 									</div>
 									<div id="alert" class="col-lg-11" style="font-family: Arial;">
+										<div id="alert0">We will provide you with some advice.</div>
+
+										<div id="alert1" style="display: none;">
+											<span id="alert_saving_rate"></span>% is below the
+											recommended 7% savings rate.
+										</div>
+
+										<div id="alert2" style="display: none;">Get Tax Savings
+											with a College Savings Plan.</div>
+
+										<div id="alert3" style="display: none;">Paying for
+											weddings is putting other goals in jeopardy.</div>
+
+										<div id="alert4" style="display: none;">
+											<span id="alert_retirement_level"></span>% is above the
+											recommended 90% retirement level.
+										</div>
+
+										<div id="alert5" style="display: none;">You are on right
+											track.</div>
+
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<!-- alert end -->
-						
+
 						<!-- pregress starts -->
 						<div id="progressbar"></div>
 						<!-- pregress ends -->
@@ -165,27 +250,28 @@ calculated on a sliding scale based on your income.We also take your independent
 							<input type="hidden" value="0.15" id="store_saving_rate"
 								name="savingrate"> <input type="hidden" value="0.03"
 								id="store_income_increase_rate" name="incomeincreaserate">
-							<input type="hidden" value="1" id="store_pension" name="pension">
+							<input type="hidden" value="0" id="store_pension" name="pension">
 							<input type="hidden" value="50" id="store_pension_age"
-								name="pensionage"> <input type="hidden" value="1"
+								name="pensionage"> <input type="hidden" value="2500"
 								id="store_pension_amount" name="pensionamount"> <input
 								type="hidden" value="0" id="store_eligible_SSN" name="ssn">
 							<input type="hidden" value="67" id="store_SSN_age" name="ssnage">
 							<input type="hidden" value="1" id="store_SSN_amount"
-								name="ssnamount"> <input type="hidden" value="1"
+								name="ssnamount"> <input type="hidden" value="0"
 								id="store_partner_eligible" name="partner"> <input
-								type="hidden" value="1" id="store_partner_pension"
+								type="hidden" value="0" id="store_partner_pension"
 								name="partnerpension"> <input type="hidden" value="50"
 								id="store_partner_pension_age" name="partnerpensionage">
-							<input type="hidden" value="1" id="store_partner_pension_amount"
-								name="partnerpensionamount"> <input type="hidden"
-								value="0" id="store_partner_eligible_SSN" name="partnerssn">
-							<input type="hidden" value="67" id="store_partner_SSN_age"
-								name="partnerssnage"> <input type="hidden" value="1"
-								id="store_partner_SSN_amount" name="partnerssnamount"> <input
-								type="hidden" value="0" id="store_dependent" name="dependent">
-							<input type="hidden" value="0" id="store_pay_for_college">
-							<input type="hidden" value="0" id="store_pay_for_wedding"><input
+							<input type="hidden" value="2500"
+								id="store_partner_pension_amount" name="partnerpensionamount">
+							<input type="hidden" value="0" id="store_partner_eligible_SSN"
+								name="partnerssn"> <input type="hidden" value="67"
+								id="store_partner_SSN_age" name="partnerssnage"> <input
+								type="hidden" value="1" id="store_partner_SSN_amount"
+								name="partnerssnamount"> <input type="hidden" value="0"
+								id="store_dependent" name="dependent"> <input
+								type="hidden" value="0" id="store_pay_for_college"> <input
+								type="hidden" value="0" id="store_pay_for_wedding"><input
 								type="hidden" value="0.90" id="store_retirement_level"
 								name="retirementlevel"> <input type="hidden"
 								value="0.08" id="store_investment_before"
@@ -212,14 +298,14 @@ calculated on a sliding scale based on your income.We also take your independent
 								name="store_dependent_wedding_3"><input type="hidden"
 								value="-1" id="store_dependent_wedding_4"
 								name="store_dependent_wedding_4">
-							<div style="display: none;" id="store_alert"></div>
+							<!--<div style="display: none;" id="store_alert"></div> -->
 							<span style="display: none;" id="store_alert_saving_rate"></span><span
 								style="display: none;" id="store_alert_retirement_level"></span>
 
 
 							<br />
 							<button type="submit" class="btn btn-primary" id="viewdetails"
-								style="display: none;" name="action">View Detial</button>
+								style="display: none;" name="action">View Detail</button>
 
 						</form>
 
@@ -259,49 +345,49 @@ calculated on a sliding scale based on your income.We also take your independent
 	</script>
 
 	<div id="hidden_progess">
-	    <div id="progress0" style="display: none;">
-		<div  class="progress" >
-			<div class="progress-bar" style="width: 16%;">1/6</div>
+		<div id="progress0" style="display: none;">
+			<div class="progress">
+				<div class="progress-bar" style="width: 16%;">1/6</div>
+			</div>
 		</div>
+
+		<div id="progress1" style="display: none;">
+			<div class="progress">
+				<div class="progress-bar" style="width: 32%;">2/6</div>
+			</div>
 		</div>
-	    
-	    <div id="progress1" style="display: none;">
-		<div class="progress">
-			<div class="progress-bar" style="width: 32%;">2/6</div>
+
+		<div id="progress2" style="display: none;">
+			<div class="progress">
+				<div class="progress-bar" style="width: 48%;">3/6</div>
+			</div>
 		</div>
+
+
+		<div id="progress3" style="display: none;">
+			<div class="progress">
+				<div class="progress-bar" style="width: 64%;">4/6</div>
+			</div>
 		</div>
-        
-        <div id="progress2" style="display: none;">
-		<div class="progress">
-			<div class="progress-bar" style="width: 48%;">3/6</div>
+
+		<div id="progress4" style="display: none;">
+			<div class="progress">
+				<div class="progress-bar" style="width: 80%;">5/6</div>
+			</div>
 		</div>
-		</div>
-		
-		
-        <div id="progress3" style="display: none;">
-		<div class="progress">
-			<div class="progress-bar" style="width: 64%;">4/6</div>
-		</div>
-		</div>
-        
-        <div id="progress4" style="display: none;">
-		<div class="progress">
-			<div class="progress-bar" style="width: 80%;">5/6</div>
-		</div>
-		</div>
-		
+
 		<div id="progress5" style="display: none;">
-		<div  class="progress">
-			<div class="progress-bar" style="width: 100%;">6/6</div>
+			<div class="progress">
+				<div class="progress-bar" style="width: 100%;">6/6</div>
+			</div>
 		</div>
-		</div>
-		
+
 	</div>
 
 
-	<div id="hidden_alert">
-		<div id="alert0" style="display: none;">We would give you some
-			advice here.</div>
+	<!--<div id="hidden_alert">
+		<div id="alert0" style="display: none;">We will provide you with
+			some advice.</div>
 
 		<div id="alert1" class="alert alert-dismissable alert-danger"
 			style="display: none;">
@@ -322,7 +408,7 @@ calculated on a sliding scale based on your income.We also take your independent
 			<span id="alert_retirement_level"></span>% is above the recommended
 			90% retirement level.
 		</div>
-	</div>
+	</div>-->
 
 	<div id="hidden">
 		<!-- here is result0 -->
@@ -338,8 +424,8 @@ calculated on a sliding scale based on your income.We also take your independent
 						<div id="text" class="col-lg-9"
 							style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
 
-							Welcome to retirement planner, let's begin your retirement
-							planning.</div>
+							Will you have enough money to retire? Let's begin your retirement
+							planning!</div>
 					</div>
 				</div>
 			</div>
@@ -445,7 +531,7 @@ calculated on a sliding scale based on your income.We also take your independent
 		<div id="text" class="col-lg-9"
 			style="font-size: 20px; color: #D1D0CE; font-family: Arial; text-align: left; float: right;">
 
-			It is highly likely that you would <font color="#6698FF">run
+			It is highly likely that you will <font color="#6698FF">run
 				out of money</font> before retirement. You need to make huge adjustments to
 			your retirement plan.
 		</div>
@@ -463,7 +549,7 @@ calculated on a sliding scale based on your income.We also take your independent
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<b>Personal Information Inputs</b>
+						<b>Personal Information</b>
 					</div>
 					<!-- current age -->
 					<div class="panel-body" style="padding: 5px; height: 55px;">
@@ -508,7 +594,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</script>
 						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip"
-							title="Total amount you are currently have saved toward your retirement. Included all sources of retirement 
+							title="Total amount you have saved toward your retirement. Included all sources of retirement 
 						savings such as 401(k)s, IRAs and annuities."
 							data-placement="left"><b>Current retirement savings:</b>
 						</label> $ <span id="money_saved_span">50,000.00</span></span> <input
@@ -654,7 +740,7 @@ calculated on a sliding scale based on your income.We also take your independent
 							data-toggle="tooltip" data-placement="left"
 							title="This is the annual rate of return you expect from your retirement savings and investments before retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA."><b>Investment
 									return before retirement:</b></label><span id="investment_before_span">8</span>%
-						</span> <input type="range" min="0.00" max="0.20" step="0.01"
+						</span> <input type="range" min="0.00" max="0.12" step="0.01"
 							value="0.08" id="investment_before" onchange="valueChange(this);"
 							oninput="myFunction_investment_before_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0; height: 15px;">
@@ -662,7 +748,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</div>
 						<div class="col-lg-1 col-lg-offset-9"
 							style="text-align: right; height: 15px;">
-							<span class="help-block" style="text-align: left;">20%</span>
+							<span class="help-block" style="text-align: left;">12%</span>
 						</div>
 					</div>
 
@@ -680,7 +766,7 @@ calculated on a sliding scale based on your income.We also take your independent
 							data-toggle="tooltip" data-placement="left"
 							title="This is the annual rate of return you expect from your retirement savings and investments during retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA. It is often lower than the return earned before retirement due to more conservative investment choices to insure a steady flow of income."><b>Investment
 									return after retirement:</b></label><span id="investment_after_span">4</span>%
-						</span> <input type="range" min="0.00" max="0.20" step="0.01"
+						</span> <input type="range" min="0.00" max="0.12" step="0.01"
 							value="0.04" id="investment_after" onchange="valueChange(this);"
 							oninput="myFunction_investment_after_span(this.value)" />
 						<div class="col-lg-1" style="padding: 0; height: 15px;">
@@ -688,7 +774,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</div>
 						<div class="col-lg-1 col-lg-offset-9"
 							style="text-align: right; height: 15px;">
-							<span class="help-block" style="text-align: left;">20%</span>
+							<span class="help-block" style="text-align: left;">12%</span>
 						</div>
 					</div>
 
@@ -704,7 +790,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</script>
 						<span class="help-block" style="text-align: left;"><label
 							data-toggle="tooltip" data-placement="left"
-							title="This is waht you expect for the average long-term inflation rate. The common measure of inflation in the U.S. is the Consumer Price Index(CPI). From 1925 through 2014 the CPI has a long-term average of 3.0% annually."><b>Inflation
+							title="This is what you expect for the average long-term inflation rate. The common measure of inflation in the U.S. is the Consumer Price Index(CPI). From 1925 through 2014 the CPI has a long-term average of 3.0% annually."><b>Inflation
 									rate:</b></label><span id="inflation_rate_span">3</span>% </span> <input
 							type="range" min="0.00" max="0.20" step="0.01" value="0.04"
 							id="inflation_rate" onchange="valueChange(this);"
@@ -742,22 +828,27 @@ calculated on a sliding scale based on your income.We also take your independent
 										you have a pension?</b></label></span>
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="pension"
-									onchange="valueChange(this);" style="width: 100px;">
+									onchange="valueChange(this); showPension(this)"
+									style="width: 100px;">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
-								</select>
+								</select> 
+
+								<!--<input type="checkbox" id="pension" data-on="YES" data-off="NO"
+									data-onstyle="primary" checked data-toggle="toggle"> -->
 							</div>
 						</div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" style="padding: 8px; display: none"
+						id="pension_age_div">
 						<script>
 							function myFunction_pension_age(myValue) {
 								document.getElementById("pension_age_span").innerHTML = myValue;
 							}
 						</script>
 						<span class="help-block" style="text-align: left;"><b>Age
-								payment start:</b> <span id="pension_age_span">60</span> </span> <input
+								payments start:</b> <span id="pension_age_span">60</span> </span> <input
 							type="range" min="50" max="70" step="1" id="pension_age"
 							value="60" onchange="valueChange(this);"
 							oninput="myFunction_pension_age(this.value)" />
@@ -771,7 +862,8 @@ calculated on a sliding scale based on your income.We also take your independent
 					</div>
 
 					<!--amount monthly-->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" style="padding: 8px; display: none"
+						id="pension_amount_div">
 						<script>
 							function myFunction_pension_amount(myValue) {
 								document.getElementById("pension_amount_span").innerHTML = format2(parseInt(myValue));
@@ -779,17 +871,17 @@ calculated on a sliding scale based on your income.We also take your independent
 						</script>
 						<span class="help-block" style="text-align: left;"
 							data-toggle="tooltip" title="The monthly amount of your pension."
-							data-placement="left"><b>Amount monthly:</b> $<span
-							id="pension_amount_span">100</span> </span> <input type="range"
-							min="100" max="2500" step="1" id="pension_amount" value="100"
+							data-placement="left"><b>Monthly amount:</b> $<span
+							id="pension_amount_span">2500</span> </span> <input type="range" min="0"
+							max="25000" step="1" id="pension_amount" value="2500"
 							onchange="valueChange(this);"
 							oninput="myFunction_pension_amount(this.value)" />
 						<div class="col-lg-1" style="padding: 0; height: 15px;">
-							<span class="help-block" style="text-align: left;">$100</span>
+							<span class="help-block" style="text-align: left;">$0</span>
 						</div>
 						<div class="col-lg-1 col-lg-offset-9"
 							style="text-align: right; height: 15px;">
-							<span class="help-block" style="text-align: left;">$2,500</span>
+							<span class="help-block" style="text-align: left;">$20,000</span>
 						</div>
 					</div>
 				</div>
@@ -806,10 +898,11 @@ calculated on a sliding scale based on your income.We also take your independent
 								data-toggle="tooltip" data-placement="left"
 								title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
 						Social Security benefits are paid out on a monthly basis to retired workers and their surviving spouses. "><b>Are
-										you eligible for Social Security?</b></label></span>
+										you eligible to Social Security Benefits?</b></label></span>
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="eligible_SSN"
-									onchange="valueChange(this);" style="width: 100px;">
+									onchange="valueChange(this); showSS(this)"
+									style="width: 100px;">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
@@ -817,7 +910,8 @@ calculated on a sliding scale based on your income.We also take your independent
 						</div>
 					</div>
 					<!-- SSN age -->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" style="padding: 8px; display: none"
+						id="ss_age_div">
 						<script>
 							function myFunction_SSN_age(myValue) {
 								document.getElementById("SSN_age_span").innerHTML = myValue;
@@ -878,7 +972,8 @@ calculated on a sliding scale based on your income.We also take your independent
 									have a spouse?</b></span>
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible"
-									onchange="valueChange(this);" style="width: 100px;">
+									onchange="valueChange(this); showSpouse(this)"
+									style="width: 100px;">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
@@ -888,7 +983,8 @@ calculated on a sliding scale based on your income.We also take your independent
 					</div>
 				</div>
 
-				<div class="panel panel-default">
+				<div class="panel panel-default" id="spouse_pension_div"
+					style="display: none">
 					<div class="panel-heading">
 						<b>Spouse Pension</b>
 					</div>
@@ -899,11 +995,12 @@ calculated on a sliding scale based on your income.We also take your independent
 							<span class="col-lg-8 help-block"
 								style="text-align: left; padding: 8px;" data-toggle="tooltip"
 								title="Choose ‘Yes’ if your spouse is eligible for social security benefits."
-								data-placement="left"><b>Is your partner eligibile to
+								data-placement="left"><b>Is your spouse eligibile to
 									pesions?</b></span>
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="partner_pension"
-									onchange="valueChange(this);" style="width: 100px;">
+									onchange="valueChange(this); showSpousePension(this)"
+									style="width: 100px;">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
@@ -911,7 +1008,9 @@ calculated on a sliding scale based on your income.We also take your independent
 						</div>
 					</div>
 					<!-- pension age -->
-					<div class="panel-body" style="padding: 8px; height: 45px;">
+					<div class="panel-body"
+						style="padding: 8px; height: 45px; display: none"
+						id="spouse_pension_age_div">
 						<script>
 							function myFunction_partner_pension_age(myValue) {
 								document
@@ -919,7 +1018,7 @@ calculated on a sliding scale based on your income.We also take your independent
 							}
 						</script>
 						<span class="help-block" style="text-align: left; margin: 3px;"><b>Age
-								payment start:</b> <span id="partner_pension_age_span">50</span> </span> <input
+								payments start:</b> <span id="partner_pension_age_span">50</span> </span> <input
 							type="range" min="50" max="70" step="1" id="partner_pension_age"
 							value="50" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_age(this.value)" />
@@ -934,7 +1033,8 @@ calculated on a sliding scale based on your income.We also take your independent
 					</div>
 
 					<!--amount monthly-->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" style="padding: 8px; display: none"
+						id="spouse_pension_amount_div">
 						<script>
 							function myFunction_partner_pension_amount(myValue) {
 								document
@@ -944,23 +1044,24 @@ calculated on a sliding scale based on your income.We also take your independent
 						<span class="help-block" style="text-align: left; margin: 3px;"
 							data-toggle="tooltip"
 							title="The monthly amount of pension of your spouse."
-							data-placement="left"><b>Amount monthly:</b> $<span
-							id="partner_pension_amount_span">100</span> </span> <input type="range"
-							min="100" max="2500" step="1" value="100"
+							data-placement="left"><b>Monthly amount:</b> $<span
+							id="partner_pension_amount_span">2500</span> </span> <input type="range"
+							min="0" max="20000" step="1" value="2500"
 							id="partner_pension_amount" onchange="valueChange(this);"
 							oninput="myFunction_partner_pension_amount(this.value)" />
 						<div class="col-lg-1" style="height: 15px;">
-							<span class="help-block" style="text-align: left;">$100</span>
+							<span class="help-block" style="text-align: left;">$0</span>
 						</div>
 						<div class="col-lg-1 col-lg-offset-9"
 							style="text-align: right; height: 15px;">
-							<span class="help-block" style="text-align: left;">$2,500</span>
+							<span class="help-block" style="text-align: left;">$20,000</span>
 						</div>
 					</div>
 				</div>
 
 
-				<div class="panel panel-default">
+				<div class="panel panel-default" id="spouse_ss_div"
+					style="display: none">
 					<div class="panel-heading">
 						<b>Spouse Social Security Benefits</b>
 					</div>
@@ -971,12 +1072,13 @@ calculated on a sliding scale based on your income.We also take your independent
 								style="text-align: left; padding: 8px; height: 42px;"
 								data-toggle="tooltip"
 								title="Choose 'Yes' if your partner is eligible for social security benefits."
-								data-placement="left"><b>Is your partner eligible for
+								data-placement="left"><b>Is your spouse eligible to
 									Social Security Benefits?</b></span>
 
 							<div class="col-lg-3" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible_SSN"
-									onchange="valueChange(this);" style="width: 100px;">
+									onchange="valueChange(this); showSpouseSS(this)"
+									style="width: 100px;">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
@@ -985,7 +1087,8 @@ calculated on a sliding scale based on your income.We also take your independent
 
 					</div>
 					<!-- SSN age -->
-					<div class="panel-body" style="padding: 8px;">
+					<div class="panel-body" id="spouse_ss_age_div"
+						style="padding: 8px; display: none">
 						<script>
 							function myFunction_partner_SSN_age(myValue) {
 								document.getElementById("partner_SSN_age_span").innerHTML = myValue;
@@ -1073,7 +1176,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</script>
 
 						<span class="help-block" style="text-align: left;"> <b>How
-								many of dependents would you pay for college?</b> <span
+								many dependents will you pay for college?</b> <span
 							id="pay_for_college_span">1</span>
 						</span> <input type="range" min="0" max="5" step="1" id="pay_for_college"
 							value="1" onchange="valueChange(this);"
@@ -1098,7 +1201,7 @@ calculated on a sliding scale based on your income.We also take your independent
 						</script>
 
 						<span class="help-block" style="text-align: left;"> <b>How
-								many of dependents would you pay for wedding?</b> <span
+								many dependents will you pay for wedding?</b> <span
 							id="pay_for_wedding_span">1</span>
 						</span> <input type="range" min="0" max="5" step="1" id="pay_for_wedding"
 							value="1" onchange="valueChange(this);"
@@ -1146,6 +1249,7 @@ calculated on a sliding scale based on your income.We also take your independent
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-switch.js"></script>
 	<script src="js/validator.js"></script>
 
 	<!-- Plugin JavaScript -->
@@ -1163,6 +1267,8 @@ calculated on a sliding scale based on your income.We also take your independent
 	<script type="text/javascript"
 		src="js_finance_calculator/line_chart.js"></script>
 
+    <script src="js/bootstrap-toggle.js"></script>
+
 	<!-- the excel algorithm -->
 	<script src="js_finance_calculator/finance_calculator_excel.js"></script>
 	<!-- import the event js -->
@@ -1172,12 +1278,16 @@ calculated on a sliding scale based on your income.We also take your independent
 	<script>
 		$(document).ready(function() {
 			$('[data-toggle="tooltip"]').tooltip();
+			
 		});
 	</script>
+	
+	
 	<script>
 		//variables
 		var contents = [ 'ed0', 'ed1', 'ed2', 'ed3', 'ed4', 'ed5' ];
-		var progressname = [ 'progress0', 'progress1', 'progress2', 'progress3', 'progress4', 'progress5' ];
+		var progressname = [ 'progress0', 'progress1', 'progress2',
+				'progress3', 'progress4', 'progress5' ];
 		var cur = 0;
 		var flag = 0;//used to set the reuslt of the top-content on the left section
 		var tag0 = 0;

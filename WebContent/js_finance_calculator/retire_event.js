@@ -113,8 +113,8 @@ function setElementValue() {
 	document.getElementById("inflation_rate_span").innerHTML = Number(document
 			.getElementById("store_inflation_rate").value) * 1000 / 10;
 
-	document.getElementById("alert").innerHTML = document
-			.getElementById("store_alert").innerHTML;
+	// document.getElementById("alert").innerHTML = document
+	// .getElementById("store_alert").innerHTML;
 	document.getElementById("alert_saving_rate").innerHTML = document
 			.getElementById("store_alert_saving_rate").innerHTML;
 	document.getElementById("alert_retirement_level").innerHTML = document
@@ -210,7 +210,8 @@ function addAge() {
 
 function addEvent() {
 	// if page just load, then cur should be 0
-	document.getElementById("store_alert").innerHTML = "We would give you some advice here.";
+	// document.getElementById("store_alert").innerHTML = "We would give you
+	// some advice here.";
 	if (cur == 0) {
 		editor.innerHTML = document.getElementById('ed0').innerHTML;
 		progress.innerHTML = document.getElementById('progress0').innerHTML;
@@ -245,49 +246,56 @@ function setButton() {
 };
 
 function setAlert() {
-
-	if (cur % contents.length === 0) {
+	var run_out_of_money_age = Number(document.getElementById("runOutAge").innerHTML);
+	
+	if (document.getElementById("result").innerHTML == document.getElementById("result2").innerHTML) {
+		document.getElementById('alert5').style.display = "block";
+		document.getElementById('alert1').style.display = "none";
+		document.getElementById('alert2').style.display = "none";
+		document.getElementById('alert3').style.display = "none";
+		document.getElementById('alert4').style.display = "none";
+		
+	} else if (cur % contents.length === 0 && run_out_of_money_age < 100) {
+		document.getElementById('alert5').style.display = "none";
 		var save_rate = Number(document.getElementById("store_saving_rate").value);
 		var retirement_level = Number(document
 				.getElementById("store_retirement_level").value);
+		if (save_rate < 0.07) {
 
-		if (save_rate < 0.07 && tag0 == 0) {
+			document.getElementById('alert1').style.display = "block";
+			document.getElementById("store_alert_saving_rate").innerHTML = (save_rate * 1000) / 10;
 
-			document.getElementById("store_alert").innerHTML += "</br>"
-					+ document.getElementById('alert1').innerHTML;
-			document.getElementById("store_alert_saving_rate").innerHTML = (save_rate * 1000) / 10;
-			tag0 = 1;
-		} else if (save_rate < 0.07 && tag0 == 1) {
-			document.getElementById("store_alert_saving_rate").innerHTML = (save_rate * 1000) / 10;
+		} else {
+			document.getElementById('alert1').style.display = "none";
 		}
 
-		if (retirement_level > 0.90 && tag1 == 0) {
+		if (retirement_level > 0.90) {
 
-			document.getElementById("store_alert").innerHTML += "</br>"
-					+ document.getElementById('alert4').innerHTML;
+			document.getElementById('alert4').style.display = "block";
 			document.getElementById("store_alert_retirement_level").innerHTML = (retirement_level * 1000) / 10;
-			tag1 = 1;
 
-		} else if (retirement_level > 0.90 && tag1 == 1) {
-			document.getElementById("store_alert_retirement_level").innerHTML = (retirement_level * 1000) / 10;
+		} else {
+			document.getElementById('alert4').style.display = "none";
 		}
 
 	} else if (cur % contents.length === 4) {
-		var run_out_of_money_age = Number(document.getElementById("runOutAge").innerHTML);
+		document.getElementById('alert5').style.display = "none";
 		var education_number = Number(document
 				.getElementById("store_pay_for_college").value);
-		if (education_number >= 1 && tag2 == 0) {
-			document.getElementById("store_alert").innerHTML += "</br>"
-					+ document.getElementById('alert2').innerHTML;
-			tag2 = 1;
+		if (education_number >= 1) {
+			document.getElementById('alert2').style.display = "block";
+
+		} else {
+			document.getElementById('alert2').style.display = "none";
 		}
 
-		var education_number1 = Number(document
+		var wedding_number = Number(document
 				.getElementById("store_pay_for_wedding").value);
-		if (education_number1 >= 1 && tag3 == 0 && run_out_of_money_age < 90) {
-			document.getElementById("store_alert").innerHTML += "</br>"
-					+ document.getElementById('alert3').innerHTML;
-			tag3 = 1;
+		if (wedding_number >= 1 && run_out_of_money_age < 85) {
+
+			document.getElementById('alert3').style.display = "block";
+		} else {
+			document.getElementById('alert3').style.display = "none";
 		}
 
 	}
@@ -307,6 +315,7 @@ function nextClickEvent() {
 	setButton();
 
 	$('[data-toggle="tooltip"]').tooltip();
+	//$('[data-toggle="toggle"]').bootstrapToggle();
 
 }
 // when pre button is clicked
@@ -325,6 +334,7 @@ function preClickEvent() {
 	}
 
 	$('[data-toggle="tooltip"]').tooltip();
+	//$('#pension').bootstrapToggle();
 }
 
 // when any input has change the value
@@ -353,7 +363,7 @@ function valueChange(ele) {
 					'Your current age should not be less than 14.');
 		}
 		if (ele.value >= Number(document.getElementById("store_retire_age").value)) {
-			ele.value = Number(document.getElementById("store_retire_age").value) - 1;
+			ele.value = Number(document.getElementById("store_retire_age").value) - 2;
 			$("#cur_age").attr('data-original-title',
 					'Your current age should be less than retirement age.');
 		}
@@ -371,7 +381,7 @@ function valueChange(ele) {
 					'Your retirement age should not be less than 14.');
 		}
 		if (ele.value <= Number(document.getElementById("store_cur_age").value)) {
-			ele.value = Number(document.getElementById("store_cur_age").value) + 1;
+			ele.value = Number(document.getElementById("store_cur_age").value) + 2;
 			$("#retire_age").attr('data-original-title',
 					'Your retirement age should be more than current age.');
 		}
@@ -445,16 +455,16 @@ function valueChange(ele) {
 	calculate();
 	var age = document.getElementById("runOutAge").innerHTML;
 
-	if (age < 80) {
+	if (age < 75) {
 		document.getElementById("forecast_result").innerHTML = document
 				.getElementById('forecast_result3').innerHTML;
 	}
-	if (age <= 95 && age >= 80) {
+	if (age < 84 && age >= 75) {
 		document.getElementById("forecast_result").innerHTML = document
 				.getElementById('forecast_result2').innerHTML;
 
 	}
-	if (age > 95) {
+	if (age <= 100 && age >= 85) {
 		document.getElementById("forecast_result").innerHTML = document
 				.getElementById('forecast_result1').innerHTML;
 	}
@@ -503,10 +513,10 @@ function calculate() {
  * data : totalArray }, { label: "My Third dataset", fillColor :
  * "rgba(151,187,205,0.2)", strokeColor : "rgba(151,187,205,1)", pointColor :
  * "rgba(151,187,205,1)", pointStrokeColor : "#fff", pointHighlightFill :
- * "#fff", pointHighlightStroke : "rgba(151,187,205,1)", data : spendingArray } ]
- *  } var ctx = document.getElementById("canvas").getContext("2d");
- * window.myLine = new Chart(ctx).Line(lineChartData, { responsive: true,
- * animation: true, scaleShowGridLines : false,
+ * "#fff", pointHighlightStroke : "rgba(151,187,205,1)", data : spendingArray } ] }
+ * var ctx = document.getElementById("canvas").getContext("2d"); window.myLine =
+ * new Chart(ctx).Line(lineChartData, { responsive: true, animation: true,
+ * scaleShowGridLines : false,
  * 
  * labelsFilter: function (value, index) { return (index + 1) % 5 !== 0; } }); }
  */
@@ -515,8 +525,8 @@ function calculate() {
 function reDraw(rows) {
 	var data = new google.visualization.DataTable();
 	data.addColumn('number', 'Age');
-	data.addColumn('number', 'Yearly Savings');
-	data.addColumn('number', 'Yearly Expenses');
+	data.addColumn('number', 'Annual Savings');
+	data.addColumn('number', 'Annual Expenses');
 	data.addColumn('number', 'Total Balance');
 
 	data.addRows(rows);

@@ -53,6 +53,20 @@
 		return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,");
 	}
 </script>
+<script>
+function showQues() {
+    document.getElementById("q2a1").style.display = "block";
+    document.getElementById("q2a2").style.display = "block";
+    document.getElementById("q2a3").style.display = "block";
+}
+</script>
+<script>
+function hiddenQues() {
+    document.getElementById("q2a1").style.display = "none";
+    document.getElementById("q2a2").style.display = "none";
+    document.getElementById("q2a3").style.display = "none";
+}
+</script>
 <body id="page-top" id="page-top" style="font-family: Arial;">
 
 	<nav id="mainNav" class="navbar navbar-subpage navbar-fixed-top">
@@ -165,14 +179,14 @@
 										<li role="presentation" class="active"><a href="#summary" id="#summary-tab" role="tab" data-toggle="tab" aria-controls="summary">Summary</a></li>
 										<li role="presentation"><a href="#graph" role="tab" id="graph-tab" data-toggle="tab" aria-controls="graph">Graph</a></li>
 
-										<li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Yearly
+										<li role="presentation"><a href="#report" aria-controls="report" role="tab" data-toggle="tab">Annual
 												Report</a></li>
 										<li role="presentation"><a href="#survey" aria-controls="survey" role="tab" data-toggle="tab">Survey</a></li>
 									</ul>
 								</div>
 								<div class="tab-content" style = "padding: 8px;" id="tabscontent">
 									<!--  <div class="panel-body" style = "padding: 8px;" id="tabpage_1" style="text-align: left;">-->
-									<div role="tabpanel" class="tab-pane fade in active" id="summary" aria-labelledby="summary-tab">
+									<div role="tabpanel" class="tab-pane fade in active" id="summary" aria-labelledby="summary-tab" style = "height:150px">
 				                            <br/>
 				                            	<br/>
 							                <div class="panel-body col-lg-2">
@@ -214,8 +228,8 @@
 								                <div id="chart_div" style="height: 450px;"></div>
 							                </div>
 							                <div class="panel-body" style="padding: 2px;">
-                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Yearly Expenses:</b></font> including yearly expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
-                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="blue"><b>Yearly Savings:</b></font>including income savings, pensions, social security benefits, spouse benefits and investment gains</span>
+                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="red"><b>Annual Expenses:</b></font> including Annual expenses after retirement, education, wedding expenses for dependents and inflation rates</span>
+                                                <span class="help-block" style ="font-family: Arial;text-align:left; float:left;"><font color="blue"><b>Annual Savings:</b></font>including income savings, pensions, social security benefits, spouse benefits and investment gains</span>
 							                </div>
 						                </div>
 									
@@ -291,10 +305,7 @@
 														style="float: left">
 												</div>
 												<div class="panel-body col-lg-11">
-													<p>Please help us do a quick survey. There will be 5 lucky person
-														 to win a $10 Amazon gift card. Lucky draw will be on
-														August 28th, 2015. We would send you the gift code via
-														email.</p>
+													<p>Five lucky people will win a 10 dollor gift card. Winner will be determined on August 28. We will send you the gift code via email.</p>
 												</div>
 											</div>
 										</div>
@@ -322,22 +333,27 @@
 													</div>
 												</div>
 												<div id="question2" class="panel-body" style="padding: 8px;">
-													<span class="help-block" style="text-align: left;"><b>2.Would
-															you mind connecting your account to financial plan
-															website to get financial services in return?</b></span>
+													<span class="help-block" style="text-align: left;"><b>2.Would you like to get budgeting and retirement services by connecting your accounts?</b></span>
 													<div class="col-lg-6" style="text-align: left;">
-														<label class="radio" style="font-weight: normal;"><input
-															type="radio" name="surveyq2" value="Yes, I am willing to" required="required">A.
-															Yes, I am willing to </label> <label class="radio"
-															style="font-weight: normal;"><input type="radio"
+													    <label class="radio" style="font-weight: normal;">
+													        <input
+															type="radio" name="surveyq2" value="yes" required="required" onclick="showQues()">A. Yes, I am interested
+													    </label>
+														<label id = "q2a1" class="checkbox" style="font-weight: normal; display:none"><input
+															type="checkbox" name="surveyq2" value="Budget Tracking" required="required">1.
+															Budget Tracking </label>
+														<label id = "q2a2" class="checkbox"
+															style="font-weight: normal; display:none"><input type="checkbox"
 															name="surveyq2"
-															value="only well-known website or bank website">B.
-															Well-known website or bank website</label> <label class="radio"
+															value="Retirement Plan Progress">2.
+															Retirement Plan Progress</label>
+														<label id = "q2a3" class="checkbox"
+															style="font-weight: normal; display:none"><input type="checkbox"
+															name="surveyq2" value="Complete Financial Picture">3.
+															Complete Financial Picture</label>
+														<label class="radio"
 															style="font-weight: normal;"><input type="radio"
-															name="surveyq2" value="Only the website I trust">C.
-															Only the website I trust</label> <label class="radio"
-															style="font-weight: normal;"><input type="radio"
-															name="surveyq2" value="I won't">D. No, I won't</label>
+															name="surveyq2" value="Not interested" onclick="hiddenQues()">B. Not interested</label>
 													</div>
 												</div>
 												<div id="question3" class="panel-body" style="padding: 8px;">
@@ -387,8 +403,8 @@
 						<div class="panel panel-default col-lg-12">
                             <div class="row">
 							    <div class="panel-body col-lg-6">
-								    <img id="img" height="180" width="380" src="img/amazon.png"
-									style="float: left">
+								    <a href = "#survey" aria-controls="survey" role="tab" data-toggle="tab"><img id="img" height="180" width="380" src="img/amazon1.png"
+									style="float: left"></a>
 							    </div>
 							    <div class="panel-body col-lg-6">
                                  <br/>
@@ -398,7 +414,7 @@
 									<p><span
 									style="text-align: left; float: left;">
 									Answer a quick 5-question survey to help us improve our services and enter to win a
-$50 Amazon gift card. Click <a href = "#survey" aria-controls="survey" role="tab" data-toggle="tab">here</a> to take our survey.</span></p>
+$10 Amazon gift card. Click <a href = "#survey" aria-controls="survey" role="tab" data-toggle="tab">here</a> to take our survey.</span></p>
 							    </div>
 							</div>
 						</div>
@@ -418,26 +434,19 @@ $50 Amazon gift card. Click <a href = "#survey" aria-controls="survey" role="tab
 										following:</span>
 								</p>
 								<p>
-									<span style="text-align: left; float: left;">1. Increase your rate of
-										return before retirement from <font color="#6698FF">${rate_before}%
-									</font> to <font color="#6698FF">${recommand_rate}% </font>.
+									<span style="text-align: left; float: left;">1. ${rec_retirement_age}
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left; float: left;">2. Reduce your
-										retirement level to <font color="#6698FF">${recommand_retirement_level}%</font>
-										of your final year's income.
+									<span style="text-align: left; float: left;">2. ${rec_saving_rate}
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left; float: left;">3.Increase contributions
-										to <font color="#6698FF">${rec_saving_rate}%</font> of your
-										income
+									<span style="text-align: left; float: left;">3. ${recommand_retirement_level}
 									</span>
 								</p>
 								<p>
-									<span style="text-align: left; float: left;">4. Delay your retirement
-										until age <font color="#6698FF">${rec_retirement_age}</font>.
+									<span style="text-align: left; float: left;">4. ${recommand_rate}
 									</span>
 								</p>
 							</div>

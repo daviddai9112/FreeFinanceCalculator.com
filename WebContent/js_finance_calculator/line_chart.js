@@ -10,8 +10,8 @@ function drawChart() {
 
 	var data = new google.visualization.DataTable();
 	data.addColumn('number', 'Age');
-	data.addColumn('number', 'Yearly Savings');
-	data.addColumn('number', 'Yearly Expenses');
+	data.addColumn('number', 'Annual Savings');
+	data.addColumn('number', 'Annual Expenses');
 	data.addColumn('number', 'Total Balance');
      
 	data.addRows(finalResult());

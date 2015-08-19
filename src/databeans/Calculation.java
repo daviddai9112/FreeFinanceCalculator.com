@@ -203,7 +203,7 @@ public class Calculation {
 
 		}
 		if (runout == -1)
-			runout = 100;
+			runout = 101;
 
 //		for (int i = 0; i < fb.length; i++) {
 //			System.out.println("total_array[" + i
