@@ -428,8 +428,43 @@ function valueChange(ele) {
 		if (ele.value > 28)
 			ele.value = 28;
 	}
-	var store_ele = document.getElementById('store_' + ele.id);
-	store_ele.value = ele.value;
+	var store_ele = null;
+	if (ele.id == "pension_radio_1"){
+		store_ele = document.getElementById('store_pension');
+		store_ele.value = 1;
+	}else if(ele.id == "pension_radio_0"){
+		store_ele = document.getElementById('store_pension');
+		store_ele.value = 0;
+	}else if(ele.id == "ss_radio_1"){
+		store_ele = document.getElementById('store_eligible_SSN');
+		store_ele.value = 1;
+	}else if(ele.id == "ss_radio_0"){
+		store_ele = document.getElementById('store_eligible_SSN');
+		store_ele.value = 0;
+	}else if(ele.id == "partner_radio_1"){
+		store_ele = document.getElementById('store_partner_eligible');
+		store_ele.value = 1;
+	}else if(ele.id == "partner_radio_0"){
+		store_ele = document.getElementById('store_partner_eligible');
+		store_ele.value = 0;
+	}else if(ele.id == "partner_pension_radio_1"){
+		store_ele = document.getElementById('store_partner_pension');
+		store_ele.value = 1;
+	}else if(ele.id == "partner_pension_radio_0"){
+		store_ele = document.getElementById('store_partner_pension');
+		store_ele.value = 0;
+	}else if(ele.id == "partner_ssn_radio_1"){
+		store_ele = document.getElementById('store_partner_eligible_SSN');
+		store_ele.value = 1;
+	}else if(ele.id == "partner_ssn_radio_0"){
+		store_ele = document.getElementById('store_partner_eligible_SSN');
+		store_ele.value = 0;
+	}else{
+		store_ele = document.getElementById('store_' + ele.id);
+		store_ele.value = ele.value;
+	}
+    
+	
 
 	setAlert();
 	setElementValue();

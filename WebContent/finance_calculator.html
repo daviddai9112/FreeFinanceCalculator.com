@@ -101,6 +101,17 @@ calculated on a sliding scale based on your income.We also take your independent
 		}
 	}
 </script>
+<script>
+function clickPension_1(){
+	valueChange(this); showPension(this);
+    document.getElementById('pension').value = 1;
+    alert(document.getElementById('pension').value);
+}
+function clickPension_0(){
+	document.getElementById('pension').value = 0;
+	alert(document.getElementById('pension').value);
+}
+</script>
 
 </head>
 
@@ -829,11 +840,14 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="pension"
 									onchange="valueChange(this); showPension(this)"
-									style="width: 100px;">
+									style="width: 100px; display:none">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select> 
-
+								<div>
+								    <input type = "radio" id = "pension_radio_1" name = "pension_radio" value ="1" onclick = "valueChange(this); showPension(this)">Yes
+								    <input type = "radio" id = "pension_radio_0" name = "pension_radio" value ="0" onclick = "valueChange(this); showPension(this)" checked>No
+                                </div>
 								<!--<input type="checkbox" id="pension" data-on="YES" data-off="NO"
 									data-onstyle="primary" checked data-toggle="toggle"> -->
 							</div>
@@ -902,10 +916,14 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="eligible_SSN"
 									onchange="valueChange(this); showSS(this)"
-									style="width: 100px;">
+									style="width: 100px; display:none">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
+								<div>
+								    <input type = "radio" id = "ss_radio_1" name = "ss_radio" value ="1" onclick = "valueChange(this); showSS(this)">Yes
+								    <input type = "radio" id = "ss_radio_0" name = "ss_radio" value ="0" onclick = "valueChange(this); showSS(this)" checked>No
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -973,10 +991,14 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible"
 									onchange="valueChange(this); showSpouse(this)"
-									style="width: 100px;">
+									style="width: 100px;display:none">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
+								<div>
+								    <input type = "radio" id = "partner_radio_1" name = "partner_radio" value ="1" onclick = "valueChange(this); showSpouse(this)">Yes
+								    <input type = "radio" id = "partner_radio_0" name = "partner_radio" value ="0" onclick = "valueChange(this); showSpouse(this)" checked>No
+                                </div>
 							</div>
 						</div>
 
@@ -1000,10 +1022,14 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="partner_pension"
 									onchange="valueChange(this); showSpousePension(this)"
-									style="width: 100px;">
+									style="width: 100px; display:none">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
+								<div>
+								    <input type = "radio" id = "partner_pension_radio_1" name = "partner_pension_radio" value ="1" onclick = "valueChange(this); showSpousePension(this)">Yes
+								    <input type = "radio" id = "partner_pension_radio_0" name = "partner_pension_radio" value ="0" onclick = "valueChange(this); showSpousePension(this)" checked>No
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -1078,10 +1104,14 @@ calculated on a sliding scale based on your income.We also take your independent
 							<div class="col-lg-3" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible_SSN"
 									onchange="valueChange(this); showSpouseSS(this)"
-									style="width: 100px;">
+									style="width: 100px; display:none">
 									<option value="1">Yes</option>
 									<option value="0">No</option>
 								</select>
+								<div>
+								    <input type = "radio" id = "partner_ssn_radio_1" name = "partner_ssn_radio" value ="1" onclick = "valueChange(this); showSpouseSS(this)">Yes
+								    <input type = "radio" id = "partner_ssn_radio_0" name = "partner_ssn_radio" value ="0" onclick = "valueChange(this); showSpouseSS(this)" checked>No
+                                </div>
 							</div>
 						</div>
 
