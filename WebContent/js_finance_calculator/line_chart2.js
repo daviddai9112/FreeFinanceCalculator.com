@@ -1,7 +1,9 @@
 
 
 
-google.load('visualization', '1.1', { packages : [ 'line' ] });
+google.load('visualization', '1.1', {
+	packages : [ 'line' ,'corechart']
+});
 google.setOnLoadCallback(drawChart);
 
 
@@ -16,20 +18,22 @@ function drawChart() {
 	data.addRows(finalResult());
 
 	var options = {
-		chart : {
+			vAxis :{
+				title : 'amount USD',
+				format:'short',
+			},
 			title : 'Retirement Plan',
-			subtitle : 'in dollars (USD)'
-		},
-		width : 620,
-		height : 400,
-		
-		
+			chartArea:{left:'13%',top:'10%',width:'80%',height:'75%'},
+			legend:{position:'bottom'},
+			
+			
 	};
 
-	var chart = new google.charts.Line(document.getElementById('chart_div'));
+	var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 	
 	chart.draw(data, options);
 }
+
 
 /*window.onload = function() {
 	var rows = finalResult();

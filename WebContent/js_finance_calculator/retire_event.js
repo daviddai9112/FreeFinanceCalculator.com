@@ -32,6 +32,15 @@ function setElementValue() {
 	document.getElementById("income_increase_rate_span").innerHTML = Number(document
 			.getElementById("store_income_increase_rate").value) * 1000 / 10;
 
+	if (document.getElementById("store_pension").value == "1") {
+		document.getElementById("pension_age_div").style.display = "block";
+		document.getElementById("pension_amount_div").style.display = "block";
+		document.getElementById("pension_radio_1").checked = true;
+	} else {
+		document.getElementById("pension_age_div").style.display = "none";
+		document.getElementById("pension_amount_div").style.display = "none";
+		document.getElementById("pension_radio_0").checked = true;
+	}
 	document.getElementById("pension").value = document
 			.getElementById("store_pension").value;
 	document.getElementById("pension_age").value = Number(document
@@ -44,8 +53,16 @@ function setElementValue() {
 	document.getElementById("pension_amount_span").innerHTML = format2(Number(document
 			.getElementById("store_pension_amount").value));
 
-	document.getElementById("eligible_SSN").value = document
-			.getElementById("store_eligible_SSN").value;
+	if (document.getElementById("store_eligible_SSN").value == "1") {
+		document.getElementById("ss_age_div").style.display = "block";
+		document.getElementById("ss_radio_1").checked = true;
+	} else {
+		document.getElementById("ss_age_div").style.display = "none";
+		document.getElementById("ss_radio_0").checked = true;
+	}
+	// document.getElementById("eligible_SSN").value = document
+	// .getElementById("store_eligible_SSN").value;
+
 	document.getElementById("SSN_age").value = Number(document
 			.getElementById("store_SSN_age").value);
 	document.getElementById("SSN_age_span").innerHTML = Number(document
@@ -56,9 +73,27 @@ function setElementValue() {
 	// document.getElementById("SSN_amount_span").value =
 	// Number(document.getElementById("store_SSN_amount").value);
 
-	document.getElementById("partner_eligible").value = document
-			.getElementById("store_partner_eligible").value;
+	if (document.getElementById("store_partner_eligible").value == "1") {
+		document.getElementById("spouse_pension_div").style.display = "block";
+		document.getElementById("spouse_ss_div").style.display = "block";
+		document.getElementById("partner_radio_1").checked = true;
+	} else {
+		document.getElementById("spouse_pension_div").style.display = "none";
+		document.getElementById("spouse_ss_div").style.display = "none";
+		document.getElementById("partner_radio_0").checked = true;
+	}
+	// document.getElementById("partner_eligible").value = document
+	// .getElementById("store_partner_eligible").value;
 
+	if (document.getElementById("store_partner_pension").value == "1") {
+		document.getElementById("spouse_pension_age_div").style.display = "block";
+		document.getElementById("spouse_pension_amount_div").style.display = "block";
+		document.getElementById("partner_pension_radio_1").checked = true;
+	} else {
+		document.getElementById("spouse_pension_age_div").style.display = "none";
+		document.getElementById("spouse_pension_amount_div").style.display = "none";
+		document.getElementById("partner_pension_radio_0").checked = true;
+	}
 	document.getElementById("partner_pension").value = document
 			.getElementById("store_partner_pension").value;
 	document.getElementById("partner_pension_age").value = Number(document
@@ -71,8 +106,15 @@ function setElementValue() {
 	document.getElementById("partner_pension_amount_span").innerHTML = format2(Number(document
 			.getElementById("store_partner_pension_amount").value));
 
-	document.getElementById("partner_eligible_SSN").value = document
-			.getElementById("store_partner_eligible_SSN").value;
+	if (document.getElementById("store_partner_eligible_SSN").value == 1) {
+		document.getElementById("spouse_ss_age_div").style.display = "block";
+		document.getElementById("partner_ssn_radio_1").checked = true;
+	} else {
+		document.getElementById("spouse_ss_age_div").style.display = "none";
+		document.getElementById("partner_ssn_radio_0").checked = true;
+	}
+	// document.getElementById("partner_eligible_SSN").value = document
+	// .getElementById("store_partner_eligible_SSN").value;
 	document.getElementById("partner_SSN_age").value = Number(document
 			.getElementById("store_partner_SSN_age").value);
 	document.getElementById("partner_SSN_age_span").innerHTML = Number(document
@@ -247,14 +289,15 @@ function setButton() {
 
 function setAlert() {
 	var run_out_of_money_age = Number(document.getElementById("runOutAge").innerHTML);
-	
-	if (document.getElementById("result").innerHTML == document.getElementById("result2").innerHTML) {
+
+	if (document.getElementById("result").innerHTML == document
+			.getElementById("result2").innerHTML) {
 		document.getElementById('alert5').style.display = "block";
 		document.getElementById('alert1').style.display = "none";
 		document.getElementById('alert2').style.display = "none";
 		document.getElementById('alert3').style.display = "none";
 		document.getElementById('alert4').style.display = "none";
-		
+
 	} else if (cur % contents.length === 0 && run_out_of_money_age < 100) {
 		document.getElementById('alert5').style.display = "none";
 		var save_rate = Number(document.getElementById("store_saving_rate").value);
@@ -315,7 +358,7 @@ function nextClickEvent() {
 	setButton();
 
 	$('[data-toggle="tooltip"]').tooltip();
-	//$('[data-toggle="toggle"]').bootstrapToggle();
+	// $('[data-toggle="toggle"]').bootstrapToggle();
 
 }
 // when pre button is clicked
@@ -334,7 +377,7 @@ function preClickEvent() {
 	}
 
 	$('[data-toggle="tooltip"]').tooltip();
-	//$('#pension').bootstrapToggle();
+	// $('#pension').bootstrapToggle();
 }
 
 // when any input has change the value
@@ -429,42 +472,40 @@ function valueChange(ele) {
 			ele.value = 28;
 	}
 	var store_ele = null;
-	if (ele.id == "pension_radio_1"){
+	if (ele.id == "pension_radio_1") {
 		store_ele = document.getElementById('store_pension');
 		store_ele.value = 1;
-	}else if(ele.id == "pension_radio_0"){
+	} else if (ele.id == "pension_radio_0") {
 		store_ele = document.getElementById('store_pension');
 		store_ele.value = 0;
-	}else if(ele.id == "ss_radio_1"){
+	} else if (ele.id == "ss_radio_1") {
 		store_ele = document.getElementById('store_eligible_SSN');
 		store_ele.value = 1;
-	}else if(ele.id == "ss_radio_0"){
+	} else if (ele.id == "ss_radio_0") {
 		store_ele = document.getElementById('store_eligible_SSN');
 		store_ele.value = 0;
-	}else if(ele.id == "partner_radio_1"){
+	} else if (ele.id == "partner_radio_1") {
 		store_ele = document.getElementById('store_partner_eligible');
 		store_ele.value = 1;
-	}else if(ele.id == "partner_radio_0"){
+	} else if (ele.id == "partner_radio_0") {
 		store_ele = document.getElementById('store_partner_eligible');
 		store_ele.value = 0;
-	}else if(ele.id == "partner_pension_radio_1"){
+	} else if (ele.id == "partner_pension_radio_1") {
 		store_ele = document.getElementById('store_partner_pension');
 		store_ele.value = 1;
-	}else if(ele.id == "partner_pension_radio_0"){
+	} else if (ele.id == "partner_pension_radio_0") {
 		store_ele = document.getElementById('store_partner_pension');
 		store_ele.value = 0;
-	}else if(ele.id == "partner_ssn_radio_1"){
+	} else if (ele.id == "partner_ssn_radio_1") {
 		store_ele = document.getElementById('store_partner_eligible_SSN');
 		store_ele.value = 1;
-	}else if(ele.id == "partner_ssn_radio_0"){
+	} else if (ele.id == "partner_ssn_radio_0") {
 		store_ele = document.getElementById('store_partner_eligible_SSN');
 		store_ele.value = 0;
-	}else{
+	} else {
 		store_ele = document.getElementById('store_' + ele.id);
 		store_ele.value = ele.value;
 	}
-    
-	
 
 	setAlert();
 	setElementValue();
@@ -549,7 +590,7 @@ function calculate() {
  * "rgba(151,187,205,0.2)", strokeColor : "rgba(151,187,205,1)", pointColor :
  * "rgba(151,187,205,1)", pointStrokeColor : "#fff", pointHighlightFill :
  * "#fff", pointHighlightStroke : "rgba(151,187,205,1)", data : spendingArray } ] }
- * var ctx = document.getElementById("canvas").getContext("2d"); window.myLine =
+ * var ctx = document.getElementById("cansvas").getContext("2d"); window.myLine =
  * new Chart(ctx).Line(lineChartData, { responsive: true, animation: true,
  * scaleShowGridLines : false,
  * 
@@ -566,15 +607,37 @@ function reDraw(rows) {
 
 	data.addRows(rows);
 	var options = {
-		chart : {
+			vAxis :{
+				title : 'amount USD',
+			},
+
 			title : 'Retirement Plan',
-			subtitle : 'in dollars (USD)'
-		},
-		width : 620,
-		height : 400,
+			chartArea:{left:'13%',top:'10%',width:'80%',height:'75%'},
+			legend:{position:'bottom'},
 
 	};
-	var chart = new google.charts.Line(document.getElementById('chart_div'));
+	var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
 
 	chart.draw(data, options);
 }
+//function reDraw(rows) {
+//	var data = new google.visualization.DataTable();
+//	data.addColumn('number', 'Age');
+//	data.addColumn('number', 'Annual Savings');
+//	data.addColumn('number', 'Annual Expenses');
+//	data.addColumn('number', 'Total Balance');
+//
+//	data.addRows(rows);
+//	var options = {
+//		chart : {
+//			title : 'Retirement Plan',
+//			subtitle : 'in dollars (USD)'
+//		},
+//		width : 620,
+//		height : 400,
+//
+//	};
+//	var chart = new google.charts.Line(document.getElementById('chart_div'));
+//
+//	chart.draw(data, options);
+//}

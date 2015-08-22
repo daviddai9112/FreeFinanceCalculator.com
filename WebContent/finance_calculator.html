@@ -101,17 +101,6 @@ calculated on a sliding scale based on your income.We also take your independent
 		}
 	}
 </script>
-<script>
-function clickPension_1(){
-	valueChange(this); showPension(this);
-    document.getElementById('pension').value = 1;
-    alert(document.getElementById('pension').value);
-}
-function clickPension_0(){
-	document.getElementById('pension').value = 0;
-	alert(document.getElementById('pension').value);
-}
-</script>
 
 </head>
 
@@ -564,13 +553,13 @@ function clickPension_0(){
 					</div>
 					<!-- current age -->
 					<div class="panel-body" style="padding: 5px; height: 55px;">
-						<div class="col-lg-6" style="padding: 2px;">
+						<div class="col-lg-5" style="padding: 2px;">
 							<span class="help-block col-lg-7"
 								style="text-align: left; padding: 3px; width: 115px;"><label
 								data-toggle="tooltip" data-placement="left"
-								title="Your current age."><b>Current Age:</b></label></span>
-							<div class="col-lg-5" style="padding: 3px;">
-								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
+								title="Your current age."><b>Current Age<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label></span>
+							<div class="col-lg-4" style="padding: 3px;">
+								<input style="width: 60px; padding: 0px;" data-toggle="tooltip"
 									data-placement="top" title="" type="number" min="14" max="90"
 									class="form-control" value="30" id="cur_age"
 									onchange="valueChange(this);" required>
@@ -579,12 +568,12 @@ function clickPension_0(){
 						</div>
 
 						<div class="col-lg-6" style="padding: 2px;">
-							<span class="help-block col-lg-7"
+							<span class="help-block col-lg-8"
 								style="text-align: left; padding: 5px;"><label
 								data-toggle="tooltip" title="Age you wish to retire."
-								data-placement="left"><b>Retirement Age:</b></label></span>
-							<div class="col-lg-5" style="padding: 3px;">
-								<input style="width: 80px; padding: 0px;" data-toggle="tooltip"
+								data-placement="left"><b>Retirement Age<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label></span>
+							<div class="col-lg-4" style="padding: 3px;">
+								<input style="width: 60px; padding: 0px;" data-toggle="tooltip"
 									data-placement="top" title="" type="number"
 									class="form-control" max="90" value="67" id="retire_age"
 									onchange="valueChange(this);" required>
@@ -593,8 +582,6 @@ function clickPension_0(){
 						</div>
 
 					</div>
-
-
 
 					<!-- money saved -->
 					<div class="panel-body" style="padding: 8px;">
@@ -607,7 +594,7 @@ function clickPension_0(){
 							data-toggle="tooltip"
 							title="Total amount you have saved toward your retirement. Included all sources of retirement 
 						savings such as 401(k)s, IRAs and annuities."
-							data-placement="left"><b>Current retirement savings:</b>
+							data-placement="left"><b>Current retirement savings<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b>
 						</label> $ <span id="money_saved_span">50,000.00</span></span> <input
 							type="range" min="0" max="1000000" step="500" value="50000"
 							id="money_saved" onchange="valueChange(this);"
@@ -632,7 +619,7 @@ function clickPension_0(){
 							data-toggle="tooltip" data-placement="left"
 							title="Your total household income. If you are married, this should include
 						your spouse's income."><b>Household
-									income:</b></label> $ <span id="income_span">100,000</span></span> <input
+									income<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label> $ <span id="income_span">100,000</span></span> <input
 							type="range" min="0" max="1000000" step="500" value="100000"
 							id="income" onchange="valueChange(this);"
 							oninput="myFunction_income_span(this.value)" />
@@ -657,7 +644,7 @@ function clickPension_0(){
 							data-toggle="tooltip" data-placement="left"
 							title="The percentage of your annual income you plan to contribute to your retirement
 						savings. This should reflect the total you save toward your retirement."><b>Saving
-									rates:</b></label> <span id="saving_rate_span">5</span>%</span> <input
+									rates<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label> <span id="saving_rate_span">5</span>%</span> <input
 							type="range" min="0.01" max="0.25" step="0.01" id="saving_rate"
 							value="0.15" onchange="valueChange(this);"
 							oninput="myFunction_saving_rate(this.value)" />
@@ -681,7 +668,7 @@ function clickPension_0(){
 						<span class="help-block" style="text-align: left; margin: 3px;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="Annual percent increase you expect in your household income."><b>
-									Income increase rate:</b></label><span id="income_increase_rate_span">3</span>%</span>
+									Income increase rate<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label><span id="income_increase_rate_span">3</span>%</span>
 						<input type="range" min="0.01" max="1.00" step="0.01" value="0.03"
 							onchange="valueChange(this);" id="income_increase_rate"
 							oninput="myFunction_income_increase_rate(this.value)" />
@@ -708,7 +695,7 @@ function clickPension_0(){
 							data-toggle="tooltip" data-placement="left"
 							title="The percentage of your pre-retirement household income you think you will need in retirement.
 						This amount is based on the household income earned during the year immediately before your retirement. You can change this amount to be as low as 40% and as high as 160%."><b>
-									Retirement level:</b></label><span id="retirement_level_span">90</span>%</span> <input
+									Retirement level<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label><span id="retirement_level_span">90</span>%</span> <input
 							type="range" min="0.40" max="1.60" step="0.01" value="0.90"
 							onchange="valueChange(this);" id="retirement_level"
 							oninput="myFunction_retirement_level(this.value)" />
@@ -750,7 +737,7 @@ function clickPension_0(){
 						<span class="help-block" style="text-align: left;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="This is the annual rate of return you expect from your retirement savings and investments before retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA."><b>Investment
-									return before retirement:</b></label><span id="investment_before_span">8</span>%
+									return before retirement<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label><span id="investment_before_span">8</span>%
 						</span> <input type="range" min="0.00" max="0.12" step="0.01"
 							value="0.08" id="investment_before" onchange="valueChange(this);"
 							oninput="myFunction_investment_before_span(this.value)" />
@@ -776,7 +763,7 @@ function clickPension_0(){
 						<span class="help-block" style="text-align: left;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="This is the annual rate of return you expect from your retirement savings and investments during retirement. This should also be an after-tax rate of return if the majority of your retirement savings is not in a tax-deffered account such as a 403(b),401(k), annuity or IRA. It is often lower than the return earned before retirement due to more conservative investment choices to insure a steady flow of income."><b>Investment
-									return after retirement:</b></label><span id="investment_after_span">4</span>%
+									return after retirement<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label><span id="investment_after_span">4</span>%
 						</span> <input type="range" min="0.00" max="0.12" step="0.01"
 							value="0.04" id="investment_after" onchange="valueChange(this);"
 							oninput="myFunction_investment_after_span(this.value)" />
@@ -802,7 +789,7 @@ function clickPension_0(){
 						<span class="help-block" style="text-align: left;"><label
 							data-toggle="tooltip" data-placement="left"
 							title="This is what you expect for the average long-term inflation rate. The common measure of inflation in the U.S. is the Consumer Price Index(CPI). From 1925 through 2014 the CPI has a long-term average of 3.0% annually."><b>Inflation
-									rate:</b></label><span id="inflation_rate_span">3</span>% </span> <input
+									rate<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b></label><span id="inflation_rate_span">3</span>% </span> <input
 							type="range" min="0.00" max="0.20" step="0.01" value="0.04"
 							id="inflation_rate" onchange="valueChange(this);"
 							oninput="myFunction_inflation_rate_span(this.value)" />
@@ -836,7 +823,7 @@ function clickPension_0(){
 								style="text-align: left; padding: 3px;"><label
 								data-toggle="tooltip" data-placement="left"
 								title="Pensions are retirement benefits that are provided to people who have paid into a plan or who have been granted pension benefits by an employer. "><b>Do
-										you have a pension?</b></label></span>
+										you have a pension<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b></label></span>
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="pension"
 									onchange="valueChange(this); showPension(this)"
@@ -885,7 +872,7 @@ function clickPension_0(){
 						</script>
 						<span class="help-block" style="text-align: left;"
 							data-toggle="tooltip" title="The monthly amount of your pension."
-							data-placement="left"><b>Monthly amount:</b> $<span
+							data-placement="left"><b>Monthly amount<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b> $<span
 							id="pension_amount_span">2500</span> </span> <input type="range" min="0"
 							max="25000" step="1" id="pension_amount" value="2500"
 							onchange="valueChange(this);"
@@ -912,7 +899,7 @@ function clickPension_0(){
 								data-toggle="tooltip" data-placement="left"
 								title="The monetary benefits received by retired workers who have paid in to the Social Security system during their working years. 
 						Social Security benefits are paid out on a monthly basis to retired workers and their surviving spouses. "><b>Are
-										you eligible to Social Security Benefits?</b></label></span>
+										you eligible to Social Security Benefits<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b></label></span>
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="eligible_SSN"
 									onchange="valueChange(this); showSS(this)"
@@ -987,7 +974,7 @@ function clickPension_0(){
 								title="Choose 'Yes' if you are married." data-placement="left"
 								class="col-lg-6 help-block"
 								style="text-align: left; padding: 8px;"><b>Do you
-									have a spouse?</b></span>
+									have a spouse<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b></span>
 							<div class="col-lg-6" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible"
 									onchange="valueChange(this); showSpouse(this)"
@@ -1018,7 +1005,7 @@ function clickPension_0(){
 								style="text-align: left; padding: 8px;" data-toggle="tooltip"
 								title="Choose ‘Yes’ if your spouse is eligible for social security benefits."
 								data-placement="left"><b>Is your spouse eligibile to
-									pesions?</b></span>
+									pesions<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b></span>
 							<div class="col-lg-4" style="padding: 3px;">
 								<select class="form-control" id="partner_pension"
 									onchange="valueChange(this); showSpousePension(this)"
@@ -1070,7 +1057,7 @@ function clickPension_0(){
 						<span class="help-block" style="text-align: left; margin: 3px;"
 							data-toggle="tooltip"
 							title="The monthly amount of pension of your spouse."
-							data-placement="left"><b>Monthly amount:</b> $<span
+							data-placement="left"><b>Monthly amount<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>:</b> $<span
 							id="partner_pension_amount_span">2500</span> </span> <input type="range"
 							min="0" max="20000" step="1" value="2500"
 							id="partner_pension_amount" onchange="valueChange(this);"
@@ -1099,7 +1086,7 @@ function clickPension_0(){
 								data-toggle="tooltip"
 								title="Choose 'Yes' if your partner is eligible for social security benefits."
 								data-placement="left"><b>Is your spouse eligible to
-									Social Security Benefits?</b></span>
+									Social Security Benefits<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b></span>
 
 							<div class="col-lg-3" style="padding: 3px;">
 								<select class="form-control" id="partner_eligible_SSN"
@@ -1184,7 +1171,7 @@ function clickPension_0(){
 							data-toggle="tooltip"
 							title="Choose the number of your dependents."
 							data-placement="left"> <b>How many dependents do you
-								have?</b> <span id="dependent_span">1</span>
+								have<sup><img width="12" height="12" src="img/Information_icon4.svg"/></sup>?</b> <span id="dependent_span">1</span>
 						</span> <input type="range" min="0" max="5" step="1" id="dependent"
 							value="1" onchange="valueChange(this);"
 							oninput="myFunction_dependent(this.value)" />
